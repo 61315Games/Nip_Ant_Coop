@@ -8,31 +8,27 @@ public class MagnifierController : MonoBehaviour
     public RectTransform magnifierRoot;
     public LayerMask floorLayer;
 
-    private bool isZoomed = false;
+    [Header("Options")]
+    public bool hideSystemCursor = false;
     
     void Start()
     {
-        SetZoom(false);
+        magnifierRoot.gameObject.SetActive(true);
+        magnifierCam.enabled = true;
+
+        if (hideSystemCursor)
+            Cursor.visible = false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-            SetZoom(!isZoomed);
-
-        if (isZoomed)
-        {
-            Vector2 mouse = Input.mousePosition;
-            magnifierRoot.position = mouse;
-            AimMagnifierCamera(mouse);
-        }
-    }
-
-    void SetZoom(bool on)
-    {
-        isZoomed = on;
-        magnifierRoot.gameObject.SetActive(on);
-        magnifierCam.enabled = on;
+        Vector2 mouse = Input.mousePosition;
+        magnifierRoot.position = mouse;
+        AimMagnifierCamera(mouse);
+        
+        // TODO : 개미 판정 시스템
+        // if (Input.GetMouseButtonDown(1))
+        //     CheckAnt(mouse);
     }
 
     void AimMagnifierCamera(Vector2 mouse)
