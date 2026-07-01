@@ -11,11 +11,16 @@ public class MagnifierController : MonoBehaviour
 
     [Header("Zoom")]
     public float normalSize = 1.5f;
-    public float zoomSize = 0.5f;
-    public bool zoomOn = false;
     
     [Header("Options")]
     public bool hideSystemCursor = false;
+
+    [Header("Search Mode")]
+    private Vector2 normalCircleSize;
+    public Vector2 searchCircleSize = new Vector2(500, 500);
+    public float searchMagnification = 4f;
+    public GameObject searchBackground;
+    private bool isSearchMode = false;
     
     void Start()
     {
@@ -26,7 +31,10 @@ public class MagnifierController : MonoBehaviour
             Cursor.visible = false;
 
         canvas = magnifierRoot.GetComponentInParent<Canvas>();
+        normalCircleSize = magnifierRoot.sizeDelta;
         normalSize = ComputeOneToOneSize();
+
+        ApplyMode();
     }
 
     void Update()
@@ -37,9 +45,18 @@ public class MagnifierController : MonoBehaviour
         
         // TODO : 개미 판정 시스템
         if (Input.GetMouseButtonDown(1))
-            zoomOn = !zoomOn;
+        {
+            isSearchMode = !isSearchMode;
+            ApplyMode();
+        }
+    }
 
-        magnifierCam.orthographicSize = zoomOn ? zoomSize : normalSize;
+    void ApplyMode()
+    {
+        if(searchBackground)
+            searchBackground.SetActive(isSearchMode);
+        magnifierRoot.sizeDelta = isSearchMode ? searchCircleSize : normalCircleSize;
+        magnifierCam.orthographicSize = isSearchMode ? ComputeSearchSize() : normalSize;
     }
 
     void AimMagnifierCamera(Vector2 mouse)
@@ -61,5 +78,11 @@ public class MagnifierController : MonoBehaviour
     {
         float circlePx = magnifierRoot.rect.height * canvas.scaleFactor;
         return mainCam.orthographicSize * (circlePx / Screen.height);
+    }
+
+    float ComputeSearchSize()
+    {
+        float circlePx = searchCircleSize.y * canvas.scaleFactor;
+        return mainCam.orthographicSize * (circlePx / Screen.height) / searchMagnification;
     }
 }
