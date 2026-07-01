@@ -21,6 +21,7 @@ public class MagnifierController : MonoBehaviour
     public float searchMagnification = 4f;
     public GameObject searchBackground;
     private bool isSearchMode = false;
+    public bool IsSearchMode => isSearchMode;
     
     void Start()
     {
@@ -42,13 +43,6 @@ public class MagnifierController : MonoBehaviour
         Vector2 mouse = Input.mousePosition;
         magnifierRoot.position = mouse;
         AimMagnifierCamera(mouse);
-        
-        // TODO : 개미 판정 시스템
-        if (Input.GetMouseButtonDown(1))
-        {
-            isSearchMode = !isSearchMode;
-            ApplyMode();
-        }
     }
 
     void ApplyMode()
@@ -57,6 +51,12 @@ public class MagnifierController : MonoBehaviour
             searchBackground.SetActive(isSearchMode);
         magnifierRoot.sizeDelta = isSearchMode ? searchCircleSize : normalCircleSize;
         magnifierCam.orthographicSize = isSearchMode ? ComputeSearchSize() : normalSize;
+    }
+
+    public void ToggleSearchMode()
+    {
+        isSearchMode = !isSearchMode;
+        ApplyMode();
     }
 
     void AimMagnifierCamera(Vector2 mouse)
