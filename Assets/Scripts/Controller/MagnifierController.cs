@@ -7,7 +7,13 @@ public class MagnifierController : MonoBehaviour
     public Camera magnifierCam;
     public RectTransform magnifierRoot;
     public LayerMask floorLayer;
+    private Canvas canvas;
 
+    [Header("Zoom")]
+    public float normalSize = 1.5f;
+    public float zoomSize = 0.5f;
+    public bool zoomOn = false;
+    
     [Header("Options")]
     public bool hideSystemCursor = false;
     
@@ -18,6 +24,9 @@ public class MagnifierController : MonoBehaviour
 
         if (hideSystemCursor)
             Cursor.visible = false;
+
+        canvas = magnifierRoot.GetComponentInParent<Canvas>();
+        normalSize = ComputeOneToOneSize();
     }
 
     void Update()
@@ -27,8 +36,10 @@ public class MagnifierController : MonoBehaviour
         AimMagnifierCamera(mouse);
         
         // TODO : 개미 판정 시스템
-        // if (Input.GetMouseButtonDown(1))
-        //     CheckAnt(mouse);
+        if (Input.GetMouseButtonDown(1))
+            zoomOn = !zoomOn;
+
+        magnifierCam.orthographicSize = zoomOn ? zoomSize : normalSize;
     }
 
     void AimMagnifierCamera(Vector2 mouse)
@@ -44,5 +55,11 @@ public class MagnifierController : MonoBehaviour
         magnifierCam.transform.rotation = mainCam.transform.rotation;
         float d = Vector3.Distance(mainCam.transform.position, wp);
         magnifierCam.transform.position = wp - magnifierCam.transform.forward * d;
+    }
+
+    float ComputeOneToOneSize()
+    {
+        float circlePx = magnifierRoot.rect.height * canvas.scaleFactor;
+        return mainCam.orthographicSize * (circlePx / Screen.height);
     }
 }
