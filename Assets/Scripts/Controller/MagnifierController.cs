@@ -8,12 +8,12 @@ public class MagnifierController : MonoBehaviour
     public RectTransform magnifierRoot;
     public LayerMask floorLayer;
     private Canvas canvas;
+    public RectTransform searchLight;
+    public Vector2 searchLightOffset = new Vector2(60f, -60f);
+    public GameObject searchLightSprite;
 
     [Header("Zoom")]
     public float normalSize = 1.5f;
-    
-    [Header("Options")]
-    public bool hideSystemCursor = false;
 
     [Header("Search Mode")]
     private Vector2 normalCircleSize;
@@ -22,6 +22,9 @@ public class MagnifierController : MonoBehaviour
     public GameObject searchBackground;
     private bool isSearchMode = false;
     public bool IsSearchMode => isSearchMode;
+    
+    [Header("Options")]
+    public bool hideSystemCursor = false;
     
     void Start()
     {
@@ -42,6 +45,7 @@ public class MagnifierController : MonoBehaviour
     {
         Vector2 mouse = Input.mousePosition;
         magnifierRoot.position = mouse;
+        if(searchLight) searchLight.position = mouse + searchLightOffset;
         AimMagnifierCamera(mouse);
     }
 
@@ -49,6 +53,9 @@ public class MagnifierController : MonoBehaviour
     {
         if(searchBackground)
             searchBackground.SetActive(isSearchMode);
+        if(searchLightSprite)
+            searchLightSprite.SetActive(!isSearchMode);
+        
         magnifierRoot.sizeDelta = isSearchMode ? searchCircleSize : normalCircleSize;
         magnifierCam.orthographicSize = isSearchMode ? ComputeSearchSize() : normalSize;
     }
@@ -68,7 +75,7 @@ public class MagnifierController : MonoBehaviour
         else
             wp = mainCam.ScreenToWorldPoint(
                 new Vector3(mouse.x, mouse.y, mainCam.nearClipPlane + 20f));
-
+        
         magnifierCam.transform.rotation = mainCam.transform.rotation;
         float d = Vector3.Distance(mainCam.transform.position, wp);
         magnifierCam.transform.position = wp - magnifierCam.transform.forward * d;
