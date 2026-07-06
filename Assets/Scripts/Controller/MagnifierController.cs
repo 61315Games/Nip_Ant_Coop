@@ -10,7 +10,6 @@ public class MagnifierController : MonoBehaviour
     private Canvas canvas;
     public RectTransform searchLight;
     public Vector2 searchLightOffset = new Vector2(60f, -60f);
-    public GameObject searchLightSprite;
 
     [Header("Zoom")]
     public float normalSize = 1.5f;
@@ -53,8 +52,6 @@ public class MagnifierController : MonoBehaviour
     {
         if(searchBackground)
             searchBackground.SetActive(isSearchMode);
-        if(searchLightSprite)
-            searchLightSprite.SetActive(!isSearchMode);
         
         magnifierRoot.sizeDelta = isSearchMode ? searchCircleSize : normalCircleSize;
         magnifierCam.orthographicSize = isSearchMode ? ComputeSearchSize() : normalSize;
