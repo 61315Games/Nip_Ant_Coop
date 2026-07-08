@@ -1,0 +1,15 @@
+{
+  "storyId": "Chapter1_1",
+  "startNodeId": "n0",
+  "nodes": [
+    { "id": "n0", "speaker": "여왕개미", "text": "흰 개미를 찾았군.", "portrait": "queen", "next": "n1", "choices": [] },
+    { "id": "n1", "speaker": "일개미", "text": "어떻게 할까요?", "portrait": "worker", "next": null,
+      "choices": [
+        { "text": "심문한다", "next": "n2" },
+        { "text": "풀어준다", "next": "n3" }
+      ]
+    },
+    { "id": "n2", "speaker": "여왕개미", "text": "좋아, 심문하자.", "portrait": "queen", "next": null, "choices": [] },
+    { "id": "n3", "speaker": "여왕개미", "text": "이번엔 봐주지.", "portrait": "queen", "next": null, "choices": [] }
+  ]
+}
