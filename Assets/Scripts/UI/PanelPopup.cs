@@ -1,0 +1,36 @@
+using System.Collections;
+using UnityEngine;
+
+public class PanelPopup : MonoBehaviour
+{
+    [SerializeField] private float[] openSteps = { 0f, 0.5f, 1.15f, 1f }; // 단계별 Y스케일
+    [SerializeField] private float stepTime = 0.05f;                       // 각 단계 유지 시간
+
+    private Coroutine anim;
+
+    public void Open()
+    {
+        gameObject.SetActive(true);
+        if (anim != null) StopCoroutine(anim);
+        anim = StartCoroutine(Step(openSteps, false));
+    }
+
+    public void Close()
+    {
+        if (!gameObject.activeSelf) return;
+        if (anim != null) StopCoroutine(anim);
+        anim = StartCoroutine(Step(new float[] { 1f, 0.5f, 0f }, true));
+    }
+
+    IEnumerator Step(float[] steps, bool disableAtEnd)
+    {
+        Vector3 s = transform.localScale;
+        foreach (float v in steps)
+        {
+            s.y = v;
+            transform.localScale = s;
+            yield return new WaitForSeconds(stepTime);   // 한 단계 유지 → 뚝 끊기는 느낌
+        }
+        if (disableAtEnd) gameObject.SetActive(false);
+    }
+}
