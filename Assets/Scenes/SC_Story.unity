@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 49647032}
   - component: {fileID: 49647034}
   - component: {fileID: 49647033}
+  - component: {fileID: 49647035}
   m_Layer: 5
   m_Name: Deco3
   m_TagString: Untagged
@@ -194,6 +195,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49647031}
   m_CullTransparentMesh: 1
+--- !u!114 &49647035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49647031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97f83bcd100d40d9bf2967e5661b658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsets:
+  - 0
+  - 3
+  - 6
+  - 3
+  stepTime: 0.15
 --- !u!1 &67192804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,13 +1230,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2338,13 +2357,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2499,6 +2518,7 @@ GameObject:
   - component: {fileID: 1554383933}
   - component: {fileID: 1554383935}
   - component: {fileID: 1554383934}
+  - component: {fileID: 1554383936}
   m_Layer: 5
   m_Name: Deco
   m_TagString: Untagged
@@ -2563,6 +2583,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554383932}
   m_CullTransparentMesh: 1
+--- !u!114 &1554383936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554383932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e2c3783de3e4cb69c7990cef5908a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsets:
+  - 0
+  - 4
+  - 0
+  - -4
+  stepTime: 0.15
 --- !u!1 &1643598910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2612,7 @@ GameObject:
   - component: {fileID: 1643598913}
   - component: {fileID: 1643598912}
   - component: {fileID: 1643598911}
+  - component: {fileID: 1643598914}
   m_Layer: 5
   m_Name: Deco
   m_TagString: Untagged
@@ -2638,6 +2677,24 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: 0.00000047683716}
   m_SizeDelta: {x: 34.0907, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1643598914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643598910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e2c3783de3e4cb69c7990cef5908a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsets:
+  - 0
+  - 4
+  - 0
+  - -4
+  stepTime: 0.15
 --- !u!1 &1848783814
 GameObject:
   m_ObjectHideFlags: 0
