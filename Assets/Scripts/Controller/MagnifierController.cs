@@ -10,6 +10,8 @@ public class MagnifierController : MonoBehaviour
     private Canvas canvas;
     public RectTransform searchLight;
     public Vector2 searchLightOffset = new Vector2(60f, -60f);
+    public RectTransform magnifierSprite;
+    public Vector2 magnifierOffset = new Vector2(60f, -60f);
 
     [Header("Zoom")]
     public float normalSize = 1.5f;
@@ -44,7 +46,14 @@ public class MagnifierController : MonoBehaviour
     {
         Vector2 mouse = Input.mousePosition;
         magnifierRoot.position = mouse;
-        if(searchLight) searchLight.position = mouse + searchLightOffset;
+        if (searchLight && isSearchMode)
+        {
+            float r = magnifierRoot.sizeDelta.x * 0.5f * canvas.scaleFactor;
+            searchLight.position = mouse + new Vector2(r, -r) * 0.7f + searchLightOffset;
+        }
+
+        if (magnifierSprite && !isSearchMode)
+            magnifierSprite.position = mouse + magnifierOffset;
         AimMagnifierCamera(mouse);
     }
 
@@ -52,6 +61,10 @@ public class MagnifierController : MonoBehaviour
     {
         if(searchBackground)
             searchBackground.SetActive(isSearchMode);
+        if (searchLight)
+            searchLight.gameObject.SetActive(isSearchMode);
+        if(magnifierSprite)
+            magnifierSprite.gameObject.SetActive(!isSearchMode);
         
         magnifierRoot.sizeDelta = isSearchMode ? searchCircleSize : normalCircleSize;
         magnifierCam.orthographicSize = isSearchMode ? ComputeSearchSize() : normalSize;
