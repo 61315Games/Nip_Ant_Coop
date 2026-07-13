@@ -18,6 +18,7 @@ public class DialogueNode
     public string portrait;
     public string next;
     public List<Choice> choices = new List<Choice>();
+    public bool endHere;
 }
 
 [System.Serializable]
