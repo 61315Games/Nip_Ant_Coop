@@ -1,0 +1,55 @@
+{
+  "storyId": "Prologue",
+  "startNodeId": "n_7a410a02",
+  "background": "bg_classroom",
+  "nodes": [
+    {
+      "id": "n_7a410a02",
+      "speaker": "선생님 개미",
+      "text": "… 여러분들도 아시다시피, 검은개미마을과 하얀개미마을은 오랜 휴전 중에 있어요.",
+      "portrait": "ant_face_portrait_transparent",
+      "next": "n_250655b5",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "slot": "Left"
+        }
+      ]
+    },
+    {
+      "id": "n_250655b5",
+      "speaker": "선생님 개미",
+      "text": "벌써 개미력으로 162년이라는 시간이 흘렀지만, 여전히 두 마을의 관계는 좋아지지 않았습니다.",
+      "portrait": "",
+      "next": "n_d1d19e6c",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "slot": "Left"
+        }
+      ]
+    },
+    {
+      "id": "n_d1d19e6c",
+      "speaker": "학생 개미1",
+      "text": "선생님, 그런데 전쟁은 둘이 막 싸우는 거잖아요.",
+      "portrait": "student1-normal-32px",
+      "next": null,
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "slot": "Right"
+        }
+      ]
+    }
+  ]
+}

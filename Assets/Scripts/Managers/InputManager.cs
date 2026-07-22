@@ -5,48 +5,62 @@ public class InputManager : MonoBehaviour
     private RotateController _rotateController;
     private MagnifierController _magnifier;
     private DialogueRunner _dialogue;
-    
+
     private void Start()
     {
         _rotateController = FindFirstObjectByType<RotateController>();
         _magnifier = FindFirstObjectByType<MagnifierController>();
         _dialogue = FindFirstObjectByType<DialogueRunner>();
     }
-    
+
     void Update()
     {
-        if (_dialogue != null && _dialogue.IsActive)
+        // ================= 스토리 씬 =================
+        if (_dialogue != null)
         {
-            HandleInput();
+            if (!_dialogue.IsActive) return;
+
+            if (_dialogue.choosing)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))   _dialogue.Move(-1);
+                if (Input.GetKeyDown(KeyCode.DownArrow)) _dialogue.Move(1);
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) _dialogue.Confirm();
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) _dialogue.OnClick();
+            }
             return;
         }
-        
-        if(Input.GetMouseButtonDown(1))
+
+        // ================= 게임 씬 =================
+        // 오른쪽 클릭 = 확대 진입/해제
+        if (Input.GetMouseButtonDown(1) && _magnifier != null)
             _magnifier.ToggleSearchMode();
-        
+
+        // 좌클릭 = 개미 판정 (확대 여부 상관없이 항상)
+        if (Input.GetMouseButtonDown(0))
+            JudgeAnt();
+
+        // 확대 모드 중엔 회전 막기
         if (_magnifier != null && _magnifier.IsSearchMode)
             return;
-        
-        if (Input.GetKeyDown(KeyCode.A))
-            _rotateController.Rotate(-90);
-        if(Input.GetKeyDown(KeyCode.D))
-            _rotateController.Rotate(90);
-        
-        // TODO : 상호작용 키 추가(ESC...), 개미 판정 시스템
+
+        // 큐브 회전
+        if (Input.GetKeyDown(KeyCode.A) && _rotateController != null) _rotateController.Rotate(-90);
+        if (Input.GetKeyDown(KeyCode.D) && _rotateController != null) _rotateController.Rotate(90);
     }
 
-    private void HandleInput()
+    void JudgeAnt()
     {
-        if (_dialogue.choosing)
+        Camera cam = (_magnifier != null) ? _magnifier.mainCam : Camera.main;
+        if (cam == null) return;
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow)) _dialogue.Move(-1);
-            if(Input.GetKeyDown(KeyCode.DownArrow)) _dialogue.Move(1);
-            if (Input.GetKeyDown(KeyCode.Return)) _dialogue.Confirm();
-        }
-        else
-        {
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                _dialogue.OnClick();
+            var t = hit.collider.GetComponent<Termite>();
+            if (t != null) t.Judge();
         }
     }
 }

@@ -6,6 +6,7 @@ public class DialogueData
 {
     public string storyId;
     public string startNodeId;
+    public string background;
     public List<DialogueNode> nodes = new List<DialogueNode>();
 }
 
@@ -17,8 +18,9 @@ public class DialogueNode
     public string text;
     public string portrait;
     public string next;
-    public List<Choice> choices = new List<Choice>();
     public bool endHere;
+    public List<Choice> choices = new List<Choice>();
+    public List<ActorState> actors = new List<ActorState>();
 }
 
 [System.Serializable]
@@ -26,4 +28,12 @@ public class Choice
 {
     public string text;
     public string next;
+}
+
+[System.Serializable]
+public class ActorState
+{
+    public string id;
+    public string sprite;
+    public string slot;
 }

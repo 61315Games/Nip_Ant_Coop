@@ -6,13 +6,11 @@ public class Termite : MonoBehaviour
 
     public void Init(TermiteSpawnInfo i) => info = i;
 
-    void OnMouseDown()
+    public void Judge()
     {
-        if(info != null && info.isReal)
+        if (info != null && info.isReal)
             Debug.Log("흰개미 발견!");
         else
-        {
             Debug.Log("흰개미가 아니에요!");
-        }
     }
 }
