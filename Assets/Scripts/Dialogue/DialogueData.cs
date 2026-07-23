@@ -21,6 +21,7 @@ public class DialogueNode
     public bool endHere;
     public List<Choice> choices = new List<Choice>();
     public List<ActorState> actors = new List<ActorState>();
+    public bool shake;
 }
 
 [System.Serializable]
@@ -35,5 +36,6 @@ public class ActorState
 {
     public string id;
     public string sprite;
+    public float brightness = 1f;
     public string slot;
 }

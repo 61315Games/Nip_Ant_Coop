@@ -5,9 +5,9 @@
   "nodes": [
     {
       "id": "n_7a410a02",
-      "speaker": "선생님 개미",
+      "speaker": "선생 개미",
       "text": "… 여러분들도 아시다시피, 검은개미마을과 하얀개미마을은 오랜 휴전 중에 있어요.",
-      "portrait": "ant_face_portrait_transparent",
+      "portrait": "teacher-normal-32px",
       "next": "n_250655b5",
       "endHere": false,
       "choices": [],
@@ -15,13 +15,15 @@
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
           "slot": "Left"
         }
-      ]
+      ],
+      "shake": false
     },
     {
       "id": "n_250655b5",
-      "speaker": "선생님 개미",
+      "speaker": "선생 개미",
       "text": "벌써 개미력으로 162년이라는 시간이 흘렀지만, 여전히 두 마을의 관계는 좋아지지 않았습니다.",
       "portrait": "",
       "next": "n_d1d19e6c",
@@ -31,25 +33,603 @@
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
           "slot": "Left"
         }
-      ]
+      ],
+      "shake": false
     },
     {
       "id": "n_d1d19e6c",
       "speaker": "학생 개미1",
       "text": "선생님, 그런데 전쟁은 둘이 막 싸우는 거잖아요.",
       "portrait": "student1-normal-32px",
-      "next": null,
+      "next": "n_7100aae5",
       "endHere": false,
       "choices": [],
       "actors": [
         {
           "id": "student1",
           "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_7100aae5",
+      "speaker": "학생 개미1",
+      "text": "그러면 먼저 잘못한 쪽이 사과하면 화해할 수 있는 거 아닌가요?",
+      "portrait": "student1-normal-32px",
+      "next": "n_85f72dac",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_85f72dac",
+      "speaker": "학생 개미2",
+      "text": "야, 그게 됐으면 진작에 종전이 됐겠지. 저 오만방자한 하얀개미 녀석들이 사과나 하겠냐?",
+      "portrait": "student2-normal-32px",
+      "next": "n_3625d6e1",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
           "slot": "Right"
         }
-      ]
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_3625d6e1",
+      "speaker": "선생 개미",
+      "text": "어어, 갑자기 그렇게 친구한테 화풀이하면 안 돼요~",
+      "portrait": "teacher-normal-32px",
+      "next": "n_bbb039a8",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_bbb039a8",
+      "speaker": "학생 개미2",
+      "text": "그치만 선생님, 얘가 너무 바보 같은 질문을 하는 걸요.",
+      "portrait": "student2-normal-32px",
+      "next": "n_0fcb9bd0",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_0fcb9bd0",
+      "speaker": "학생 개미2",
+      "text": "그리고 맨날 똑같은 얘기 듣는 것 같아서, 솔직히 좀 지겨워요.",
+      "portrait": "student2-normal-32px",
+      "next": "n_86a052d9",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_86a052d9",
+      "speaker": "에밀",
+      "text": "하지만 그만큼 역사라는 게 중요하다는 것 아닐까?.",
+      "portrait": "emil-normal-32px",
+      "next": "n_0a1d4492",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_0a1d4492",
+      "speaker": "에밀",
+      "text": "우리의 자랑스런 영웅도 이런 말을 남긴 바 있지. '역사를 잊은 개미에게 미래는 없다!'",
+      "portrait": "emil-excited-32px",
+      "next": "n_cca71930",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-excited-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_cca71930",
+      "speaker": "에밀",
+      "text": "우리의 미래를 위해서라도 역사는 더듬이에 딱지가 앉도록 들어도 과하지 않다고 생각해.",
+      "portrait": "emil-normal-32px",
+      "next": "n_486a91a8",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_486a91a8",
+      "speaker": "학생 개미2",
+      "text": "으으, 아주 모범생 납셨네. 전교1등이라 이거야?",
+      "portrait": "student2-normal-32px",
+      "next": "n_039fb016",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_039fb016",
+      "speaker": "학생 개미1",
+      "text": "\"? 우리 더듬이에 딱지가 앉으면 너무 위험한 거 아냐?\"",
+      "portrait": "student1-normal-32px",
+      "next": "n_1f1902c0",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_1f1902c0",
+      "speaker": "학생 개미2",
+      "text": "......",
+      "portrait": "student2-embarrassed-32px",
+      "next": "n_b7992139",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_b7992139",
+      "speaker": "선생 개미",
+      "text": "하하! 에밀이 말한 게 정말 그런 상황을 가리키는 건 아니겠지요~?",
+      "portrait": "",
+      "next": "n_a8ac0b8e",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_a8ac0b8e",
+      "speaker": "선생 개미",
+      "text": "하지만, 여러분 모두 에밀의 말을 듣고 한 번쯤 생각해보았으면 해요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_8947d845",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_8947d845",
+      "speaker": "선생 개미",
+      "text": "역사를 바로 배우지 않는다면, 같은 잘못을 되풀이하게 된답니다.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_7e2cfe13",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_7e2cfe13",
+      "speaker": "선생 개미",
+      "text": "아직까지도 하얀개미들이 우리 검은개미에게 사과하지 않는 이유는, 저들의 왜곡된 역사 교육도 한몫 하니까요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_24966b7f",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_24966b7f",
+      "speaker": "선생 개미",
+      "text": "그러고보니, 이건 지난 수업시간에 이야기했었죠? 혹시 기억 나는 학생 있으면 대답해볼까요~?",
+      "portrait": "teacher-kind-32px",
+      "next": "n_eb89111f",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_eb89111f",
+      "speaker": "선생 개미",
+      "text": "왜 하얀개미마을에서는 그렇게 왜곡된 역사 교육을 하는 걸까요~?",
+      "portrait": "teacher-kind-32px",
+      "next": "n_266b3cc6",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_266b3cc6",
+      "speaker": "학생 개미1",
+      "text": "저요! 저 알아요!",
+      "portrait": "student1-smile-32px",
+      "next": "n_a666213a",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-smile-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "Teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_a666213a",
+      "speaker": "학생 개미1",
+      "text": "그건 바로 하얀개미들이 우리 검은개미와 달리 비정상적인 돌연변이이기 때문입니다!!",
+      "portrait": "student1-smile-32px",
+      "next": "n_0d585434",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-smile-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        }
+      ],
+      "shake": true
+    },
+    {
+      "id": "n_0d585434",
+      "speaker": "선생 개미",
+      "text": "네, 그렇죠~ 그들은 순수한 검은개미가 아니에요. 그러다 보니 우리 검은개미보다도 훨씬 비문명적이고 포악합니다.",
+      "portrait": "teacher-kind-32px",
+      "next": "n_2eef067d",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-smile-32px",
+          "brightness": 0.7,
+          "slot": "Right"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_2eef067d",
+      "speaker": "선생 개미",
+      "text": "아무리 검은개미와 동등해지려 해도, 그 돌연변이적인 폭력성과 이기심은 변하지 않아요.",
+      "portrait": "teacher-kind-32px",
+      "next": "n_56b31df2",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_56b31df2",
+      "speaker": "선생 개미",
+      "text": "… 최근에는 다시 또 우리 검은개미마을에 나타나서는…",
+      "portrait": "teacher-serious-32px",
+      "next": "n_31871106",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-serious-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_31871106",
+      "speaker": "학생 개미1",
+      "text": "\"네? 선생님, 그게 무슨 말씀이세요??\"",
+      "portrait": "student1-embarrassed-32px",
+      "next": "n_32c3a4fa",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "Teacher",
+          "sprite": "teacher-serious-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_32c3a4fa",
+      "speaker": "학생 개미2",
+      "text": "그 자식들이 우리 마을에 왜 나타나요?",
+      "portrait": "student2-embarrassed-32px",
+      "next": "n_f73c8e69",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_f73c8e69",
+      "speaker": "학생 개미2",
+      "text": "\"다시 전쟁이 벌어지는 거예요?\"",
+      "portrait": "student2-embarrassed-32px",
+      "next": "n_a8610e97",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-smile-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_a8610e97",
+      "speaker": "선생 개미",
+      "text": "\"아니, 아니에요. 모두들 진정하세요.\"",
+      "portrait": "teacher-serious-32px",
+      "next": "n_116bf5e6",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-serious-32px",
+          "brightness": 1.0,
+          "slot": "Left"
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Off"
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_116bf5e6",
+      "speaker": "선생 개미",
+      "text": "...하아. 어차피 여러분에게도 알려야 할 사실이었으니…",
+      "portrait": "teacher-serious-32px",
+      "next": "n_fe843054",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_fe843054",
+      "speaker": "선생 개미",
+      "text": "여러분, 이건 전체 공지사항이니 잘 들어주세요.",
+      "portrait": "teacher-serious-32px",
+      "next": "n_7783409d",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_7783409d",
+      "speaker": "선생 개미",
+      "text": "최근 들어, 검은개미마을에 하얀개미들이 몰래 침입하고 있다고 해요.",
+      "portrait": "teacher-serious-32px",
+      "next": "n_21b898e7",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_21b898e7",
+      "speaker": "학생 개미1",
+      "text": "네?? 아니, 어떻게 그런 일이!!",
+      "portrait": "student1-embarrassed-32px",
+      "next": null,
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Right"
+        },
+        {
+          "id": "Teacher",
+          "sprite": "teacher-serious-32px",
+          "brightness": 0.7,
+          "slot": "Left"
+        }
+      ],
+      "shake": true
     }
   ]
 }

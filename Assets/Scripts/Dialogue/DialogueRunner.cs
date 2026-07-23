@@ -20,6 +20,7 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private GameObject[] choiceSlots;
     [SerializeField] private TMP_Text[] choiceLabels;
     [SerializeField] private GameObject[] choiceChecks;
+    public bool choosing;
 
     [Header("Visuals")]
     [SerializeField] private SpriteDatabase spriteDB;
@@ -31,6 +32,14 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private RectTransform characterRoot;
     [SerializeField] private RectTransform slotLeft, slotCenter, slotRight, slotOff;
     [SerializeField] private float moveSpeed = 8f;
+    
+    [Header("Shake")]
+    [SerializeField] private RectTransform shakeRoot;      // 흔들 대상(화면 전체 담은 루트)
+    [SerializeField] private float shakeDuration = 0.3f;
+    [SerializeField] private float shakeMagnitude = 15f;
+
+    private Vector2 shakeHome;
+    private Coroutine shakeCo;
 
     private DialogueData data;
     private DialogueNode current;
@@ -38,14 +47,17 @@ public class DialogueRunner : MonoBehaviour
     private bool isTyping;
 
     private int selectedIndex;
-    public bool choosing;
 
     private Dictionary<string, Image> stage = new Dictionary<string, Image>();
     private Dictionary<string, Coroutine> movers = new Dictionary<string, Coroutine>();
 
     public bool IsActive => current != null;
 
-    // ------------------------------------------------------------- 재생
+    void Awake()
+    {
+        if (shakeRoot != null) shakeHome = shakeRoot.anchoredPosition;
+    }
+    // -------------------- 재생 --------------------
     public void Play(string storyId)
     {
         string path = Path.Combine(Application.streamingAssetsPath, storyId + ".json");
@@ -80,6 +92,8 @@ public class DialogueRunner : MonoBehaviour
         speakerText.text = node.speaker;
         if (typing != null) StopCoroutine(typing);
         typing = StartCoroutine(TypeText(node.text));
+
+        if (node.shake) Shake();
     }
 
     IEnumerator TypeText(string full)
@@ -225,6 +239,8 @@ public class DialogueRunner : MonoBehaviour
 
             Transform target = GetSlot(a.slot);
             if (target != null) img.rectTransform.position = target.position;
+            
+            img.color = new Color(a.brightness, a.brightness, a.brightness, 1f); 
         }
     }
 
@@ -268,5 +284,26 @@ public class DialogueRunner : MonoBehaviour
         foreach (var kv in stage) if (kv.Value != null) Destroy(kv.Value.gameObject);
         stage.Clear();
         movers.Clear();
+    }
+    
+    void Shake()
+    {
+        if (shakeRoot == null) return;
+        if (shakeCo != null) StopCoroutine(shakeCo);
+        shakeCo = StartCoroutine(ShakeRoutine());
+    }
+
+    IEnumerator ShakeRoutine()
+    {
+        float t = 0f;
+        while (t < shakeDuration)
+        {
+            t += Time.deltaTime;
+            float damper = 1f - (t / shakeDuration); 
+            Vector2 off = Random.insideUnitCircle * shakeMagnitude * damper;
+            shakeRoot.anchoredPosition = shakeHome + off;
+            yield return null;
+        }
+        shakeRoot.anchoredPosition = shakeHome; 
     }
 }

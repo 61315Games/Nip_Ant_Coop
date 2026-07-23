@@ -91,7 +91,6 @@ public class DialogueEditorWindow : EditorWindow
             var n = data.nodes[i];
             EditorGUILayout.BeginVertical("box");
 
-            // 헤더
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField($"대사 {i + 1}", EditorStyles.boldLabel);
             if (GUILayout.Button("▲", GUILayout.Width(28))) { moveIndex = i; moveDir = -1; }
@@ -103,8 +102,8 @@ public class DialogueEditorWindow : EditorWindow
             EditorGUILayout.LabelField("대사");
             n.text     = EditorGUILayout.TextArea(n.text, GUILayout.MinHeight(40));
             n.portrait = EditorGUILayout.TextField("초상화(선택)", n.portrait);
+            n.shake = EditorGUILayout.Toggle("화면 흔들기", n.shake);
 
-            // ----- 선택지 -----
             EditorGUILayout.Space(2);
             if (n.choices.Count == 0)
             {
@@ -131,7 +130,6 @@ public class DialogueEditorWindow : EditorWindow
             }
             if (GUILayout.Button("선택지 추가")) addChoiceNode = i;
 
-            // ----- 무대 (배우) -----
             EditorGUILayout.Space(2);
             EditorGUILayout.LabelField("무대 (배우 / 그림 / 위치)", EditorStyles.boldLabel);
             for (int a = 0; a < n.actors.Count; a++)
@@ -144,6 +142,7 @@ public class DialogueEditorWindow : EditorWindow
                 n.actors[a].slot = Slots[nsi];
                 if (GUILayout.Button("x", GUILayout.Width(20))) { removeActorNode = i; removeActorIdx = a; }
                 EditorGUILayout.EndHorizontal();
+                n.actors[a].brightness = EditorGUILayout.Slider(n.actors[a].brightness, 0f, 1f, GUILayout.Width(160));
             }
             if (GUILayout.Button("배우 추가")) addActorNode = i;
 
@@ -160,7 +159,7 @@ public class DialogueEditorWindow : EditorWindow
         if (removeChoiceNode >= 0) data.nodes[removeChoiceNode].choices.RemoveAt(removeChoiceIdx);
         if (addChoiceNode >= 0) data.nodes[addChoiceNode].choices.Add(new Choice());
         if (removeActorNode >= 0) data.nodes[removeActorNode].actors.RemoveAt(removeActorIdx);
-        if (addActorNode >= 0) data.nodes[addActorNode].actors.Add(new ActorState { slot = "Center" });
+        if (addActorNode >= 0) data.nodes[addActorNode].actors.Add(new ActorState { slot = "Center", brightness = 1f });
         if (addNode) data.nodes.Add(new DialogueNode { id = NewId() });
     }
 
