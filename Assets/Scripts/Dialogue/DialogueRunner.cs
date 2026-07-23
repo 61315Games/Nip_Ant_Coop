@@ -99,14 +99,15 @@ public class DialogueRunner : MonoBehaviour
     IEnumerator TypeText(string full)
     {
         isTyping = true;
-        dialogueText.text = "";
-        if (!string.IsNullOrEmpty(full))
+        dialogueText.text = full;
+        dialogueText.ForceMeshUpdate();
+        int total = dialogueText.textInfo.characterCount;
+
+        dialogueText.maxVisibleCharacters = 0;
+        for (int i = 0; i <= total; i++)
         {
-            foreach (char c in full)
-            {
-                dialogueText.text += c;
-                yield return new WaitForSeconds(typeSpeed);
-            }
+            dialogueText.maxVisibleCharacters = i;
+            yield return new WaitForSeconds(typeSpeed);
         }
         isTyping = false;
 
@@ -138,7 +139,7 @@ public class DialogueRunner : MonoBehaviour
         if (isTyping)
         {
             if (typing != null) StopCoroutine(typing);
-            dialogueText.text = current.text;
+            dialogueText.maxVisibleCharacters = dialogueText.textInfo.characterCount;
             isTyping = false;
             if (current.choices != null && current.choices.Count > 0) ShowChoices();
             return;

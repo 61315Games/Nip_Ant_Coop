@@ -29,9 +29,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 9b458b7d5d8db491eb93bb2d8bb2a958, type: 3}
   - name: student1-smile-32px
     sprite: {fileID: 21300000, guid: a55392b7753e942d38262db27099b9f1, type: 3}
+  - name: student1-scary-32px
+    sprite: {fileID: 21300000, guid: 72f39e3881afb413c81e12ea1706438c, type: 3}
   - name: student1-embarrassed-32px
     sprite: {fileID: 21300000, guid: 1c9486caaabda4cda8620a5a8eebd72b, type: 3}
   - name: student2-normal-32px
     sprite: {fileID: 21300000, guid: 45003cb4f797e40d894fd06770e5d98c, type: 3}
   - name: student2-embarrassed-32px
     sprite: {fileID: 21300000, guid: f28a69ded6e3a4291a576446f575c990, type: 3}
+  - name: student2-angry-32px
+    sprite: {fileID: 21300000, guid: f28a69ded6e3a4291a576446f575c990, type: 3}
+  - name: new-student-32px
+    sprite: {fileID: 21300000, guid: cee5cfbcd3d564412a153ca3d0981baa, type: 3}
