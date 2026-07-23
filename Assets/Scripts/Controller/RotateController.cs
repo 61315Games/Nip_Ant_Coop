@@ -33,7 +33,7 @@ public class RotateController : MonoBehaviour
         float elapsed = 0f, rotated = 0f;
 
         Vector3 center = pivot.position;
-        Vector3 axis = transform.forward; 
+        Vector3 axis = transform.up; 
 
         while (elapsed < rotationDuration)
         {
