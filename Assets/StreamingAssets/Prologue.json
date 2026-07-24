@@ -1321,7 +1321,7 @@
           "sprite": "new-student-32px",
           "brightness": 0.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": true
         },
         {
           "id": "emil",
