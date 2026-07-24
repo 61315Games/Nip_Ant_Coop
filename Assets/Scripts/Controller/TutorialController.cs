@@ -1,39 +1,47 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
-    [SerializeField] private GameObject tutorialPanel;
-    [SerializeField] private TMP_Text tutorialText;
-    [SerializeField] private Image stepImage;
-    [SerializeField] private List<Step> steps = new();
-    private int index = -1;
-    private bool waitingForAction = false;
-    
-    public enum Trigger { ReportAnt, Rotate, Magnify, Continue }
+
+    public enum Trigger { Continue, ReportAnt, Rotate, Magnify }
 
     [System.Serializable]
     public class Step
     {
         [TextArea] public string text;
-        public Sprite image;
         public Trigger trigger;
+        public Sprite image;
     }
 
+    [SerializeField] private GameObject tutorialPanel;
+    [SerializeField] private TMP_Text tutorialText;
+    [SerializeField] private Image stepImage;
+    [SerializeField] private List<Step> steps = new();
+
+    private int index = -1;
+    private bool waitingForAction = false;
+    private bool showingHint = false;
+
     void Awake() { instance = this; }
-    void OnDestroy() { if(instance == this) instance = null; }
+    void OnDestroy() { if (instance == this) instance = null; }
+
     public bool IsBlocking =>
-        enabled && index >= 0 && index < steps.Count && !waitingForAction;
-    
+        enabled && index >= 0 && index < steps.Count && (!waitingForAction || showingHint);
+
+    public Trigger CurrentTrigger =>
+        (index >= 0 && index < steps.Count) ? steps[index].trigger : Trigger.Continue;
+
     void Start()
     {
         if (GameFlow.CurrentStage != "Tutorial")
         {
-            if(tutorialPanel != null) tutorialPanel.SetActive(false);
+            if (tutorialPanel != null) tutorialPanel.SetActive(false);
+            if (stepImage != null) stepImage.gameObject.SetActive(false);
             enabled = false;
             return;
         }
@@ -44,42 +52,14 @@ public class TutorialController : MonoBehaviour
     {
         index++;
         waitingForAction = false;
-        if (index >= steps.Count)
-        {
-            EndTutorial();
-            return;
-        }
+        showingHint = false;
+        if (index >= steps.Count) { EndTutorial(); return; }
+
         if (tutorialPanel != null) tutorialPanel.SetActive(true);
         if (tutorialText != null) tutorialText.text = steps[index].text;
-        
-        ShowStepImage(steps[index].image); 
+        ShowStepImage(steps[index].image);
     }
 
-    public void NotifyReportAnt() => Check(Trigger.ReportAnt);
-    public void NotifyRotate() => Check(Trigger.Rotate);
-    public void NotifyMagnify() => Check(Trigger.Magnify);
-
-    void Check(Trigger t)
-    {
-        if (index < 0 || index >= steps.Count) return;
-        if (!waitingForAction) return;
-        if(steps[index].trigger == t) Next();
-    }
-    
-    public void Advance()
-    {
-        if (index < 0 || index >= steps.Count) return;
-        if (waitingForAction) return;
-
-        if (steps[index].trigger == Trigger.Continue)
-            Next();
-        else
-        {
-            if (tutorialPanel != null) tutorialPanel.SetActive(false);
-            if (stepImage != null) stepImage.gameObject.SetActive(false);
-            waitingForAction = true;
-        }
-    }
     void ShowStepImage(Sprite s)
     {
         if (stepImage == null) return;
@@ -92,14 +72,69 @@ public class TutorialController : MonoBehaviour
         else stepImage.gameObject.SetActive(false);
     }
 
+    public void Advance()
+    {
+        if (index < 0 || index >= steps.Count) return;
+
+        if (showingHint)
+        {
+            showingHint = false;
+            if (tutorialPanel != null) tutorialPanel.SetActive(false);
+            if (stepImage != null) stepImage.gameObject.SetActive(false);
+            return;
+        }
+
+        if (waitingForAction) return;
+
+        if (steps[index].trigger == Trigger.Continue)
+        {
+            Next();
+        }
+        else
+        {
+            if (tutorialPanel != null) tutorialPanel.SetActive(false);
+            if (stepImage != null) stepImage.gameObject.SetActive(false);
+            waitingForAction = true;
+        }
+    }
+
+    public void ShowHint(string message)
+    {
+        if (index < 0 || index >= steps.Count) return;
+        showingHint = true;
+        if (tutorialPanel != null) tutorialPanel.SetActive(true);
+        if (tutorialText != null) tutorialText.text = message;
+        ShowStepImage(steps[index].image);
+    }
+
+    public void NotifyReportAnt() => Check(Trigger.ReportAnt);
+    public void NotifyRotate()    => Check(Trigger.Rotate);
+    public void NotifyMagnify()   => Check(Trigger.Magnify);
+
+    void Check(Trigger t)
+    {
+        if (index < 0 || index >= steps.Count) return;
+        if (!waitingForAction || showingHint) return;
+        if (steps[index].trigger == t) Next();
+    }
+
+    public bool Allows(Trigger t)
+    {
+        if (!enabled) return true;
+        if (index < 0 || index >= steps.Count) return true;
+        if (showingHint) return false;
+        if (!waitingForAction) return false;
+        return steps[index].trigger == t;
+    }
+
     void EndTutorial()
     {
-        tutorialText.text = "";
+        if (tutorialPanel != null) tutorialPanel.SetActive(false);
         if (stepImage != null) stepImage.gameObject.SetActive(false);
+
         var mag = FindFirstObjectByType<MagnifierController>();
-        if (mag != null && mag.IsSearchMode)
-            mag.ToggleSearchMode();
-        
+        if (mag != null && mag.IsSearchMode) mag.ToggleSearchMode();
+
         GameFlow.CurrentStage = "Prologue_2";
         UnityEngine.SceneManagement.SceneManager.LoadScene("SC_Story");
     }

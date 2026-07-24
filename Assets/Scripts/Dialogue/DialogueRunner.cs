@@ -38,8 +38,7 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private float shakeMagnitude = 15f;
 
     [Header("Fade")]
-    [SerializeField] private Image fadeOverlay;
-    [SerializeField] private float fadeDuration = 0.6f;
+    [SerializeField] private Fader fader;
     [SerializeField] private CanvasGroup characterGroup;       
     [SerializeField] private float characterFadeDuration = 0.5f;
     [SerializeField] private float actorFadeDuration = 0.5f;
@@ -110,13 +109,8 @@ public class DialogueRunner : MonoBehaviour
         if (characterRoot != null) characterRoot.gameObject.SetActive(false);
         if (characterGroup != null) characterGroup.alpha = 0f;
 
-        if (fadeOverlay != null)
-        {
-            fadeOverlay.gameObject.SetActive(true);
-            Color c = fadeOverlay.color; c.a = 1f; fadeOverlay.color = c;
-            yield return Fade(1f, 0f);
-            fadeOverlay.gameObject.SetActive(false);
-        }
+        if (fader != null)
+            yield return fader.FadeIn();
 
         if (characterRoot != null) characterRoot.gameObject.SetActive(true);
         panel.SetActive(true);
@@ -133,14 +127,8 @@ public class DialogueRunner : MonoBehaviour
 
     IEnumerator OutroRoutine()
     {
-        if (fadeOverlay != null)
-        {
-            fadeOverlay.gameObject.SetActive(true);
-            Color c = fadeOverlay.color;
-            c.a = 0f;
-            fadeOverlay.color = c;
-            yield return Fade(0f, 1f);
-        }
+        if (fader != null)
+            yield return fader.FadeOut();
         
         panel.SetActive(false);
         if(characterRoot != null)
@@ -150,23 +138,6 @@ public class DialogueRunner : MonoBehaviour
             GameFlow.CurrentStage = nextStage;
         if (!string.IsNullOrEmpty(nextScene))
             UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
-    }
-
-    IEnumerator Fade(float from, float to)
-    {
-        float t = 0f;
-        Color c = fadeOverlay.color;
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            float k = t / fadeDuration;
-            k = k * k;
-            c.a = Mathf.Lerp(from, to, k);
-            fadeOverlay.color = c;
-            yield return null;
-        }
-        c.a = to;
-        fadeOverlay.color = c;
     }
     IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float dur)
     {

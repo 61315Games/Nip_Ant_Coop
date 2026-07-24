@@ -30,25 +30,60 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        if (TutorialController.instance != null && TutorialController.instance.IsBlocking)
+        var tut = TutorialController.instance;
+
+        if (tut != null && tut.enabled && tut.IsBlocking)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                TutorialController.instance.Advance();
-            return; 
+                tut.Advance();
+            return;
         }
 
         if (Input.GetMouseButtonDown(1) && _magnifier != null)
-            _magnifier.ToggleSearchMode();
+        {
+            if (Allowed(TutorialController.Trigger.Magnify))
+                _magnifier.ToggleSearchMode();
+            else if (tut != null && tut.enabled)
+                tut.ShowHint(HintFor(tut.CurrentTrigger));
+        }
 
         if (Input.GetMouseButtonDown(0))
-            JudgeAnt();
+        {
+            if (Allowed(TutorialController.Trigger.ReportAnt))
+                JudgeAnt();
+            else if (tut != null && tut.enabled)
+                tut.ShowHint(HintFor(tut.CurrentTrigger));
+        }
 
         if (_magnifier != null && _magnifier.IsSearchMode)
             return;
 
-        if (Input.GetKeyDown(KeyCode.A) && _rotateController != null) _rotateController.Rotate(-90);
-        if (Input.GetKeyDown(KeyCode.D) && _rotateController != null) _rotateController.Rotate(90);
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (Allowed(TutorialController.Trigger.Rotate) && _rotateController != null)
+                _rotateController.Rotate(-90);
+            else if (tut != null && tut.enabled)
+                tut.ShowHint(HintFor(tut.CurrentTrigger));
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (Allowed(TutorialController.Trigger.Rotate) && _rotateController != null)
+                _rotateController.Rotate(90);
+            else if (tut != null && tut.enabled)
+                tut.ShowHint(HintFor(tut.CurrentTrigger));
+        }
     }
+
+    bool Allowed(TutorialController.Trigger t)
+        => TutorialController.instance == null || TutorialController.instance.Allows(t);
+
+    string HintFor(TutorialController.Trigger t) => t switch
+    {
+        TutorialController.Trigger.Rotate    => "A,D키를 눌러 지형을 회전시켜보자!",
+        TutorialController.Trigger.Magnify   => "마우스 우클릭으로 확대해보자!",
+        TutorialController.Trigger.ReportAnt => "흰개미를 찾아 신고해보자!",
+        _ => ""
+    };
 
     void JudgeAnt()
     {
