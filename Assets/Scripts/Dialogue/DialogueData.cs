@@ -38,4 +38,5 @@ public class ActorState
     public string sprite;
     public float brightness = 1f;
     public string slot;
+    public bool fadeIn;
 }

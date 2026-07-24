@@ -15,16 +15,16 @@ MonoBehaviour:
   entries:
   - name: bg_classroom
     sprite: {fileID: 21300000, guid: 53c95d80bae9c4749b3719dfcef92a9a, type: 3}
+  - name: emil-normal-32px
+    sprite: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
+  - name: emil-excited-32px
+    sprite: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
   - name: teacher-serious-32px
     sprite: {fileID: 21300000, guid: 9291f3323be42412280fc660af6f195b, type: 3}
   - name: teacher-normal-32px
     sprite: {fileID: 21300000, guid: e0745bdb0dc5f4f7793f1a3cb323561c, type: 3}
   - name: teacher-kind-32px
     sprite: {fileID: 21300000, guid: 5eeeb44e3d92648dd87d480fc9abbda1, type: 3}
-  - name: emil-normal-32px
-    sprite: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
-  - name: emil-excited-32px
-    sprite: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
   - name: student1-normal-32px
     sprite: {fileID: 21300000, guid: 9b458b7d5d8db491eb93bb2d8bb2a958, type: 3}
   - name: student1-smile-32px

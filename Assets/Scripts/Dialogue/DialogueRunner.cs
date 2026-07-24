@@ -31,13 +31,24 @@ public class DialogueRunner : MonoBehaviour
     [Header("Stage")]
     [SerializeField] private RectTransform characterRoot;
     [SerializeField] private RectTransform slotLeft, slotCenter, slotRight, slotOff;
-    [SerializeField] private float moveSpeed = 8f;
     
     [Header("Shake")]
     [SerializeField] private RectTransform shakeRoot;      // 흔들 대상(화면 전체 담은 루트)
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private float shakeMagnitude = 15f;
 
+    [Header("Fade")]
+    [SerializeField] private Image fadeOverlay;
+    [SerializeField] private float fadeDuration = 0.6f;
+    [SerializeField] private CanvasGroup characterGroup;       
+    [SerializeField] private float characterFadeDuration = 0.5f;
+    [SerializeField] private float actorFadeDuration = 0.5f;
+    private Dictionary<string, Coroutine> fades = new Dictionary<string, Coroutine>();
+
+    [Header("End")]
+    [SerializeField] private string nextScene;
+    [SerializeField] private string nextStage;
+    
     private Vector2 shakeHome;
     private Coroutine shakeCo;
 
@@ -58,7 +69,7 @@ public class DialogueRunner : MonoBehaviour
         if (shakeRoot != null) shakeHome = shakeRoot.anchoredPosition;
     }
     // -------------------- 재생 --------------------
-    public void Play(string storyId)
+    public void Play(string storyId, int startIndex = 0)
     {
         string path = Path.Combine(Application.streamingAssetsPath, storyId + ".json");
         data = JsonConvert.DeserializeObject<DialogueData>(File.ReadAllText(path));
@@ -72,11 +83,8 @@ public class DialogueRunner : MonoBehaviour
             if (bg != null) backgroundImage.sprite = bg;
         }
 
-        panel.SetActive(true);
-
-        current = data.nodes.FirstOrDefault(n => n.id == data.startNodeId);
-        if (current == null) { Debug.LogWarning($"'{storyId}'에 시작 노드가 없습니다."); return; }
-        Show(current);
+        startIndex = Mathf.Clamp(startIndex, 0, data.nodes.Count - 1);
+        StartCoroutine(IntroRoutine(startIndex));
     }
 
     void Show(DialogueNode node)
@@ -94,6 +102,82 @@ public class DialogueRunner : MonoBehaviour
         typing = StartCoroutine(TypeText(node.text));
 
         if (node.shake) Shake();
+    }
+
+    IEnumerator IntroRoutine(int startIndex)
+    {
+        panel.SetActive(false);
+        if (characterRoot != null) characterRoot.gameObject.SetActive(false);
+        if (characterGroup != null) characterGroup.alpha = 0f;
+
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.gameObject.SetActive(true);
+            Color c = fadeOverlay.color; c.a = 1f; fadeOverlay.color = c;
+            yield return Fade(1f, 0f);
+            fadeOverlay.gameObject.SetActive(false);
+        }
+
+        if (characterRoot != null) characterRoot.gameObject.SetActive(true);
+        panel.SetActive(true);
+
+        for (int k = 0; k < startIndex; k++)
+            ApplyActors(data.nodes[k]);
+
+        current = data.nodes[startIndex];
+        Show(current);
+
+        if (characterGroup != null)
+            yield return FadeCanvas(characterGroup, 0f, 1f, characterFadeDuration);
+    }
+
+    IEnumerator OutroRoutine()
+    {
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.gameObject.SetActive(true);
+            Color c = fadeOverlay.color;
+            c.a = 0f;
+            fadeOverlay.color = c;
+            yield return Fade(0f, 1f);
+        }
+        
+        panel.SetActive(false);
+        if(characterRoot != null)
+            characterRoot.gameObject.SetActive(false);
+
+        if (!string.IsNullOrEmpty(nextStage))
+            GameFlow.CurrentStage = nextStage;
+        if (!string.IsNullOrEmpty(nextScene))
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
+    }
+
+    IEnumerator Fade(float from, float to)
+    {
+        float t = 0f;
+        Color c = fadeOverlay.color;
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            float k = t / fadeDuration;
+            k = k * k;
+            c.a = Mathf.Lerp(from, to, k);
+            fadeOverlay.color = c;
+            yield return null;
+        }
+        c.a = to;
+        fadeOverlay.color = c;
+    }
+    IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float dur)
+    {
+        float t = 0f;
+        while (t < dur)
+        {
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(from, to, t / dur);
+            yield return null;
+        }
+        cg.alpha = to;
     }
 
     IEnumerator TypeText(string full)
@@ -116,21 +200,6 @@ public class DialogueRunner : MonoBehaviour
     }
 
     // ------------------------------------------------------------- 입력/진행
-    public void HandleInput()
-    {
-        if (current == null) return;
-
-        if (choosing)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))   Move(-1);
-            if (Input.GetKeyDown(KeyCode.DownArrow)) Move(1);
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) Confirm();
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) OnClick();
-        }
-    }
 
     public void OnClick()
     {
@@ -167,9 +236,8 @@ public class DialogueRunner : MonoBehaviour
 
     void EndDialogue()
     {
-        panel.SetActive(false);
         current = null;
-        // TODO: 챕터 클리어 처리 등 다음 흐름 연결
+        StartCoroutine(OutroRoutine());
     }
 
     // ------------------------------------------------------------- 선택지
@@ -241,7 +309,10 @@ public class DialogueRunner : MonoBehaviour
             Transform target = GetSlot(a.slot);
             if (target != null) img.rectTransform.position = target.position;
             
-            img.color = new Color(a.brightness, a.brightness, a.brightness, 1f); 
+            if (a.fadeIn)
+                StartActorFade(a.id, img, a.brightness);                        // 서서히 등장
+            else
+                img.color = new Color(a.brightness, a.brightness, a.brightness, 1f);
         }
     }
 
@@ -256,21 +327,24 @@ public class DialogueRunner : MonoBehaviour
         isNew = true;
         return img;
     }
-
-    void MoveActor(string id, RectTransform rt, Vector3 targetPos)
+    
+    void StartActorFade(string id, Image img, float brightness)
     {
-        if (movers.TryGetValue(id, out var c) && c != null) StopCoroutine(c);
-        movers[id] = StartCoroutine(MoveRoutine(rt, targetPos));
+        if (fades.TryGetValue(id, out var c) && c != null) StopCoroutine(c);
+        fades[id] = StartCoroutine(ActorFadeRoutine(img, brightness));
     }
-
-    IEnumerator MoveRoutine(RectTransform rt, Vector3 target)
+    
+    IEnumerator ActorFadeRoutine(Image img, float brightness)
     {
-        while (Vector3.Distance(rt.position, target) > 0.5f)
+        float t = 0f;
+        while (t < actorFadeDuration)
         {
-            rt.position = Vector3.Lerp(rt.position, target, Time.deltaTime * moveSpeed);
+            t += Time.deltaTime;
+            float alpha = Mathf.Clamp01(t / actorFadeDuration);
+            img.color = new Color(brightness, brightness, brightness, alpha);
             yield return null;
         }
-        rt.position = target;
+        img.color = new Color(brightness, brightness, brightness, 1f);
     }
 
     void RemoveActor(string id)

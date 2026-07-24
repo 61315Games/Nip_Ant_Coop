@@ -142,7 +142,11 @@ public class DialogueEditorWindow : EditorWindow
                 n.actors[a].slot = Slots[nsi];
                 if (GUILayout.Button("x", GUILayout.Width(20))) { removeActorNode = i; removeActorIdx = a; }
                 EditorGUILayout.EndHorizontal();
-                n.actors[a].brightness = EditorGUILayout.Slider(n.actors[a].brightness, 0f, 1f, GUILayout.Width(160));
+                
+                EditorGUILayout.BeginHorizontal();
+                n.actors[a].brightness = EditorGUILayout.Slider("밝기", n.actors[a].brightness, 0f, 1f);
+                n.actors[a].fadeIn = GUILayout.Toggle(n.actors[a].fadeIn, "페이드인", GUILayout.Width(80));
+                EditorGUILayout.EndHorizontal();
             }
             if (GUILayout.Button("배우 추가")) addActorNode = i;
 

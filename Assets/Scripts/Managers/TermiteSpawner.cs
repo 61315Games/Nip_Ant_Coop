@@ -5,7 +5,6 @@ public class TermiteSpawner : MonoBehaviour
     [SerializeField] private Transform cubeTransform;
     [SerializeField] private GameObject termitePrefab;
     [SerializeField] private StageTermiteData currentStage;
-    // [SerializeField] private float surfaceOffset = 0.002f;
     void Start()
     {
         if (currentStage != null)
