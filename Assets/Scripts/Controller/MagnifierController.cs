@@ -74,6 +74,7 @@ public class MagnifierController : MonoBehaviour
     {
         isSearchMode = !isSearchMode;
         ApplyMode();
+        TutorialController.instance?.NotifyMagnify();
     }
 
     void AimMagnifierCamera(Vector2 mouse)

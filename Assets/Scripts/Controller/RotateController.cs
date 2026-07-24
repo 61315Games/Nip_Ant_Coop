@@ -25,6 +25,7 @@ public class RotateController : MonoBehaviour
     {
         if (isRotating) return;
         StartCoroutine(RotateWorld(angle));
+        TutorialController.instance?.NotifyRotate();
     }
 
     IEnumerator RotateWorld(float angle)

@@ -30,6 +30,13 @@ public class InputManager : MonoBehaviour
             return;
         }
 
+        if (TutorialController.instance != null && TutorialController.instance.IsBlocking)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                TutorialController.instance.Advance();
+            return; 
+        }
+
         if (Input.GetMouseButtonDown(1) && _magnifier != null)
             _magnifier.ToggleSearchMode();
 

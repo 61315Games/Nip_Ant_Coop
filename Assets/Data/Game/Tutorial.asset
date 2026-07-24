@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 0
   termites:
-  - localPosition: {x: -2.291, y: 1.247, z: -5.526}
+  - localPosition: {x: -3.85, y: 1.2299998, z: -4.28}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 1
+  - localPosition: {x: 7.42, y: 0.67, z: 1.81}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 1
+    isReal: 1
+  - localPosition: {x: -1.263, y: 1.134, z: 10.411}
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 2
     isReal: 1

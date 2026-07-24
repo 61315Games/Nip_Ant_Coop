@@ -9,7 +9,11 @@ public class Termite : MonoBehaviour
     public void Judge()
     {
         if (info != null && info.isReal)
-            Debug.Log("흰개미 발견!");
+        {
+            TutorialController.instance?.NotifyReportAnt();
+            Destroy(gameObject);
+        }
+            
         else
             Debug.Log("흰개미가 아니에요!");
     }
