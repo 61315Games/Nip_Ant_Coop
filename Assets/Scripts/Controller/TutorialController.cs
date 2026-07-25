@@ -7,6 +7,7 @@ using TMPro;
 public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
+    [SerializeField] private Fader fader;
 
     public enum Trigger { Continue, ReportAnt, Rotate, Magnify }
 
@@ -134,6 +135,14 @@ public class TutorialController : MonoBehaviour
 
         var mag = FindFirstObjectByType<MagnifierController>();
         if (mag != null && mag.IsSearchMode) mag.ToggleSearchMode();
+
+        StartCoroutine(EndRoutine());
+    }
+
+    IEnumerator EndRoutine()
+    {
+        if(fader != null)
+            yield return fader.FadeOut();
 
         GameFlow.CurrentStage = "Prologue_2";
         UnityEngine.SceneManagement.SceneManager.LoadScene("SC_Story");
