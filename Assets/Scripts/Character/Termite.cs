@@ -10,6 +10,7 @@ public class Termite : MonoBehaviour
     {
         if (info != null && info.isReal)
         {
+            AntCounter.instance?.AddFound();
             TutorialController.instance?.NotifyReportAnt();
             Destroy(gameObject);
         }

@@ -16,6 +16,7 @@ public class TermiteSpawner : MonoBehaviour
         currentStage = stage;
         ClearExisting();
 
+        int realCount = 0;
         foreach (var info in stage.termites)
         {
             GameObject t = Instantiate(termitePrefab, cubeTransform);
@@ -24,7 +25,11 @@ public class TermiteSpawner : MonoBehaviour
             
             var termite = t.GetComponent<Termite>();
             if(termite != null) termite.Init(info);
+
+            if (info.isReal) realCount++;
         }
+
+        AntCounter.instance?.SetTotal(realCount);
     }
 
     private void ClearExisting()

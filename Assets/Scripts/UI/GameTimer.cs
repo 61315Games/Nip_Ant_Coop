@@ -13,9 +13,19 @@ public class GameTimer : MonoBehaviour
     private float totalTime = 180f;
     private float remaining;
     private bool running;
+    private bool unlimited;
 
     void Start()
     {
+        unlimited = (GameFlow.CurrentStage == "Tutorial");
+
+        if (unlimited)
+        {
+            if (slider != null) slider.value = 1f;
+            if (timeText != null) timeText.text = "∞";
+            running = false;
+            return;
+        }
         remaining = totalTime;
         running = true;
         UpdateUI();
@@ -39,8 +49,7 @@ public class GameTimer : MonoBehaviour
 
     void UpdateUI()
     {
-        slider.value = remaining / totalTime;
-        
+        if (slider != null) slider.value = remaining / totalTime;
         int min = Mathf.FloorToInt(remaining / 60f);
         int sec = Mathf.FloorToInt(remaining % 60f);
         timeText.text = string.Format("{0:00}:{1:00}", min, sec);

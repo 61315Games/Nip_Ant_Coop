@@ -1,0 +1,40 @@
+using TMPro;
+using UnityEngine;
+
+public class AntCounter : MonoBehaviour
+{
+    public static AntCounter instance;
+
+    [SerializeField] private TMP_Text countText;
+
+    private int total;
+    private int found;
+
+    void Awake() { instance = this; }
+    void OnDestroy() { if (instance == this) instance = null; }
+
+    public void SetTotal(int t)
+    {
+        total = t;
+        found = 0;
+        UpdateUI();
+    }
+
+    public void AddFound()
+    {
+        found++;
+        UpdateUI();
+        if (found >= total) OnAllFound();
+    }
+
+    void UpdateUI()
+    {
+        if (countText != null) countText.text = $"{found}/{total}";
+    }
+
+    void OnAllFound()
+    {
+        Debug.Log("모든 흰개미를 찾았습니다!");
+        // TODO: 스테이지 클리어 처리
+    }
+}
