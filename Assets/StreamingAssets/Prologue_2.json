@@ -1,0 +1,305 @@
+{
+  "storyId": "Prologue_2",
+  "startNodeId": "n_ceaba651",
+  "background": "bg_classroom_prologue",
+  "nodes": [
+    {
+      "id": "n_ceaba651",
+      "speaker": "학생 개미2",
+      "text": "야, 에밀! 너 어제 하얀개미를 찾아서 신고했다며?",
+      "portrait": "student2-normal-32px",
+      "next": "n_fae5280b",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_fae5280b",
+      "speaker": "에밀",
+      "text": "엇, 어떻게 알았어?",
+      "portrait": "emil-normal-32px",
+      "next": "n_8fd4213a",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_8fd4213a",
+      "speaker": "학생 개미2",
+      "text": "오는 길에 선생님이랑 마주쳤는데, 선생님이 알려주셨어. 역시 모범생은 달라~",
+      "portrait": "student2-normal-32px",
+      "next": "n_76d6b48b",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_76d6b48b",
+      "speaker": "에밀",
+      "text": "에이, 아냐. 그냥 내가 간 곳에 우연히 하얀개미가 보였을 뿐이지.",
+      "portrait": "emil-normal-32px",
+      "next": "n_a901d874",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-smile-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_a901d874",
+      "speaker": "선생 개미",
+      "text": "자자, 여러분, 자리에 앉으세요. 아침 조회 시간이에요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_283d4513",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-smilel-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_283d4513",
+      "speaker": "선생 개미",
+      "text": "어제 선생님이 여러분에게 준 숙제 기억하죠? 그걸 벌써부터 실천한 멋진 친구가 있어요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_abd64a30",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_abd64a30",
+      "speaker": "선생 개미",
+      "text": "모두 에밀에게 칭찬의 박수를 쳐주세요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_0b32f2d8",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_0b32f2d8",
+      "speaker": "학생 개미들",
+      "text": "(짝짝짝)",
+      "portrait": "",
+      "next": "n_65c8cbc0",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false
+        }
+      ],
+      "shake": true
+    },
+    {
+      "id": "n_65c8cbc0",
+      "speaker": "에밀",
+      "text": "아이, 이 정도는 별것도 아닌데. 감사합니다.",
+      "portrait": "emil-normal-32px",
+      "next": "n_fa6b0eb7",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-smile-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_fa6b0eb7",
+      "speaker": "선생 개미",
+      "text": "아니, 에밀의 신고는 작지만 아주 큰 실천이에요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_e375ce86",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-smile-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_e375ce86",
+      "speaker": "선생 개미",
+      "text": "여러분, 명심하세요. 하얀개미들은 우리 검은개미마을 곳곳에 숨어들어, 안에서부터 우리를 갉아먹으려 하고 있다는 사실을요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_bc1e221a",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-serious-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_bc1e221a",
+      "speaker": "선생 개미",
+      "text": "그렇기에 여러분 한 마리 한 마리의 감시와 신고가 필요한 게 바로 지금이기도 해요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_1c5bb03c",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_1c5bb03c",
+      "speaker": "선생 개미",
+      "text": "그러니까 모두들, 에밀을 본받아서 적극적으로 하얀개미들을 신고해주길 바라요.",
+      "portrait": "teacher-normal-32px",
+      "next": "n_435ec9e6",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_435ec9e6",
+      "speaker": "선생 개미",
+      "text": "\"우리 검은개미마을을 위해서, 여러분 자신을 위해서.\"",
+      "portrait": "teacher-normal-32px",
+      "next": null,
+      "endHere": true,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    }
+  ]
+}
