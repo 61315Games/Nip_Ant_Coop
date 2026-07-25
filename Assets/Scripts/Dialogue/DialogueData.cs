@@ -17,6 +17,7 @@ public class DialogueNode
     public string speaker;
     public string text;
     public string portrait;
+    public float portraitBrightness = 1f;
     public string next;
     public bool endHere;
     public List<Choice> choices = new List<Choice>();

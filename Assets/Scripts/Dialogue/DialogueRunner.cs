@@ -88,10 +88,20 @@ public class DialogueRunner : MonoBehaviour
 
     void Show(DialogueNode node)
     {
-        if (!string.IsNullOrEmpty(node.portrait) && spriteDB != null && portraitImage != null)
+        if (portraitImage != null)
         {
-            Sprite p = spriteDB.Get(node.portrait);
-            if (p != null) portraitImage.sprite = p;
+            if (!string.IsNullOrEmpty(node.portrait) && spriteDB != null)
+            {
+                Sprite p = spriteDB.Get(node.portrait);
+                if (p != null)
+                {
+                    portraitImage.sprite = p;
+                    float b = node.portraitBrightness;
+                    portraitImage.color = new Color(b, b, b, 1f);
+                    portraitImage.gameObject.SetActive(true);
+                }
+            }
+            else portraitImage.gameObject.SetActive(false);
         }
 
         ApplyActors(node);
@@ -154,11 +164,11 @@ public class DialogueRunner : MonoBehaviour
     IEnumerator TypeText(string full)
     {
         isTyping = true;
+
+        dialogueText.maxVisibleCharacters = 0;
         dialogueText.text = full;
         dialogueText.ForceMeshUpdate();
         int total = dialogueText.textInfo.characterCount;
-
-        dialogueText.maxVisibleCharacters = 0;
         for (int i = 0; i <= total; i++)
         {
             dialogueText.maxVisibleCharacters = i;
@@ -310,16 +320,20 @@ public class DialogueRunner : MonoBehaviour
         float t = 0f;
         while (t < actorFadeDuration)
         {
+            if (img == null) yield break;
             t += Time.deltaTime;
             float alpha = Mathf.Clamp01(t / actorFadeDuration);
             img.color = new Color(brightness, brightness, brightness, alpha);
             yield return null;
         }
+        if (img == null) yield break;
         img.color = new Color(brightness, brightness, brightness, 1f);
     }
-
     void RemoveActor(string id)
     {
+        if (fades.TryGetValue(id, out var c) && c != null) StopCoroutine(c);
+        fades.Remove(id);
+
         if (stage.TryGetValue(id, out var img) && img != null) Destroy(img.gameObject);
         stage.Remove(id);
         movers.Remove(id);
@@ -327,6 +341,9 @@ public class DialogueRunner : MonoBehaviour
 
     void ClearStage()
     {
+        foreach (var kv in fades) if (kv.Value != null) StopCoroutine(kv.Value);
+        fades.Clear();
+
         foreach (var kv in stage) if (kv.Value != null) Destroy(kv.Value.gameObject);
         stage.Clear();
         movers.Clear();

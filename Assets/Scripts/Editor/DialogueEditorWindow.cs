@@ -102,6 +102,7 @@ public class DialogueEditorWindow : EditorWindow
             EditorGUILayout.LabelField("대사");
             n.text     = EditorGUILayout.TextArea(n.text, GUILayout.MinHeight(40));
             n.portrait = EditorGUILayout.TextField("초상화(선택)", n.portrait);
+            n.portraitBrightness = EditorGUILayout.Slider("초상화 밝기", n.portraitBrightness, 0f, 1f);
             n.shake = EditorGUILayout.Toggle("화면 흔들기", n.shake);
 
             EditorGUILayout.Space(2);

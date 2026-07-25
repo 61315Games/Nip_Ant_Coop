@@ -710,7 +710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53c95d80bae9c4749b3719dfcef92a9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e840cc535e0b483585b165a398b4c81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 1848783815}
-  storyId: Prologue
+  overrideStoryId: 
   startFromLine: 60
 --- !u!4 &276021732
 Transform:
@@ -1908,7 +1908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chapter 0
+  m_text: Prologue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ab9e0a30e3ee444ca14bb0dbfbc6f85, type: 2}
   m_sharedMaterial: {fileID: -3630016324004334535, guid: 4ab9e0a30e3ee444ca14bb0dbfbc6f85,
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

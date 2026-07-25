@@ -1,4 +1,4 @@
 public static class GameFlow
 {
-    public static string CurrentStage = "Tutorial";
+    public static string CurrentStage = "Prologue_1";
 }
