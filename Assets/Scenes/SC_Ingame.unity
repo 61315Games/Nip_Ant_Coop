@@ -882,19 +882,20 @@ MonoBehaviour:
   tutorialText: {fileID: 311207046}
   stepImage: {fileID: 1081609595}
   steps:
-  - text: "\uC5B4\uB514 \uD55C\uBC88 \uD770\uAC1C\uBBF8\uB97C \uCC3E\uC544\uBCFC\uAE4C?"
+  - text: "\uC5B4\uB514 \uD55C\uBC88 \uD558\uC580\uAC1C\uBBF8\uB97C \uCC3E\uC544\uBCFC\uAE4C?"
     trigger: 0
     image: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
-  - text: "\uC815\uBA74\uC5D0 \uD770\uAC1C\uBBF8\uAC00 \uC788\uC5C8\uB124? \uB9C8\uC6B0\uC2A4
-      \uC88C\uD074\uB9AD\uC744 \uD1B5\uD574 \uD770\uAC1C\uBBF8\uB97C \uC2E0\uACE0\uD558\uC790!"
+  - text: "\uC815\uBA74\uC5D0 \uD558\uC580\uAC1C\uBBF8\uAC00 \uC788\uC5C8\uB124?
+      \uB9C8\uC6B0\uC2A4 \uC88C\uD074\uB9AD\uC744 \uD1B5\uD574 \uD558\uC580\uAC1C\uBBF8\uB97C
+      \uC2E0\uACE0\uD558\uC790!"
     trigger: 1
     image: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
-  - text: "\uC774\uBC88\uC5D4 \uC548\uBCF4\uC774\uB294 \uAC01\uB3C4\uC5D0 \uD770\uAC1C\uBBF8\uAC00
+  - text: "\uC774\uBC88\uC5D4 \uC548\uBCF4\uC774\uB294 \uAC01\uB3C4\uC5D0 \uD558\uC580\uAC1C\uBBF8\uAC00
       \uC228\uC5B4\uC788\uC744\uC218 \uC788\uC73C\uB2C8 A,D\uD0A4\uB97C \uB20C\uB7EC
       \uCC3E\uC544\uBCF4\uC790!"
     trigger: 2
     image: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
-  - text: "\uD770\uAC1C\uBBF8\uAC00 \uC228\uC5B4\uC788\uC5C8\uB124? \uB611\uAC19\uC774
+  - text: "\uD558\uC580\uAC1C\uBBF8\uAC00 \uC228\uC5B4\uC788\uC5C8\uB124? \uB611\uAC19\uC774
       \uC2E0\uACE0\uD558\uC790!"
     trigger: 1
     image: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
@@ -906,8 +907,8 @@ MonoBehaviour:
   - text: "\uC774\uBC88\uC5D0\uB3C4 \uC2E0\uACE0\uD574\uBCF4\uC790!"
     trigger: 1
     image: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
-  - text: "\uD770\uAC1C\uBBF8\uB97C \uB2E4 \uCC3E\uC740 \uAC83 \uAC19\uC544! \uB098\uB3C4
-      \uC601\uC6C5\uC774 \uB420 \uC218\uB3C4..?"
+  - text: "\uD558\uC580\uAC1C\uBBF8\uB97C \uB2E4 \uCC3E\uC740 \uAC83 \uAC19\uC544!
+      \uB098\uB3C4 \uC601\uC6C5\uC774 \uB420 \uC218\uB3C4..?"
     trigger: 0
     image: {fileID: 21300000, guid: 4be047c3ac44d4187ba969dfaf6bccd0, type: 3}
 --- !u!114 &335378076
@@ -2446,7 +2447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -670, y: -170}
+  m_AnchoredPosition: {x: -670, y: -217}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1082300378
