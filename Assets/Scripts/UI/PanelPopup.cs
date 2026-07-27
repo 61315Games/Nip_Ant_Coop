@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PanelPopup : MonoBehaviour
 {
-    [SerializeField] private float[] openSteps = { 0f, 0.5f, 1.15f, 1f }; // 단계별 Y스케일
-    [SerializeField] private float stepTime = 0.05f;                       // 각 단계 유지 시간
+    [SerializeField] private float[] openSteps = { 0f, 0.5f, 1.15f, 1f }; 
+    [SerializeField] private float stepTime = 0.05f;
 
     private Coroutine anim;
 
@@ -29,7 +29,7 @@ public class PanelPopup : MonoBehaviour
         {
             s.y = v;
             transform.localScale = s;
-            yield return new WaitForSeconds(stepTime);   // 한 단계 유지 → 뚝 끊기는 느낌
+            yield return new WaitForSeconds(stepTime);
         }
         if (disableAtEnd) gameObject.SetActive(false);
     }

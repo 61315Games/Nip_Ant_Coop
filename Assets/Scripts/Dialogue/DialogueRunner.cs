@@ -144,10 +144,10 @@ public class DialogueRunner : MonoBehaviour
         if(characterRoot != null)
             characterRoot.gameObject.SetActive(false);
 
-        if (!string.IsNullOrEmpty(nextStage))
-            GameFlow.CurrentStage = nextStage;
         if (!string.IsNullOrEmpty(nextScene))
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
+            SceneRouter.Load(nextScene, nextStage);
+        else if (!string.IsNullOrEmpty(nextStage))
+            GameFlow.CurrentStage = nextStage;
     }
     IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float dur)
     {

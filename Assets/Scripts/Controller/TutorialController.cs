@@ -144,7 +144,6 @@ public class TutorialController : MonoBehaviour
         if(fader != null)
             yield return fader.FadeOut();
 
-        GameFlow.CurrentStage = "Prologue_2";
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SC_Story");
+        SceneRouter.Load(SceneRouter.StoryScene, "Prologue_2");
     }
 }
