@@ -794,7 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runner: {fileID: 1848783815}
   overrideStoryId: 
-  startFromLine: 1
+  startFromLine: 62
 --- !u!4 &276021732
 Transform:
   m_ObjectHideFlags: 0
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 01276dca25b284aa6aad1bccfa9db132, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
