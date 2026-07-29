@@ -8458,10 +8458,10 @@ TextureImporter:
       name: UI_Sprites_398
       rect:
         serializedVersion: 2
-        x: 290
+        x: 278
         y: 756
-        width: 8
-        height: 10
+        width: 20
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

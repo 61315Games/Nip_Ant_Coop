@@ -15,6 +15,8 @@ public class MagnifierController : MonoBehaviour
 
     [Header("Zoom")]
     public float normalSize = 1.5f;
+    public Vector3 AimPoint { get; private set; }
+    public bool AimValid { get; private set; }
 
     [Header("Search Mode")]
     private Vector2 normalCircleSize;
@@ -82,10 +84,18 @@ public class MagnifierController : MonoBehaviour
         Vector3 wp;
         Ray ray = mainCam.ScreenPointToRay(mouse);
         if (Physics.Raycast(ray, out RaycastHit hit, 2000f, floorLayer))
+        {
             wp = hit.point;
+            AimValid = true;
+        }
         else
+        {
             wp = mainCam.ScreenToWorldPoint(
-                new Vector3(mouse.x, mouse.y, mainCam.nearClipPlane + 20f));
+                            new Vector3(mouse.x, mouse.y, mainCam.nearClipPlane + 20f));
+            AimValid = false;
+        }
+        AimPoint = wp;
+            
         
         magnifierCam.transform.rotation = mainCam.transform.rotation;
         float d = Vector3.Distance(mainCam.transform.position, wp);
