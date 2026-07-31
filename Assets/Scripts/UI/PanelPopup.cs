@@ -29,7 +29,7 @@ public class PanelPopup : MonoBehaviour
         {
             s.y = v;
             transform.localScale = s;
-            yield return new WaitForSeconds(stepTime);
+            yield return new WaitForSecondsRealtime(stepTime);
         }
         if (disableAtEnd) gameObject.SetActive(false);
     }

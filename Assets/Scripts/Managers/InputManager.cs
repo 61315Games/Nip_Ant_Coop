@@ -15,6 +15,16 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        var pause = PauseMenu.instance;
+        if (pause != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pause.Toggle();
+                return;
+            }
+            if (pause.IsOpen) return;
+        }
         if (_dialogue != null && _dialogue.IsActive)
         {
             if (_dialogue.choosing)
