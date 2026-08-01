@@ -34,9 +34,6 @@ public class MagnifierController : MonoBehaviour
         magnifierRoot.gameObject.SetActive(true);
         magnifierCam.enabled = true;
 
-        if (hideSystemCursor)
-            Cursor.visible = false;
-
         canvas = magnifierRoot.GetComponentInParent<Canvas>();
         normalCircleSize = magnifierRoot.sizeDelta;
         normalSize = ComputeOneToOneSize();
