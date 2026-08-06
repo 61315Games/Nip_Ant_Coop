@@ -290,6 +290,8 @@ public class DialogueRunner : MonoBehaviour
             Transform target = GetSlot(a.slot);
             if (target != null) img.rectTransform.position = target.position;
             
+            img.rectTransform.localScale = new Vector3(a.flip ? -1f : 1f, 1f, 1f);
+            
             if (a.fadeIn)
                 StartActorFade(a.id, img, a.brightness);                        // 서서히 등장
             else

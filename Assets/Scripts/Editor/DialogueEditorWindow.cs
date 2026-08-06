@@ -147,6 +147,7 @@ public class DialogueEditorWindow : EditorWindow
                 EditorGUILayout.BeginHorizontal();
                 n.actors[a].brightness = EditorGUILayout.Slider("밝기", n.actors[a].brightness, 0f, 1f);
                 n.actors[a].fadeIn = GUILayout.Toggle(n.actors[a].fadeIn, "페이드인", GUILayout.Width(80));
+                n.actors[a].flip   = GUILayout.Toggle(n.actors[a].flip,   "좌우반전", GUILayout.Width(80));
                 EditorGUILayout.EndHorizontal();
             }
             if (GUILayout.Button("배우 추가")) addActorNode = i;

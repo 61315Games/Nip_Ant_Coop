@@ -6,7 +6,7 @@
     {
       "id": "n_7a410a02",
       "speaker": "선생 개미",
-      "text": "… 여러분들도 아시다시피, 검은개미마을과 하얀개미마을은 오랜 휴전 중에 있어요.",
+      "text": "… 여러분들도 아시다시피, 검은개미마을과 흰개미마을은 오랜 휴전 중에 있어요.",
       "portrait": "teacher-normal-32px",
       "portraitBrightness": 1.0,
       "next": "n_250655b5",
@@ -18,7 +18,8 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -38,7 +39,8 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -58,14 +60,16 @@
           "sprite": "student1-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -85,7 +89,8 @@
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -105,14 +110,16 @@
           "sprite": "student1-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -132,14 +139,16 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student2",
           "sprite": "student2-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -159,14 +168,16 @@
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -198,14 +209,16 @@
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -225,7 +238,8 @@
           "sprite": "emil-excited-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -245,7 +259,8 @@
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -265,14 +280,16 @@
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -292,14 +309,16 @@
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student1",
           "sprite": "student1-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -319,14 +338,16 @@
           "sprite": "student2-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student1",
           "sprite": "student1-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -346,14 +367,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student2",
           "sprite": "student2-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -373,7 +396,8 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -387,7 +411,16 @@
       "next": "n_7e2cfe13",
       "endHere": false,
       "choices": [],
-      "actors": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
       "shake": false
     },
     {
@@ -399,7 +432,16 @@
       "next": "n_24966b7f",
       "endHere": false,
       "choices": [],
-      "actors": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
       "shake": false
     },
     {
@@ -417,7 +459,8 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -431,7 +474,16 @@
       "next": "n_266b3cc6",
       "endHere": false,
       "choices": [],
-      "actors": [],
+      "actors": [
+        {
+          "id": "Teacher",
+          "sprite": "teacher-kind-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
       "shake": false
     },
     {
@@ -449,14 +501,16 @@
           "sprite": "student1-smile-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-kind-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -476,7 +530,8 @@
           "sprite": "student1-smile-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": true
@@ -496,14 +551,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-smile-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -535,7 +592,8 @@
           "sprite": "teacher-serious-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -555,14 +613,16 @@
           "sprite": "student1-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-serious-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -582,14 +642,16 @@
           "sprite": "student2-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student1",
           "sprite": "student1-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -609,7 +671,8 @@
           "sprite": "student1-smile-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -629,14 +692,16 @@
           "sprite": "teacher-serious-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student2",
           "sprite": "student2-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -692,14 +757,16 @@
           "sprite": "student1-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-serious-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": true
@@ -719,14 +786,16 @@
           "sprite": "student1-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-embarrassed-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": true
@@ -746,14 +815,16 @@
           "sprite": "teacher-serious-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student2",
           "sprite": "student2-embarrassed-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -773,14 +844,16 @@
           "sprite": "student2-angry-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-serious-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -800,14 +873,16 @@
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-angry-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -827,14 +902,16 @@
           "sprite": "teacher-serious-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -854,14 +931,16 @@
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-serious-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -881,14 +960,16 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -908,21 +989,24 @@
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -942,14 +1026,16 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -993,14 +1079,16 @@
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -1020,14 +1108,16 @@
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1059,14 +1149,16 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1122,14 +1214,16 @@
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -1149,14 +1243,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1176,21 +1272,24 @@
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student1",
           "sprite": "student1-scary-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-kind-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         }
       ],
       "shake": false
@@ -1210,14 +1309,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "student2",
           "sprite": "student2-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1249,21 +1350,24 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1283,14 +1387,16 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": true
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1333,15 +1439,17 @@
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
-          "slot": "Left",
-          "fadeIn": true
+          "slot": "Right",
+          "fadeIn": true,
+          "flip": false
         },
         {
           "id": "Teacher",
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -1385,14 +1493,16 @@
           "sprite": "new-student-32px",
           "brightness": 0.0,
           "slot": "Left",
-          "fadeIn": true
+          "fadeIn": true,
+          "flip": true
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false

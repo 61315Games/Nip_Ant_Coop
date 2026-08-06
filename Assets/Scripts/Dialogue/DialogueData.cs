@@ -40,4 +40,5 @@ public class ActorState
     public float brightness = 1f;
     public string slot;
     public bool fadeIn;
+    public bool flip;
 }
