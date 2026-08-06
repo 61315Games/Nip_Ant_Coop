@@ -18,7 +18,7 @@ MonoBehaviour:
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 2
     isReal: 1
-  - localPosition: {x: 7.42, y: 0.67, z: 1.81}
+  - localPosition: {x: -13.374, y: 2.014, z: 7.92}
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 1
     isReal: 1
