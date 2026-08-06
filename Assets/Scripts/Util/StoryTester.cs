@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StoryStarter : MonoBehaviour
+public class StoryTester : MonoBehaviour
 {
     [SerializeField] private DialogueRunner runner;
     [SerializeField] private string overrideStoryId = ""; 
