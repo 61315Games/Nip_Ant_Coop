@@ -1,0 +1,1293 @@
+{
+  "storyId": "Chapter1_1",
+  "startNodeId": "n_e8f97395",
+  "background": "bg_classroom_ch1",
+  "nodes": [
+    {
+      "id": "n_e8f97395",
+      "speaker": "학생 개미1",
+      "text": "야, 에밀, 너는 흰개미가 무섭지도 않아?",
+      "portrait": "student1-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_450ed1ba",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": true,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_450ed1ba",
+      "speaker": "에밀",
+      "text": "멀리서 보고 신고한 게 전부인걸, 뭐.",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_6d443b43",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_6d443b43",
+      "speaker": "에밀",
+      "text": "그리고 생각보다 강해보이지는 않았어. 내가 어제 본 흰개미들은 오히려 비실비실한 쪽이었지.",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_c6c7cb81",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_c6c7cb81",
+      "speaker": "학생 개미1",
+      "text": "엥, 스파이인데?? 그렇게 허약한 개미를 보내도 되는 건가?",
+      "portrait": "student1-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_1687db52",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_1687db52",
+      "speaker": "학생 개미2",
+      "text": "그만큼 저쪽 마을에는 수재가 없나 보지. 오히려 잘 됐네.",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_7ba5b913",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_7ba5b913",
+      "speaker": "학생 개미2",
+      "text": "나도 오늘부터 학교 마치고 흰개미나 찾아 다녀야겠어. 에밀, 긴장하라고?",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_cb13c587",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_cb13c587",
+      "speaker": "에밀",
+      "text": "너 정도면 거뜬하게 이기지.",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_fa4bc02a",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-smile-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_fa4bc02a",
+      "speaker": "학생 개미2",
+      "text": "오, 자신감 뭐냐? 내기 할래? 누가 흰개미를 더 많이 찾아서 신고하는지.",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_d36314d6",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-smile-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_d36314d6",
+      "speaker": "에밀",
+      "text": "이기면 뭐 주는데?",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_bb60556f",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_bb60556f",
+      "speaker": "학생 개미2",
+      "text": "선생님이 포상도 있다고 하셨지만, 우리끼리의 상품이 따로 있는 게 더 재미있겠지? 그럼 이건 어때 ─",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_382ee70d",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-smile-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_382ee70d",
+      "speaker": "???",
+      "text": "ㅍ, 푸흡. 푸흐흐.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 0.0,
+      "next": "n_50fbb83a",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_50fbb83a",
+      "speaker": "학생 개미2",
+      "text": "?? 뭐야.",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_33481159",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_33481159",
+      "speaker": "전학생 개미",
+      "text": "아아, 이런, 실례. 듣자하니 유치하기 짝이 없어서 말이야. 푸흐흐.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_355bfa90",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_355bfa90",
+      "speaker": "학생 개미2",
+      "text": "아ㅡㅡ 뭐야, 이 자식. 왜 남의 말을 엿듣고 앉아있어?",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_84ef3740",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-angry-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_84ef3740",
+      "speaker": "전학생 개미",
+      "text": "그야 바로 뒷자리니까 당연히 들릴 수밖에 없지 않겠나? 그런 걸로 남을 음흉한 개미로 음해하는 것이야말로 비겁한 것 같다만?",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_d6b4040b",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-angry-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_d6b4040b",
+      "speaker": "학생 개미2",
+      "text": "하여간 기분 잡치게 하는 데에는 재주 있다니까. 흰개미 같은 자식.",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_bb2b478f",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_bb2b478f",
+      "speaker": "학생 개미1",
+      "text": "!!! 야! 너 어떻게 같은 반 친구한테 그런 심한 말을 할 수가 있어!",
+      "portrait": "student1-embarrassed-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_ef1a58a6",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Center",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-angry-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": true
+    },
+    {
+      "id": "n_ef1a58a6",
+      "speaker": "학생 개미1",
+      "text": "흰개미라니!! 친구한테 그런 상스러운 발언을!",
+      "portrait": "student1-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_6a2c49b5",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": true
+    },
+    {
+      "id": "n_6a2c49b5",
+      "speaker": "학생 개미2",
+      "text": "누가 쟤 친구야?? 너, 저 녀석이랑 친구 맺었냐?",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_30c40d34",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-embarrassed-32px",
+          "brightness": 0.7,
+          "slot": "Center",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-angry-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_30c40d34",
+      "speaker": "학생 개미1",
+      "text": "아니. 그건 아니야.",
+      "portrait": "student1-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_0fe994a4",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Center",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-angry-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_0fe994a4",
+      "speaker": "학생 개미2",
+      "text": "? 얜 또 뭐야 하여간 너도 이상해... 어쨌든 나중에 다시 얘기해보자, 에밀.",
+      "portrait": "student2-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_58186384",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 0.7,
+          "slot": "Center",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_58186384",
+      "speaker": "에밀",
+      "text": "어어, 그래. 나도 생각해볼게.",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_4d9ce05e",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student2",
+          "sprite": "student2-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "student1",
+          "sprite": "student1-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Off",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_4d9ce05e",
+      "speaker": "전학생 개미",
+      "text": "ㅍ, 푸흐, 푸흐흡. 큼큼. ......푸ㅎ.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_5208f1c4",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_5208f1c4",
+      "speaker": "에밀",
+      "text": "(뭐가 웃기길래 자꾸 저렇게 웃는 거지???)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 0.247,
+      "next": "n_39655146",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_39655146",
+      "speaker": "전학생 개미",
+      "text": "큼큼, ㅍ, 푸흐. 흠. 어─ 에밀, 이라고 했나? 모범생이라고 소문이 자자하던데. 푸흐흐.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_1e5c9d78",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_1e5c9d78",
+      "speaker": "에밀",
+      "text": "(아... 말 안 걸어줬으면 좋겠다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_924ee56f",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_924ee56f",
+      "speaker": "전학생 개미",
+      "text": "뭐, 내 입장에서는 모범생이니 우등생이니 하는 것들은 피곤한 《<b>족쇄</b>》에 불과한, 거추장스러운 낙인일 뿐이다만.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_7c07c495",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_7c07c495",
+      "speaker": "에밀",
+      "text": "(어쩌란 거지)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_cf327ae9",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_cf327ae9",
+      "speaker": "전학생 개미",
+      "text": "하지만 그런 캐릭터를 관찰하는 건 제법 흥미로운 일이지. 그런 의미에서 에밀, 넌 재미있는 녀석이랄까, 후후.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_85a416c7",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_85a416c7",
+      "speaker": "전학생 개미",
+      "text": "남들한테 잘 보이고 싶은 주제에 마냥 착한 척만 하지는 않고. 하지만 때로는 성격에 맞지 않는 일까지 도맡아 하지? 푸흐흐, 모범생의 삶이란 참 피곤한 일이야.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_ad457c15",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_ad457c15",
+      "speaker": "에밀",
+      "text": "…… 그래서 나한테 뭐 하고 싶은 말이라도 있는 거야?",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_d427cc4b",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_d427cc4b",
+      "speaker": "전학생 개미",
+      "text": "하고 싶은 말이라기보다, 난 너에게 한 가지 《<b>제안</b>》을 하고 싶군.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_f8b6d391",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_f8b6d391",
+      "speaker": "에밀",
+      "text": "제안이라면 어떤? 너도 혹시 흰개미를 찾는 내기에 끼어들고 싶은 거니?",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_14440344",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_14440344",
+      "speaker": "전학생 개미",
+      "text": "푸흐흐, 난 그런 유치한 일엔 관심 없어. 내가 너에게 제안하고 싶은 건 이거야. 옆에서 내가 널 계속 관찰하고 너와 대화를 나눠보고 싶은 거지.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_b2afb347",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_b2afb347",
+      "speaker": "전학생 개미",
+      "text": "\"물론 너도 나에 대해 뭐든 물어도 좋아. 일종의 《<b>등가교환</b>》이랄까? 푸흐흐. 아아, 물론 대답하기 곤란한 질문에는 나도 답하지 않겠지만 말이지.\"",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_9d606e53",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_9d606e53",
+      "speaker": "에밀",
+      "text": "… 그거 그냥 친구 하자는 말 아니야?",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_dd186c82",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_dd186c82",
+      "speaker": "전학생 개미",
+      "text": "'친구’라! 그런 낯간지러운 관계는 내 사전에 존재하지 않는다구?",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_6c6730c7",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        },
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 0.7,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_6c6730c7",
+      "speaker": "전학생 개미",
+      "text": "흠, 하지만 확실히 이해하기 쉬운 단어는 그쪽인가. 그럼 이번만 받아들이도록 하지.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_00ea6c2f",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-normal-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_00ea6c2f",
+      "speaker": "전학생 개미",
+      "text": "어때, 에밀. 나와 <b>'친구'</b>가 되어보지 않겠나? 푸흐흐.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": null,
+      "endHere": false,
+      "choices": [
+        {
+          "text": "뭐, 그래. 친구하자.",
+          "next": "n_43c706cc"
+        },
+        {
+          "text": "미안하지만 거절하겠어.",
+          "next": "n_f63c3de3"
+        }
+      ],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_43c706cc",
+      "speaker": "전학생 개미",
+      "text": "푸흐흐, <b>'친구'</b>라니 다시 들어도 정말 우스꽝스러운 단어군.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_925cca0a",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_925cca0a",
+      "speaker": "전학생 개미",
+      "text": "...... 뭐, 하지만 나쁘지 않을지도?",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_fe77aaef",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-wink-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_fe77aaef",
+      "speaker": "전학생 개미",
+      "text": "나와 친구가 된 걸 후회하지 않을 거다. 푸흐흐. 난 다른 개미들이 모르는 것들을 비밀리에 조사하고 있거든, 후후후.",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_c35317fc",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_c35317fc",
+      "speaker": "전학생 개미",
+      "text": "조만간 새로운 《진실》에 다가갈 수 있을지도 모르니, 기대하라고?",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_08e201b8",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-smile-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_08e201b8",
+      "speaker": "전학생 개미",
+      "text": "나는 특히 '흰개미'의 존재에 대해 오랫동안 나름의《연구》를 해왔지. 궁금하지 않나? 푸흐흐",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_0ba495fc",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-closed-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_0ba495fc",
+      "speaker": "에밀",
+      "text": "(전학생개미가 자칭 '연구'에 대해 입을 열려는 찰나, 선생님이 교실에 들어오셨다. 나는 내심 타이밍이 좋았다고 안도했다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_b531c811",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-closed-32px",
+          "brightness": 0.7,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_b531c811",
+      "speaker": "에밀",
+      "text": "(...... 친구 하기로 한 거, 벌써부터 후회된다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": null,
+      "endHere": true,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_f63c3de3",
+      "speaker": "전학생 개미",
+      "text": ".....",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_6d5eec23",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_6d5eec23",
+      "speaker": "전학생 개미",
+      "text": "아아, 그그것 참 유감이군. 뭐, 본인이 싫다면 나도 강요할 생각은 없다고?",
+      "portrait": "New-student-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_8b8f0497",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "newstu",
+          "sprite": "New-student-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_8b8f0497",
+      "speaker": "에밀",
+      "text": "(전학생개미는 애써 태연한 척 하려고 했지만, 당황한 기색이 역력했다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_78068bd0",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-normal-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        },
+        {
+          "id": "newstu",
+          "sprite": "New-student-embarrassed-32px",
+          "brightness": 1.0,
+          "slot": "Left",
+          "fadeIn": false,
+          "flip": true
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_78068bd0",
+      "speaker": "에밀",
+      "text": "(얘, 정말 친구 사귀어본 적 없는 거 아닐까??)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_995dd410",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_995dd410",
+      "speaker": "에밀",
+      "text": "(그동안 왜 친구가 없었는지는...... 솔직히 너무 잘 알 것 같다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_fe1fe0e1",
+      "endHere": false,
+      "choices": [],
+      "actors": [
+        {
+          "id": "emil",
+          "sprite": "emil-angry-32px",
+          "brightness": 1.0,
+          "slot": "Right",
+          "fadeIn": false,
+          "flip": false
+        }
+      ],
+      "shake": false
+    },
+    {
+      "id": "n_fe1fe0e1",
+      "speaker": "에밀",
+      "text": "(곧이어 선생님이 교실로 들어왔고, 나는 전학생에게서 눈길을 돌렸다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": "n_6eaa2658",
+      "endHere": false,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    },
+    {
+      "id": "n_6eaa2658",
+      "speaker": "에밀",
+      "text": "(뒷자리에서 자꾸 무어라 중얼거리는 소리가 들렸지만, 나는 애써 무시하기로 했다.)",
+      "portrait": "emil-normal-32px",
+      "portraitBrightness": 1.0,
+      "next": null,
+      "endHere": true,
+      "choices": [],
+      "actors": [],
+      "shake": false
+    }
+  ]
+}

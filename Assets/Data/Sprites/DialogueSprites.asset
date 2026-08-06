@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: DialogueSprites
   m_EditorClassIdentifier: 
   entries:
-  - name: bg_classroom
-    sprite: {fileID: 21300000, guid: 53c95d80bae9c4749b3719dfcef92a9a, type: 3}
+  - name: bg_classroom_prologue
+    sprite: {fileID: 21300000, guid: 2e840cc535e0b483585b165a398b4c81, type: 3}
+  - name: bg_classroom_ch1
+    sprite: {fileID: 21300000, guid: d7b94816e532845b3aaad59c60ff7db9, type: 3}
   - name: emil-normal-32px
     sprite: {fileID: 21300000, guid: bd536e0c940054f41b43a7f26d7b9fb9, type: 3}
+  - name: emil-embarrassed-32px
+    sprite: {fileID: 21300000, guid: 5c54c634e993b4d8ab91ea395a85c9ba, type: 3}
+  - name: emil-angry-32px
+    sprite: {fileID: 21300000, guid: 98021ca7000544658ba5e8c72048e1ac, type: 3}
+  - name: emil-sad-32px
+    sprite: {fileID: 21300000, guid: 01c4a964350b84e02b053b6f0d7e68ae, type: 3}
   - name: emil-excited-32px
     sprite: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
   - name: emil-smile-32px
@@ -45,3 +53,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: f28a69ded6e3a4291a576446f575c990, type: 3}
   - name: new-student-32px
     sprite: {fileID: 21300000, guid: cee5cfbcd3d564412a153ca3d0981baa, type: 3}
+  - name: New-student-bored-32px
+    sprite: {fileID: 21300000, guid: 2dc0832b453ef4dca8cb1c054cf73e9e, type: 3}
+  - name: New-student-closed-32px
+    sprite: {fileID: 21300000, guid: c22dfd013ec2c4d7fac425c4807d4c60, type: 3}
+  - name: New-student-embarrassed-32px
+    sprite: {fileID: 21300000, guid: c1ede04d6e17142349679ccefba099a2, type: 3}
+  - name: New-student-normal-32px
+    sprite: {fileID: 21300000, guid: 4d4f6d05a8cb04892b743e73cf0765c0, type: 3}
+  - name: New-student-smile-32px
+    sprite: {fileID: 21300000, guid: 34a29af8430dc4efdb1d8db4440fc27b, type: 3}
+  - name: New-student-wink-32px
+    sprite: {fileID: 21300000, guid: 8b9d581c4ff114941904568192c47c67, type: 3}
