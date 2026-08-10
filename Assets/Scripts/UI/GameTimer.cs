@@ -57,7 +57,6 @@ public class GameTimer : MonoBehaviour
 
     void OnTimeUp()
     {
-        // TODO: 게임 종료시 처리 추가
-        Debug.Log("시간 종료!");
+        if (StageFlow.instance != null) StageFlow.instance.Fail();
     }
 }

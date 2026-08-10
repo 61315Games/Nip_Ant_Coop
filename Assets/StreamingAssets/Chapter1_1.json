@@ -2,6 +2,8 @@
   "storyId": "Chapter1_1",
   "startNodeId": "n_e8f97395",
   "background": "bg_classroom_ch1",
+  "nextScene": "",
+  "nextStage": null,
   "nodes": [
     {
       "id": "n_e8f97395",

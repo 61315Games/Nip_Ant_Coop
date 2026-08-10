@@ -7,6 +7,8 @@ public class DialogueData
     public string storyId;
     public string startNodeId;
     public string background;
+    public string nextScene;
+    public string nextStage;
     public List<DialogueNode> nodes = new List<DialogueNode>();
 }
 

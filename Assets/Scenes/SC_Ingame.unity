@@ -902,6 +902,7 @@ GameObject:
   - component: {fileID: 335378076}
   - component: {fileID: 335378077}
   - component: {fileID: 335378078}
+  - component: {fileID: 335378079}
   m_Layer: 0
   m_Name: Mangers
   m_TagString: Untagged
@@ -973,8 +974,6 @@ MonoBehaviour:
   characterGroup: {fileID: 0}
   characterFadeDuration: 0.5
   actorFadeDuration: 0.5
-  nextScene: 
-  nextStage: 
 --- !u!114 &335378074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +990,9 @@ MonoBehaviour:
   - chapterId: Tutorial
     envPrefab: {fileID: 229379434620861370, guid: 986cf71469f0a4623826768ae051450c,
       type: 3}
+  - chapterId: Chapter1
+    envPrefab: {fileID: 229379434620861370, guid: 986cf71469f0a4623826768ae051450c,
+      type: 3}
 --- !u!114 &335378075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 335378076}
+  nextStoryId: Prologue_2
   tutorialPanel: {fileID: 1434988902}
   tutorialText: {fileID: 311207046}
   stepImage: {fileID: 1081609595}
@@ -1085,6 +1088,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1810821331}
+--- !u!114 &335378079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335378069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53178362aafdc4ccabf33f96309b6af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 335378076}
+  routes:
+  - stageId: Tutorial
+    clearStoryId: Prologue_2
+    failStoryId: 
+  - stageId: Chapter1
+    clearStoryId: Chapter1_1
+    failStoryId: 
 --- !u!1 &379344069
 GameObject:
   m_ObjectHideFlags: 0

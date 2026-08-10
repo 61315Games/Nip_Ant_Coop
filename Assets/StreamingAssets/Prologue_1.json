@@ -2,6 +2,8 @@
   "storyId": "Prologue_1",
   "startNodeId": "n_7a410a02",
   "background": "bg_classroom_prologue",
+  "nextScene": "SC_Ingame",
+  "nextStage": "Tutorial",
   "nodes": [
     {
       "id": "n_7a410a02",

@@ -2,6 +2,8 @@
   "storyId": "Prologue_2",
   "startNodeId": "n_ceaba651",
   "background": "bg_classroom_prologue",
+  "nextScene": "SC_Ingame",
+  "nextStage": "Chapter1",
   "nodes": [
     {
       "id": "n_ceaba651",
@@ -18,14 +20,16 @@
           "sprite": "student2-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": true
+          "fadeIn": true,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": true
+          "fadeIn": true,
+          "flip": false
         }
       ],
       "shake": false
@@ -45,14 +49,16 @@
           "sprite": "student2-normal-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -72,14 +78,16 @@
           "sprite": "student2-smile-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -99,14 +107,16 @@
           "sprite": "student2-smile-32px",
           "brightness": 0.7,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-smile-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -126,21 +136,24 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "student2",
           "sprite": "student2-smilel-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -160,7 +173,8 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -192,14 +206,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-normal-32px",
           "brightness": 1.0,
           "slot": "Off",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": true
@@ -219,7 +235,8 @@
           "sprite": "emil-smile-32px",
           "brightness": 1.0,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -239,14 +256,16 @@
           "sprite": "teacher-kind-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         },
         {
           "id": "emil",
           "sprite": "emil-smile-32px",
           "brightness": 0.7,
           "slot": "Right",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -266,7 +285,8 @@
           "sprite": "teacher-serious-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false
@@ -298,7 +318,8 @@
           "sprite": "teacher-normal-32px",
           "brightness": 1.0,
           "slot": "Left",
-          "fadeIn": false
+          "fadeIn": false,
+          "flip": false
         }
       ],
       "shake": false

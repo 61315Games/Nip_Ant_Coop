@@ -17,6 +17,10 @@ public class DialogueEditorWindow : EditorWindow
 
     static readonly string[] Slots = { "Left", "Center", "Right", "Off" };
 
+    // 대화 종료 후 이동할 씬 목록. 0번은 "이동 안 함" 의미.
+    const string NoScene = "(없음 - 여기서 멈춤)";
+    static readonly string[] EndScenes = { NoScene, "SC_Ingame", "SC_Story", "SC_Main" };
+
     [MenuItem("Tools/Dialogue Editor")]
     static void Open() => GetWindow<DialogueEditorWindow>("Dialogue Editor");
 
@@ -34,7 +38,6 @@ public class DialogueEditorWindow : EditorWindow
     {
         EditorGUILayout.BeginHorizontal();
 
-        // ===== 왼쪽: 파일 목록 =====
         EditorGUILayout.BeginVertical(GUILayout.Width(170));
         if (GUILayout.Button("새로고침")) { RefreshFileList(); GUIUtility.ExitGUI(); }
         if (GUILayout.Button("+ 새 대화")) { NewFile(); GUIUtility.ExitGUI(); }
@@ -54,7 +57,6 @@ public class DialogueEditorWindow : EditorWindow
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
 
-        // ===== 오른쪽: 편집 =====
         EditorGUILayout.BeginVertical();
         DrawEditor();
         EditorGUILayout.EndVertical();
@@ -73,10 +75,12 @@ public class DialogueEditorWindow : EditorWindow
 
         data.storyId    = EditorGUILayout.TextField("챕터 이름", data.storyId);
         data.background = EditorGUILayout.TextField("시작 배경", data.background);
+
+        DrawEndSection();
+
         EditorGUILayout.HelpBox("맨 위 대사부터 순서대로 진행됩니다. 선택지가 있으면 목적지로 갈라집니다. 무대는 바뀌는 배우만 적으면 유지됩니다.", MessageType.None);
         EditorGUILayout.Space(4);
 
-        // ===== 이번 프레임에 할 변경들을 '예약'만 =====
         int moveIndex = -1, moveDir = 0;
         int deleteNode = -1;
         int addChoiceNode = -1;
@@ -143,7 +147,7 @@ public class DialogueEditorWindow : EditorWindow
                 n.actors[a].slot = Slots[nsi];
                 if (GUILayout.Button("x", GUILayout.Width(20))) { removeActorNode = i; removeActorIdx = a; }
                 EditorGUILayout.EndHorizontal();
-                
+
                 EditorGUILayout.BeginHorizontal();
                 n.actors[a].brightness = EditorGUILayout.Slider("밝기", n.actors[a].brightness, 0f, 1f);
                 n.actors[a].fadeIn = GUILayout.Toggle(n.actors[a].fadeIn, "페이드인", GUILayout.Width(80));
@@ -159,7 +163,6 @@ public class DialogueEditorWindow : EditorWindow
 
         if (GUILayout.Button("＋ 대사 추가", GUILayout.Height(28))) addNode = true;
 
-        // ===== 그리기가 끝난 뒤에만 실제로 변경 =====
         if (moveIndex >= 0) MoveNode(moveIndex, moveDir);
         if (deleteNode >= 0) data.nodes.RemoveAt(deleteNode);
         if (removeChoiceNode >= 0) data.nodes[removeChoiceNode].choices.RemoveAt(removeChoiceIdx);
@@ -167,6 +170,47 @@ public class DialogueEditorWindow : EditorWindow
         if (removeActorNode >= 0) data.nodes[removeActorNode].actors.RemoveAt(removeActorIdx);
         if (addActorNode >= 0) data.nodes[addActorNode].actors.Add(new ActorState { slot = "Center", brightness = 1f });
         if (addNode) data.nodes.Add(new DialogueNode { id = NewId() });
+    }
+
+    // ---------------------------------------------------------------- 종료 후 목적지
+    void DrawEndSection()
+    {
+        EditorGUILayout.Space(6);
+        EditorGUILayout.LabelField("대화가 끝난 뒤", EditorStyles.boldLabel);
+
+        int idx = SceneIndex(data.nextScene);
+        int newIdx = EditorGUILayout.Popup("다음 씬", idx, EndScenes);
+        data.nextScene = (newIdx == 0) ? "" : EndScenes[newIdx];
+
+        using (new EditorGUI.DisabledScope(newIdx == 0))
+        {
+            data.nextStage = EditorGUILayout.TextField("다음 스테이지 ID", data.nextStage);
+        }
+
+        if (newIdx == 0)
+        {
+            EditorGUILayout.LabelField("→ 대화 종료 후 아무데도 가지 않습니다.", EditorStyles.miniLabel);
+        }
+        else if (string.IsNullOrEmpty(data.nextStage))
+        {
+            EditorGUILayout.HelpBox(
+                "다음 스테이지 ID가 비어있습니다. 씬은 이동하지만 스테이지는 현재 값이 유지되어 같은 구간이 반복될 수 있습니다.",
+                MessageType.Warning);
+        }
+        else
+        {
+            EditorGUILayout.LabelField($"→ {data.nextScene} 씬으로 이동 (스테이지: {data.nextStage})", EditorStyles.miniLabel);
+        }
+
+        EditorGUILayout.Space(4);
+    }
+
+    int SceneIndex(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return 0;
+        for (int k = 1; k < EndScenes.Length; k++)
+            if (EndScenes[k] == s) return k;
+        return 0;
     }
 
     // ---------------------------------------------------------------- 헬퍼
@@ -201,7 +245,7 @@ public class DialogueEditorWindow : EditorWindow
     {
         for (int k = 0; k < Slots.Length; k++)
             if (Slots[k] == s) return k;
-        return 1; // 기본 Center
+        return 1;
     }
 
     // ---------------------------------------------------------------- 동작
@@ -266,7 +310,6 @@ public class DialogueEditorWindow : EditorWindow
         GUI.FocusControl(null);
     }
 
-    // 순서 = 흐름. 저장 시 id/next/startNodeId 자동 계산
     void AssignLinks()
     {
         foreach (var n in data.nodes)

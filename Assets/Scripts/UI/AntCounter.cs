@@ -34,7 +34,6 @@ public class AntCounter : MonoBehaviour
 
     void OnAllFound()
     {
-        Debug.Log("모든 흰개미를 찾았습니다!");
-        // TODO: 스테이지 클리어 처리
+        if (StageFlow.instance != null) StageFlow.instance.Clear();
     }
 }

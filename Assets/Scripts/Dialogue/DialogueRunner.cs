@@ -43,10 +43,6 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private float characterFadeDuration = 0.5f;
     [SerializeField] private float actorFadeDuration = 0.5f;
     private Dictionary<string, Coroutine> fades = new Dictionary<string, Coroutine>();
-
-    [Header("End")]
-    [SerializeField] private string nextScene;
-    [SerializeField] private string nextStage;
     
     private Vector2 shakeHome;
     private Coroutine shakeCo;
@@ -144,10 +140,12 @@ public class DialogueRunner : MonoBehaviour
         if(characterRoot != null)
             characterRoot.gameObject.SetActive(false);
 
-        if (!string.IsNullOrEmpty(nextScene))
-            SceneRouter.Load(nextScene, nextStage);
-        else if (!string.IsNullOrEmpty(nextStage))
-            GameFlow.CurrentStage = nextStage;
+        if(data == null) yield break;
+
+        if (!string.IsNullOrEmpty(data.nextScene))
+            SceneRouter.Load(data.nextScene, data.nextStage);
+        else if (!string.IsNullOrEmpty(data.nextStage))
+            GameFlow.CurrentStage = data.nextStage;
     }
     IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float dur)
     {

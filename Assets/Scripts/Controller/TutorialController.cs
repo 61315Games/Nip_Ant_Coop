@@ -8,7 +8,8 @@ public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
     [SerializeField] private Fader fader;
-
+    [SerializeField] private string nextStoryId = "Prologue_2";
+    
     public enum Trigger { Continue, ReportAnt, Rotate, Magnify }
 
     [System.Serializable]
@@ -144,6 +145,6 @@ public class TutorialController : MonoBehaviour
         if(fader != null)
             yield return fader.FadeOut();
 
-        SceneRouter.Load(SceneRouter.StoryScene, "Prologue_2");
+        SceneRouter.Load(SceneRouter.StoryScene, nextStoryId);
     }
 }
