@@ -75,6 +75,12 @@ public class DialogueEditorWindow : EditorWindow
 
         data.storyId    = EditorGUILayout.TextField("챕터 이름", data.storyId);
         data.background = EditorGUILayout.TextField("시작 배경", data.background);
+        
+        EditorGUILayout.Space(4);
+        EditorGUILayout.LabelField("상단 UI 표시", EditorStyles.boldLabel);
+        data.chapterLabel = EditorGUILayout.TextField("챕터 표시명", data.chapterLabel);
+        data.day          = EditorGUILayout.IntField("개미력 (일)", data.day);
+        EditorGUILayout.LabelField("비워두면 이전 값이 그대로 유지됩니다.", EditorStyles.miniLabel);
 
         DrawEndSection();
 

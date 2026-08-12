@@ -70,6 +70,9 @@ public class DialogueRunner : MonoBehaviour
         data = JsonConvert.DeserializeObject<DialogueData>(File.ReadAllText(path));
         if (data == null) return;
 
+        if(!string.IsNullOrEmpty(data.chapterLabel)) GameFlow.ChapterLabel = data.chapterLabel;
+        if (data.day > 0) GameFlow.Day = data.day;
+        ChapterHeader.instance?.Refresh();
         ClearStage();
 
         if (!string.IsNullOrEmpty(data.background) && spriteDB != null && backgroundImage != null)

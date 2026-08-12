@@ -4,6 +4,8 @@
   "background": "bg_classroom_prologue",
   "nextScene": "SC_Ingame",
   "nextStage": "Chapter1",
+  "chapterLabel": "Prologue",
+  "day": 1,
   "nodes": [
     {
       "id": "n_ceaba651",

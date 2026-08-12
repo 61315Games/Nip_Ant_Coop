@@ -2899,6 +2899,7 @@ GameObject:
   - component: {fileID: 1339350848}
   - component: {fileID: 1339350850}
   - component: {fileID: 1339350849}
+  - component: {fileID: 1339350851}
   m_Layer: 5
   m_Name: ChapterBG
   m_TagString: Untagged
@@ -2965,6 +2966,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339350847}
   m_CullTransparentMesh: 1
+--- !u!114 &1339350851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339350847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e737eb909c474d6f84f30696988f0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chapterText: {fileID: 1062639938}
+  dayText: {fileID: 501280380}
+  dayFormat: "\uAC1C\uBBF8\uB825 {0}\uC77C"
 --- !u!1 &1372630548
 GameObject:
   m_ObjectHideFlags: 0

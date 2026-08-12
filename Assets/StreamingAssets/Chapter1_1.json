@@ -4,6 +4,8 @@
   "background": "bg_classroom_ch1",
   "nextScene": "",
   "nextStage": null,
+  "chapterLabel": "Chapter1",
+  "day": 3,
   "nodes": [
     {
       "id": "n_e8f97395",
