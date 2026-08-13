@@ -3,9 +3,10 @@
   "startNodeId": "n_ceaba651",
   "background": "bg_classroom_prologue",
   "nextScene": "SC_Ingame",
-  "nextStage": "Chapter1",
+  "nextStage": "Chapter1_1",
   "chapterLabel": "Prologue",
   "day": 1,
+  "summary": null,
   "nodes": [
     {
       "id": "n_ceaba651",
@@ -34,7 +35,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_fae5280b",
@@ -63,7 +68,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_8fd4213a",
@@ -92,7 +101,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_76d6b48b",
@@ -121,7 +134,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_a901d874",
@@ -158,7 +175,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_283d4513",
@@ -179,7 +200,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_abd64a30",
@@ -191,7 +216,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_0b32f2d8",
@@ -220,7 +249,11 @@
           "flip": false
         }
       ],
-      "shake": true
+      "shake": true,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_65c8cbc0",
@@ -241,7 +274,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_fa6b0eb7",
@@ -270,7 +307,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_e375ce86",
@@ -291,7 +332,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_bc1e221a",
@@ -303,7 +348,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_1c5bb03c",
@@ -324,7 +373,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_435ec9e6",
@@ -336,7 +389,11 @@
       "endHere": true,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     }
   ]
 }

@@ -2,8 +2,8 @@
   "storyId": "Chapter1_1",
   "startNodeId": "n_e8f97395",
   "background": "bg_classroom_ch1",
-  "nextScene": "",
-  "nextStage": null,
+  "nextScene": "SC_Ingame",
+  "nextStage": "Chapter1_2",
   "chapterLabel": "Chapter1",
   "day": 3,
   "summary": "흰개미를 잡아서 상을 받고 싶은 친구들이 많은 것 같아요. 저도 조금 더 분발해야겠어요.\n\n그나저나, 오늘은 갑자기 전학생이 제게 대뜸 친구가 되지 않겠냐며 말을 걸더라고요? 전학생 개미는 허리도 구부정하고 말투도 이상하고…… 어딘가 음침한 구석이 있어서 딱히 어울리고 싶지는 않은 개미예요. 그치만 그냥 무시하기에는 따돌리는 것 같아서 그닥 유쾌하지는 않아요. 친구하자는 전학생 개미의 제안, 받아줘야 할까요?",
@@ -27,7 +27,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_450ed1ba",
@@ -56,7 +60,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_6d443b43",
@@ -68,7 +76,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_c6c7cb81",
@@ -97,7 +109,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_1687db52",
@@ -126,7 +142,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_7ba5b913",
@@ -147,7 +167,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_cb13c587",
@@ -176,7 +200,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_fa4bc02a",
@@ -205,7 +233,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_d36314d6",
@@ -234,7 +266,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_bb60556f",
@@ -263,7 +299,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_382ee70d",
@@ -292,7 +332,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_50fbb83a",
@@ -304,7 +348,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_33481159",
@@ -333,7 +381,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_355bfa90",
@@ -362,7 +414,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_84ef3740",
@@ -391,7 +447,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_d6b4040b",
@@ -420,7 +480,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_bb2b478f",
@@ -449,7 +513,11 @@
           "flip": true
         }
       ],
-      "shake": true
+      "shake": true,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_ef1a58a6",
@@ -461,7 +529,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": true
+      "shake": true,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_6a2c49b5",
@@ -490,7 +562,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_30c40d34",
@@ -519,7 +595,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_0fe994a4",
@@ -548,7 +628,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_58186384",
@@ -593,7 +677,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_4d9ce05e",
@@ -622,7 +710,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_5208f1c4",
@@ -651,7 +743,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_39655146",
@@ -680,7 +776,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_1e5c9d78",
@@ -709,7 +809,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_924ee56f",
@@ -738,7 +842,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_7c07c495",
@@ -767,7 +875,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_cf327ae9",
@@ -796,7 +908,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_85a416c7",
@@ -808,7 +924,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_ad457c15",
@@ -837,7 +957,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_d427cc4b",
@@ -866,7 +990,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_f8b6d391",
@@ -895,7 +1023,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_14440344",
@@ -924,7 +1056,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_b2afb347",
@@ -945,7 +1081,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_9d606e53",
@@ -974,7 +1114,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_dd186c82",
@@ -1003,7 +1147,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_6c6730c7",
@@ -1024,7 +1172,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_00ea6c2f",
@@ -1045,7 +1197,11 @@
         }
       ],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_43c706cc",
@@ -1057,7 +1213,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_925cca0a",
@@ -1078,7 +1238,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_fe77aaef",
@@ -1090,7 +1254,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_c35317fc",
@@ -1111,7 +1279,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_08e201b8",
@@ -1132,7 +1304,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_0ba495fc",
@@ -1161,7 +1337,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_b531c811",
@@ -1173,7 +1353,11 @@
       "endHere": true,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_f63c3de3",
@@ -1185,7 +1369,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_6d5eec23",
@@ -1206,7 +1394,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_8b8f0497",
@@ -1235,7 +1427,11 @@
           "flip": true
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_78068bd0",
@@ -1247,7 +1443,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_995dd410",
@@ -1268,7 +1468,11 @@
           "flip": false
         }
       ],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_fe1fe0e1",
@@ -1280,7 +1484,11 @@
       "endHere": false,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     },
     {
       "id": "n_6eaa2658",
@@ -1292,7 +1500,11 @@
       "endHere": true,
       "choices": [],
       "actors": [],
-      "shake": false
+      "shake": false,
+      "mode": "",
+      "bg": null,
+      "fadeBreak": false,
+      "hold": -1.0
     }
   ]
 }

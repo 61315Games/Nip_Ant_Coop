@@ -974,6 +974,14 @@ MonoBehaviour:
   characterGroup: {fileID: 0}
   characterFadeDuration: 0.5
   actorFadeDuration: 0.5
+  narrationRoot: {fileID: 0}
+  narrationText: {fileID: 0}
+  narrationGroup: {fileID: 0}
+  cutsceneImage: {fileID: 0}
+  narrationFadeDuration: 0.35
+  breakFadeDuration: 0.45
+  narrationHold: 2
+  hideInNarration: []
 --- !u!114 &335378074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,7 +998,10 @@ MonoBehaviour:
   - chapterId: Tutorial
     envPrefab: {fileID: 229379434620861370, guid: 986cf71469f0a4623826768ae051450c,
       type: 3}
-  - chapterId: Chapter1
+  - chapterId: Chapter1_1
+    envPrefab: {fileID: 229379434620861370, guid: 986cf71469f0a4623826768ae051450c,
+      type: 3}
+  - chapterId: Chapter1_2
     envPrefab: {fileID: 229379434620861370, guid: 986cf71469f0a4623826768ae051450c,
       type: 3}
 --- !u!114 &335378075
@@ -1105,8 +1116,11 @@ MonoBehaviour:
   - stageId: Tutorial
     clearStoryId: Prologue_2
     failStoryId: 
-  - stageId: Chapter1
+  - stageId: Chapter1_1
     clearStoryId: Chapter1_1
+    failStoryId: 
+  - stageId: Chapter1_2
+    clearStoryId: Chapter1_2
     failStoryId: 
 --- !u!1 &379344069
 GameObject:

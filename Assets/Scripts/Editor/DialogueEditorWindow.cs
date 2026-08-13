@@ -115,6 +115,17 @@ public class DialogueEditorWindow : EditorWindow
             n.portrait = EditorGUILayout.TextField("초상화(선택)", n.portrait);
             n.portraitBrightness = EditorGUILayout.Slider("초상화 밝기", n.portraitBrightness, 0f, 1f);
             n.shake = EditorGUILayout.Toggle("화면 흔들기", n.shake);
+            
+            EditorGUILayout.Space(2);
+            EditorGUILayout.LabelField("컷씬 연출", EditorStyles.boldLabel);
+
+            bool nar = (n.mode == "narration");
+            n.mode = EditorGUILayout.Toggle("컷씬 진행", nar) ? "narration" : "";
+            
+            n.bg        = EditorGUILayout.TextField("배경 교체(선택)", n.bg);
+            n.fadeBreak = EditorGUILayout.Toggle("암전 전환", n.fadeBreak);
+
+            bool auto = (n.hold >= 0f);
 
             EditorGUILayout.Space(2);
             if (n.choices.Count == 0)

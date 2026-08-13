@@ -33,7 +33,7 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private RectTransform slotLeft, slotCenter, slotRight, slotOff;
     
     [Header("Shake")]
-    [SerializeField] private RectTransform shakeRoot;      // 흔들 대상(화면 전체 담은 루트)
+    [SerializeField] private RectTransform shakeRoot;
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private float shakeMagnitude = 15f;
 
@@ -43,6 +43,25 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private float characterFadeDuration = 0.5f;
     [SerializeField] private float actorFadeDuration = 0.5f;
     private Dictionary<string, Coroutine> fades = new Dictionary<string, Coroutine>();
+
+    [Header("CutScene")]
+    [SerializeField] private GameObject narrationRoot;
+    [SerializeField] private TMP_Text narrationText;
+    [SerializeField] private CanvasGroup narrationGroup;
+    [SerializeField] private Image cutsceneImage;
+    [SerializeField] private float narrationFadeDuration = 0.35f;
+    [SerializeField] private float breakFadeDuration = 0.45f;
+    [SerializeField] private float narrationHold = 2f; 
+    [SerializeField] private GameObject[] hideInNarration;
+
+    private string currentMode = "dialogue";
+    private Coroutine showCo;
+    private bool transitioning;
+
+    private TMP_Text Target => currentMode == "narration" ? narrationText : dialogueText;
+    bool  IsAuto(DialogueNode n) => n != null && (n.mode == "narration" || n.hold >= 0f);
+    float HoldOf(DialogueNode n) => n.hold >= 0f ? n.hold : narrationHold;
+    
     
     private Vector2 shakeHome;
     private Coroutine shakeCo;
@@ -80,6 +99,14 @@ public class DialogueRunner : MonoBehaviour
         SkipController.instance?.Refresh();
         ClearStage();
 
+        currentMode = "dialogue";
+        transitioning = false;
+        if(narrationRoot != null) narrationRoot.SetActive(false);
+        
+        if (hideInNarration != null)
+            foreach (var go in hideInNarration)
+                if (go != null) go.SetActive(true);
+
         if (!string.IsNullOrEmpty(data.background) && spriteDB != null && backgroundImage != null)
         {
             Sprite bg = spriteDB.Get(data.background);
@@ -91,6 +118,79 @@ public class DialogueRunner : MonoBehaviour
     }
 
     void Show(DialogueNode node)
+    {
+        if (showCo != null) StopCoroutine(showCo);
+        showCo = StartCoroutine(ShowRoutine(node));
+    }
+
+    IEnumerator ShowRoutine(DialogueNode node)
+    {
+        string m = string.IsNullOrEmpty(node.mode) ? "dialogue" : node.mode;
+        bool modeChanged = (m != currentMode);
+        bool bgChanged   = !string.IsNullOrEmpty(node.bg);
+        bool doFade      = node.fadeBreak && fader != null && (modeChanged || bgChanged);
+
+        if (doFade)
+        {
+            transitioning = true;
+            yield return fader.FadeOut(breakFadeDuration);
+        }
+
+        if (modeChanged)
+        {
+            bool nar = (m == "narration");
+            panel.SetActive(!nar);
+            if (characterRoot != null) characterRoot.gameObject.SetActive(!nar);
+            if (portraitImage != null && nar) portraitImage.gameObject.SetActive(false);
+            if (narrationRoot != null) narrationRoot.SetActive(nar);
+            
+            if (hideInNarration != null)
+                foreach (var go in hideInNarration)
+                    if (go != null) go.SetActive(!nar);
+            currentMode = m;
+        }
+
+        if (bgChanged && spriteDB != null)
+        {
+            Sprite s = spriteDB.Get(node.bg);
+            if (s != null)
+            {
+                if (currentMode == "narration" && cutsceneImage != null)
+                    cutsceneImage.sprite = s;
+                else if (backgroundImage != null)
+                    backgroundImage.sprite = s;
+            }
+        }
+
+        Target.text = "";
+        Target.maxVisibleCharacters = 0;
+
+        if (currentMode != "narration")
+        {
+            ApplyPortrait(node);
+            ApplyActors(node);
+            speakerText.text = node.speaker;
+        }
+
+        if (doFade)
+        {
+            yield return fader.FadeIn(breakFadeDuration);
+            transitioning = false;
+        }
+
+        if (node.shake) Shake();
+
+        if (currentMode == "narration" && narrationGroup != null)
+        {
+            narrationGroup.alpha = 0f;
+            StartCoroutine(FadeCanvas(narrationGroup, 0f, 1f, narrationFadeDuration));
+        }
+
+        if (typing != null) StopCoroutine(typing);
+        typing = StartCoroutine(TypeText(node.text));
+    }
+
+    void ApplyPortrait(DialogueNode node)
     {
         if (portraitImage != null)
         {
@@ -107,14 +207,6 @@ public class DialogueRunner : MonoBehaviour
             }
             else portraitImage.gameObject.SetActive(false);
         }
-
-        ApplyActors(node);
-
-        speakerText.text = node.speaker;
-        if (typing != null) StopCoroutine(typing);
-        typing = StartCoroutine(TypeText(node.text));
-
-        if (node.shake) Shake();
     }
 
     IEnumerator IntroRoutine(int startIndex)
@@ -141,6 +233,7 @@ public class DialogueRunner : MonoBehaviour
 
     IEnumerator OutroRoutine()
     {
+        if (narrationRoot != null) narrationRoot.SetActive(false);
         if (fader != null)
             yield return fader.FadeOut();
         
@@ -171,31 +264,40 @@ public class DialogueRunner : MonoBehaviour
     {
         isTyping = true;
 
-        dialogueText.maxVisibleCharacters = 0;
-        dialogueText.text = full;
-        dialogueText.ForceMeshUpdate();
-        int total = dialogueText.textInfo.characterCount;
+        var t = Target;
+        t.maxVisibleCharacters = 0;
+        t.text = full;
+        t.ForceMeshUpdate();
+        int total = t.textInfo.characterCount;
         for (int i = 0; i <= total; i++)
         {
-            dialogueText.maxVisibleCharacters = i;
+            t.maxVisibleCharacters = i;
             yield return new WaitForSeconds(typeSpeed);
         }
         isTyping = false;
 
-        if (current.choices != null && current.choices.Count > 0)
-            ShowChoices();
+        if (current.choices != null && current.choices.Count > 0) { ShowChoices(); yield break; }
+
+        if (IsAuto(current))
+        {
+            yield return new WaitForSeconds(HoldOf(current));
+            typing = null;
+            Next();
+        }
     }
 
     // ------------------------------------------------------------- 입력/진행
 
     public void OnClick()
     {
-        if (current == null) return;
+        if (current == null || transitioning) return;
+        if (IsAuto(current)) return;  
 
         if (isTyping)
         {
             if (typing != null) StopCoroutine(typing);
-            dialogueText.maxVisibleCharacters = dialogueText.textInfo.characterCount;
+            var t = Target;
+            t.maxVisibleCharacters = t.textInfo.characterCount;
             isTyping = false;
             if (current.choices != null && current.choices.Count > 0) ShowChoices();
             return;
@@ -223,6 +325,10 @@ public class DialogueRunner : MonoBehaviour
 
     public void Skip()
     {
+        transitioning = false;
+        if (showCo != null) { StopCoroutine(showCo); showCo = null; }
+        if (fader != null) fader.ResetOverlay();
+        
         if (ending || data == null) return;
         if (typing != null)
         {

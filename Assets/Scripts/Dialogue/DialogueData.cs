@@ -28,6 +28,11 @@ public class DialogueNode
     public List<Choice> choices = new List<Choice>();
     public List<ActorState> actors = new List<ActorState>();
     public bool shake;
+    // CutScene
+    public string mode;
+    public string bg;
+    public bool fadeBreak;
+    public float hold = -1f;
 }
 
 [System.Serializable]
