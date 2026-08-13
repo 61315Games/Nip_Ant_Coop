@@ -1,86 +1,84 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
 public class ButtonHover : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler,
     IPointerDownHandler, IPointerUpHandler
 {
-    [Header("Refs")]
-    [SerializeField] private Image background;
-    [SerializeField] private TMP_Text label;
+    [System.Serializable]
+    public class LabelEntry
+    {
+        public TMP_Text text;
+        public Color normal = new Color32(0x8C, 0x8C, 0x8C, 0xFF);
+        public Color hover  = Color.white;
+        public bool moveOnPress = true;
 
-    [Header("Label Color")]
-    [SerializeField] private Color labelNormal = new Color32(0x8C, 0x8C, 0x8C, 0xFF);
-    [SerializeField] private Color labelHover  = Color.white;
+        [HideInInspector] public Vector2 home;
+    }
 
-    [Header("Background Alpha")]
-    [SerializeField] private float alphaNormal = 0f;
-    [SerializeField] private float alphaHover  = 1f;
-    [SerializeField] private float alphaPress  = 0.75f;
+    [Header("Labels")]
+    [SerializeField] private LabelEntry[] labels;
 
     [Header("Press")]
     [SerializeField] private Vector2 pressOffset = new Vector2(0f, -4f);
     [SerializeField] private float fadeDuration = 0.12f;
 
-    private RectTransform labelRect;
-    private Vector2 labelHome;
     private bool hovering, pressed;
     private Coroutine anim;
 
     void Awake()
     {
-        if (background == null) background = GetComponent<Image>();
-        if (label != null)
+        foreach (var e in labels)
         {
-            labelRect = label.rectTransform;
-            labelHome = labelRect.anchoredPosition;
-            label.color = labelNormal;
+            if (e == null || e.text == null) continue;
+            e.home = e.text.rectTransform.anchoredPosition;
+            e.text.color = e.normal;
         }
-        SetAlpha(alphaNormal);
     }
 
-    public void OnPointerEnter(PointerEventData e) { hovering = true;  Apply(); }
-    public void OnPointerExit (PointerEventData e) { hovering = false; pressed = false; Apply(); }
-    public void OnPointerDown (PointerEventData e) { pressed  = true;  Apply(); }
-    public void OnPointerUp   (PointerEventData e) { pressed  = false; Apply(); }
+    public void OnPointerEnter(PointerEventData p) { hovering = true;  Apply(); }
+    public void OnPointerExit (PointerEventData p) { hovering = false; pressed = false; Apply(); }
+    public void OnPointerDown (PointerEventData p) { pressed  = true;  Apply(); }
+    public void OnPointerUp   (PointerEventData p) { pressed  = false; Apply(); }
 
     void Apply()
     {
-        float a = !hovering ? alphaNormal : (pressed ? alphaPress : alphaHover);
-        Color c = hovering ? labelHover : labelNormal;
-
-        if (labelRect != null)
-            labelRect.anchoredPosition = labelHome + (pressed ? pressOffset : Vector2.zero);
+        foreach (var e in labels)
+        {
+            if (e == null || e.text == null) continue;
+            Vector2 off = (pressed && e.moveOnPress) ? pressOffset : Vector2.zero;
+            e.text.rectTransform.anchoredPosition = e.home + off;
+        }
 
         if (anim != null) StopCoroutine(anim);
-        anim = StartCoroutine(Routine(a, c));
+        anim = StartCoroutine(Routine(hovering));
     }
 
-    System.Collections.IEnumerator Routine(float targetAlpha, Color targetLabel)
+    System.Collections.IEnumerator Routine(bool toHover)
     {
-        float fromA = background.color.a;
-        Color fromC = label != null ? label.color : Color.white;
+        Color[] from = new Color[labels.Length];
+        for (int i = 0; i < labels.Length; i++)
+            from[i] = (labels[i] != null && labels[i].text != null)
+                ? labels[i].text.color : Color.white;
 
         float t = 0f;
         while (t < fadeDuration)
         {
             t += Time.unscaledDeltaTime;
-            float k = t / fadeDuration;
-            SetAlpha(Mathf.Lerp(fromA, targetAlpha, k));
-            if (label != null) label.color = Color.Lerp(fromC, targetLabel, k);
+            SetLabels(from, toHover, t / fadeDuration);
             yield return null;
         }
-        SetAlpha(targetAlpha);
-        if (label != null) label.color = targetLabel;
+        SetLabels(from, toHover, 1f);
     }
 
-    void SetAlpha(float a)
+    void SetLabels(Color[] from, bool toHover, float k)
     {
-        Color c = background.color;
-        c.a = a;
-        background.color = c;
+        for (int i = 0; i < labels.Length; i++)
+        {
+            var e = labels[i];
+            if (e == null || e.text == null) continue;
+            e.text.color = Color.Lerp(from[i], toHover ? e.hover : e.normal, k);
+        }
     }
 }
