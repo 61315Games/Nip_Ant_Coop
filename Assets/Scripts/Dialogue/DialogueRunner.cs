@@ -52,6 +52,9 @@ public class DialogueRunner : MonoBehaviour
     private Coroutine typing;
     private bool isTyping;
 
+    private bool ending;
+    public string Summary => data != null ? data.summary : null;
+
     private int selectedIndex;
 
     private Dictionary<string, Image> stage = new Dictionary<string, Image>();
@@ -68,11 +71,13 @@ public class DialogueRunner : MonoBehaviour
     {
         string path = Path.Combine(Application.streamingAssetsPath, storyId + ".json");
         data = JsonConvert.DeserializeObject<DialogueData>(File.ReadAllText(path));
+        ending = false;
         if (data == null) return;
 
         if(!string.IsNullOrEmpty(data.chapterLabel)) GameFlow.ChapterLabel = data.chapterLabel;
         if (data.day > 0) GameFlow.Day = data.day;
         ChapterHeader.instance?.Refresh();
+        SkipController.instance?.Refresh();
         ClearStage();
 
         if (!string.IsNullOrEmpty(data.background) && spriteDB != null && backgroundImage != null)
@@ -216,8 +221,28 @@ public class DialogueRunner : MonoBehaviour
         Show(current);
     }
 
+    public void Skip()
+    {
+        if (ending || data == null) return;
+        if (typing != null)
+        {
+            StopCoroutine(typing);
+            typing = null;
+        }
+        isTyping = false;
+
+        if (choosing)
+        {
+            choosing = false;
+            if (choicePopup != null) choicePopup.Close();
+        }
+        EndDialogue();
+    }
+
     void EndDialogue()
     {
+        if (ending) return;
+        ending = true;
         current = null;
         StartCoroutine(OutroRoutine());
     }

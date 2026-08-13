@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class InputManager : MonoBehaviour
             }
             if (pause.IsOpen) return;
         }
+        
+        var skip = SkipController.instance;
+        if (skip != null && skip.IsOpen) return;
+        
         if (_dialogue != null && _dialogue.IsActive)
         {
             if (_dialogue.choosing)
@@ -35,7 +40,10 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) _dialogue.OnClick();
+                bool overUI = EventSystem.current != null
+                              && EventSystem.current.IsPointerOverGameObject();
+                if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !overUI))
+                    _dialogue.OnClick();
             }
             return;
         }

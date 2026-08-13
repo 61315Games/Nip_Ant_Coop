@@ -11,6 +11,7 @@ public class DialogueData
     public string nextStage;
     public string chapterLabel;
     public int day;
+    public string summary;
     public List<DialogueNode> nodes = new List<DialogueNode>();
 }
 

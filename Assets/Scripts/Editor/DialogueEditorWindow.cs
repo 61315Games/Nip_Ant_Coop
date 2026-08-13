@@ -81,7 +81,8 @@ public class DialogueEditorWindow : EditorWindow
         data.chapterLabel = EditorGUILayout.TextField("챕터 표시명", data.chapterLabel);
         data.day          = EditorGUILayout.IntField("개미력 (일)", data.day);
         EditorGUILayout.LabelField("비워두면 이전 값이 그대로 유지됩니다.", EditorStyles.miniLabel);
-
+        EditorGUILayout.LabelField("스킵 요약문");
+        data.summary = EditorGUILayout.TextArea(data.summary, GUILayout.MinHeight(60));
         DrawEndSection();
 
         EditorGUILayout.HelpBox("맨 위 대사부터 순서대로 진행됩니다. 선택지가 있으면 목적지로 갈라집니다. 무대는 바뀌는 배우만 적으면 유지됩니다.", MessageType.None);
