@@ -30,10 +30,10 @@ public class Fader : MonoBehaviour
         fadeOverlay.color = c;
 
         float t = 0f;
-        while (t < fadeDuration)
+        while (t < dur)
         {
             t += Time.deltaTime;
-            float k = t / fadeDuration;
+            float k = t / dur;
             k = k * k;
             c.a = Mathf.Lerp(from, to, k);
             fadeOverlay.color = c;
@@ -45,7 +45,7 @@ public class Fader : MonoBehaviour
         if (disableAtEnd) fadeOverlay.gameObject.SetActive(false); 
     }
     
-    public void ResetOverlay()                                            // 추가
+    public void ResetOverlay()
     {
         if (fadeOverlay == null) return;
         Color c = fadeOverlay.color; c.a = 0f; fadeOverlay.color = c;

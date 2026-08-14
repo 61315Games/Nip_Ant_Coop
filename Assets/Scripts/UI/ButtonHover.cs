@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -46,39 +47,12 @@ public class ButtonHover : MonoBehaviour,
     {
         foreach (var e in labels)
         {
-            if (e == null || e.text == null) continue;
+            if (e?.text == null) continue;
             Vector2 off = (pressed && e.moveOnPress) ? pressOffset : Vector2.zero;
-            e.text.rectTransform.anchoredPosition = e.home + off;
-        }
-
-        if (anim != null) StopCoroutine(anim);
-        anim = StartCoroutine(Routine(hovering));
-    }
-
-    System.Collections.IEnumerator Routine(bool toHover)
-    {
-        Color[] from = new Color[labels.Length];
-        for (int i = 0; i < labels.Length; i++)
-            from[i] = (labels[i] != null && labels[i].text != null)
-                ? labels[i].text.color : Color.white;
-
-        float t = 0f;
-        while (t < fadeDuration)
-        {
-            t += Time.unscaledDeltaTime;
-            SetLabels(from, toHover, t / fadeDuration);
-            yield return null;
-        }
-        SetLabels(from, toHover, 1f);
-    }
-
-    void SetLabels(Color[] from, bool toHover, float k)
-    {
-        for (int i = 0; i < labels.Length; i++)
-        {
-            var e = labels[i];
-            if (e == null || e.text == null) continue;
-            e.text.color = Color.Lerp(from[i], toHover ? e.hover : e.normal, k);
+            e.text.rectTransform.DOKill();
+            e.text.rectTransform.DOAnchorPos(e.home + off, 0.08f).SetUpdate(true);
+            e.text.DOKill();
+            e.text.DOColor(hovering ? e.hover : e.normal, fadeDuration).SetUpdate(true);
         }
     }
 }

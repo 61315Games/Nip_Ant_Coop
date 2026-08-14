@@ -1,36 +1,42 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class PanelPopup : MonoBehaviour
 {
-    [SerializeField] private float[] openSteps = { 0f, 0.5f, 1.15f, 1f }; 
-    [SerializeField] private float stepTime = 0.05f;
+    [SerializeField] private float openTime = 0.25f;
+    [SerializeField] private float closeTime = 0.15f;
+    [SerializeField] private float overshoot = 1.7f;
+    [SerializeField] private CanvasGroup group;
 
-    private Coroutine anim;
+    private Tween anim;
 
     public void Open()
     {
+        anim?.Kill();
         gameObject.SetActive(true);
-        if (anim != null) StopCoroutine(anim);
-        anim = StartCoroutine(Step(openSteps, false));
+
+        transform.localScale = new Vector3(1f, 0f, 1f);
+        anim = transform.DOScaleY(1f, openTime)
+            .SetEase(Ease.OutBack, overshoot)
+            .SetUpdate(true)
+            .SetLink(gameObject);
+
+        if (group != null)
+        {
+            group.alpha = 0f;
+            group.DOFade(1f, openTime * 0.7f).SetUpdate(true).SetLink(gameObject);
+        }
     }
 
     public void Close()
     {
         if (!gameObject.activeSelf) return;
-        if (anim != null) StopCoroutine(anim);
-        anim = StartCoroutine(Step(new float[] { 1f, 0.5f, 0f }, true));
-    }
-
-    IEnumerator Step(float[] steps, bool disableAtEnd)
-    {
-        Vector3 s = transform.localScale;
-        foreach (float v in steps)
-        {
-            s.y = v;
-            transform.localScale = s;
-            yield return new WaitForSecondsRealtime(stepTime);
-        }
-        if (disableAtEnd) gameObject.SetActive(false);
+        anim?.Kill();
+        anim = transform.DOScaleY(0f, closeTime)
+            .SetEase(Ease.InBack, overshoot)
+            .SetUpdate(true)
+            .SetLink(gameObject)
+            .OnComplete(() => gameObject.SetActive(false));
     }
 }

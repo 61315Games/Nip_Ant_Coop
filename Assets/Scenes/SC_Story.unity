@@ -722,6 +722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218523795}
   - component: {fileID: 218523797}
+  - component: {fileID: 218523798}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -762,12 +763,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.5
-  - 1.15
-  - 1
-  stepTime: 0.01
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 218523798}
+--- !u!225 &218523798
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218523794}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &261050683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,12 +1985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.6
-  - 1.15
-  - 1
-  stepTime: 0.05
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 0}
 --- !u!1 &644960044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,12 +2573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.5
-  - 1.15
-  - 1
-  stepTime: 0.05
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 0}
 --- !u!1 &898115340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,12 +2864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.6
-  - 1.15
-  - 1
-  stepTime: 0.05
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 0}
 --- !u!1 &1062639936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,12 +3094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.6
-  - 1.15
-  - 1
-  stepTime: 0.05
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 0}
 --- !u!1 &1090302392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,12 +5486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d45562bf2c1b4db480ff1a3367da25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSteps:
-  - 0
-  - 0.6
-  - 1.15
-  - 1
-  stepTime: 0.05
+  openTime: 0.25
+  closeTime: 0.15
+  overshoot: 1.7
+  group: {fileID: 0}
 --- !u!1 &1881470829
 GameObject:
   m_ObjectHideFlags: 0
