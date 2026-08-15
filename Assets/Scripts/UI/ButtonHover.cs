@@ -1,7 +1,7 @@
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class ButtonHover : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler,
@@ -23,10 +23,10 @@ public class ButtonHover : MonoBehaviour,
 
     [Header("Press")]
     [SerializeField] private Vector2 pressOffset = new Vector2(0f, -4f);
+    [SerializeField] private float moveDuration = 0.08f;
     [SerializeField] private float fadeDuration = 0.12f;
 
     private bool hovering, pressed;
-    private Coroutine anim;
 
     void Awake()
     {
@@ -35,6 +35,18 @@ public class ButtonHover : MonoBehaviour,
             if (e == null || e.text == null) continue;
             e.home = e.text.rectTransform.anchoredPosition;
             e.text.color = e.normal;
+        }
+    }
+
+    void OnDisable() { KillAll(); }
+
+    void KillAll()
+    {
+        foreach (var e in labels)
+        {
+            if (e == null || e.text == null) continue;
+            e.text.rectTransform.DOKill();
+            e.text.DOKill();
         }
     }
 
@@ -47,12 +59,20 @@ public class ButtonHover : MonoBehaviour,
     {
         foreach (var e in labels)
         {
-            if (e?.text == null) continue;
+            if (e == null || e.text == null) continue;
+
             Vector2 off = (pressed && e.moveOnPress) ? pressOffset : Vector2.zero;
+
             e.text.rectTransform.DOKill();
-            e.text.rectTransform.DOAnchorPos(e.home + off, 0.08f).SetUpdate(true);
+            e.text.rectTransform
+                  .DOAnchorPos(e.home + off, moveDuration, true)
+                  .SetUpdate(true)
+                  .SetLink(e.text.gameObject);
+
             e.text.DOKill();
-            e.text.DOColor(hovering ? e.hover : e.normal, fadeDuration).SetUpdate(true);
+            e.text.DOColor(hovering ? e.hover : e.normal, fadeDuration)
+                  .SetUpdate(true)
+                  .SetLink(e.text.gameObject);
         }
     }
 }
