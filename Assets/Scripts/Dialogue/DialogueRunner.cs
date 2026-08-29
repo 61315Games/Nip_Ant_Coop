@@ -97,6 +97,7 @@ public class DialogueRunner : MonoBehaviour
         if (data.day > 0) GameFlow.Day = data.day;
         ChapterHeader.instance?.Refresh();
         SkipController.instance?.Refresh();
+        ApplyBgm(data.bgm);
         ClearStage();
 
         currentMode = "dialogue";
@@ -162,6 +163,8 @@ public class DialogueRunner : MonoBehaviour
             }
         }
 
+        if (!string.IsNullOrEmpty(node.bgm)) ApplyBgm(node.bgm);
+        
         Target.text = "";
         Target.maxVisibleCharacters = 0;
 
@@ -347,6 +350,8 @@ public class DialogueRunner : MonoBehaviour
 
         string lastBg = null;
         string lastMode = null;
+        string lastBgm = null;
+        
         var guard = new HashSet<string>();
 
         DialogueNode node = current;
@@ -357,6 +362,7 @@ public class DialogueRunner : MonoBehaviour
             ApplyActors(node);
             if (!string.IsNullOrEmpty(node.bg)) lastBg = node.bg;
             if (!string.IsNullOrEmpty(node.mode)) lastMode = node.mode;
+            if (!string.IsNullOrEmpty(node.bgm)) lastBgm = node.bgm;
 
             if (node.endHere || string.IsNullOrEmpty(node.next))
             {
@@ -386,6 +392,8 @@ public class DialogueRunner : MonoBehaviour
         }
 
         ApplyStateBeforeJump(lastMode, lastBg, node);
+        if(!string.IsNullOrEmpty(lastBgm) && string.IsNullOrEmpty(node.bgm))
+            ApplyBgm(lastBgm);
         current = node;
         Show(current);
     }
@@ -561,5 +569,12 @@ public class DialogueRunner : MonoBehaviour
                 else if (backgroundImage != null) backgroundImage.sprite = s;
             }
         }
+    }
+
+    void ApplyBgm(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+        SoundManager.EnsureExists();
+        SoundManager.instance?.PlayBgmById(id);
     }
 }

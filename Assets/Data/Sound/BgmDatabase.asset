@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e407a4f364b40669882109f5113c88, type: 3}
+  m_Name: BgmDatabase
+  m_EditorClassIdentifier: 
+  entries:
+  - name: BGM_Main
+    playlist: {fileID: 11400000, guid: 83ad66cd45592486c9b7199436ba4085, type: 2}
+  - name: BGM_Ingame
+    playlist: {fileID: 11400000, guid: d19089a398ba84b15acde965aec993d0, type: 2}
+  - name: BGM_Story_School
+    playlist: {fileID: 11400000, guid: bbf11e9e039c6470fa5f1b0182b4ec7a, type: 2}
+  - name: BGM_Story_Home
+    playlist: {fileID: 11400000, guid: 3e632e33c277c4062bcb2cbe597eb657, type: 2}

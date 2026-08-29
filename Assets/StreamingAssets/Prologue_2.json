@@ -36,6 +36,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -69,6 +70,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -102,6 +104,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -135,6 +138,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -176,6 +180,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -201,6 +206,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -217,6 +223,7 @@
       "choices": [],
       "actors": [],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -250,6 +257,7 @@
         }
       ],
       "shake": true,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -275,6 +283,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -308,6 +317,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -333,6 +343,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -349,6 +360,7 @@
       "choices": [],
       "actors": [],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -374,6 +386,7 @@
         }
       ],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
@@ -390,10 +403,12 @@
       "choices": [],
       "actors": [],
       "shake": false,
+      "bgm": null,
       "mode": "",
       "bg": null,
       "fadeBreak": false,
       "hold": -1.0
     }
-  ]
+  ],
+  "bgm": "BGM_Story_School"
 }

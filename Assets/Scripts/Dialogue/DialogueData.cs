@@ -13,6 +13,7 @@ public class DialogueData
     public int day;
     public string summary;
     public List<DialogueNode> nodes = new List<DialogueNode>();
+    public string bgm;
 }
 
 [System.Serializable]
@@ -28,6 +29,8 @@ public class DialogueNode
     public List<Choice> choices = new List<Choice>();
     public List<ActorState> actors = new List<ActorState>();
     public bool shake;
+    public string bgm;
+    
     // CutScene
     public string mode;
     public string bg;

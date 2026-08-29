@@ -75,11 +75,12 @@ public class DialogueEditorWindow : EditorWindow
 
         data.storyId    = EditorGUILayout.TextField("챕터 이름", data.storyId);
         data.background = EditorGUILayout.TextField("시작 배경", data.background);
+        data.bgm        = EditorGUILayout.TextField("BGM (비우면 유지, none=무음)", data.bgm);   // ← 추가
         
         EditorGUILayout.Space(4);
         EditorGUILayout.LabelField("상단 UI 표시", EditorStyles.boldLabel);
         data.chapterLabel = EditorGUILayout.TextField("챕터 표시명", data.chapterLabel);
-        data.day          = EditorGUILayout.IntField("개미력 (일)", data.day);
+        data.day          = EditorGUILayout.IntField("개미력 (일)", data.day);  
         EditorGUILayout.LabelField("비워두면 이전 값이 그대로 유지됩니다.", EditorStyles.miniLabel);
         EditorGUILayout.LabelField("스킵 요약문");
         data.summary = EditorGUILayout.TextArea(data.summary, GUILayout.MinHeight(60));
@@ -121,8 +122,8 @@ public class DialogueEditorWindow : EditorWindow
 
             bool nar = (n.mode == "narration");
             n.mode = EditorGUILayout.Toggle("컷씬 진행", nar) ? "narration" : "";
-            
             n.bg        = EditorGUILayout.TextField("배경 교체(선택)", n.bg);
+            n.bgm       = EditorGUILayout.TextField("BGM 교체(선택)", n.bgm);
             n.fadeBreak = EditorGUILayout.Toggle("암전 전환", n.fadeBreak);
 
             bool auto = (n.hold >= 0f);
