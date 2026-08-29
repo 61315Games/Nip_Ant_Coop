@@ -781,6 +781,7 @@ MonoBehaviour:
     moveOnPress: 1
     home: {x: 0, y: 0}
   pressOffset: {x: 0, y: -4}
+  moveDuration: 0.08
   fadeDuration: 0.12
 --- !u!1 &957871795
 GameObject:
@@ -923,6 +924,7 @@ MonoBehaviour:
     moveOnPress: 1
     home: {x: 0, y: 0}
   pressOffset: {x: 0, y: -4}
+  moveDuration: 0.08
   fadeDuration: 0.12
 --- !u!1 &1023826551
 GameObject:
@@ -1083,6 +1085,7 @@ MonoBehaviour:
     moveOnPress: 1
     home: {x: 0, y: 0}
   pressOffset: {x: 0, y: -4}
+  moveDuration: 0.08
   fadeDuration: 0.12
 --- !u!1 &1094893299
 GameObject:
@@ -1362,6 +1365,7 @@ MonoBehaviour:
     moveOnPress: 1
     home: {x: 0, y: 0}
   pressOffset: {x: 0, y: -4}
+  moveDuration: 0.08
   fadeDuration: 0.12
 --- !u!1 &1205731031
 GameObject:
@@ -1795,6 +1799,7 @@ MonoBehaviour:
     moveOnPress: 1
     home: {x: 0, y: 0}
   pressOffset: {x: 0, y: -4}
+  moveDuration: 0.08
   fadeDuration: 0.12
 --- !u!1 &1592873638
 GameObject:
