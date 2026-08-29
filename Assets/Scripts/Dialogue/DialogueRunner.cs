@@ -329,7 +329,7 @@ public class DialogueRunner : MonoBehaviour
         if (showCo != null) { StopCoroutine(showCo); showCo = null; }
         if (fader != null) fader.ResetOverlay();
         
-        if (ending || data == null) return;
+        if (ending || data == null || current == null) return;
         if (typing != null)
         {
             StopCoroutine(typing);
@@ -337,12 +337,57 @@ public class DialogueRunner : MonoBehaviour
         }
         isTyping = false;
 
-        if (choosing)
+        if (choosing) return;
+
+        if (current.choices != null && current.choices.Count > 0)
         {
-            choosing = false;
-            if (choicePopup != null) choicePopup.Close();
+            Show(current);
+            return;
         }
-        EndDialogue();
+
+        string lastBg = null;
+        string lastMode = null;
+        var guard = new HashSet<string>();
+
+        DialogueNode node = current;
+        while (true)
+        {
+            if (node.id != null && !guard.Add(node.id)) break;
+            
+            ApplyActors(node);
+            if (!string.IsNullOrEmpty(node.bg)) lastBg = node.bg;
+            if (!string.IsNullOrEmpty(node.mode)) lastMode = node.mode;
+
+            if (node.endHere || string.IsNullOrEmpty(node.next))
+            {
+                node = null;
+                break;
+            }
+
+            var nextNode = data.nodes.FirstOrDefault(n => n.id == node.next);
+            if (nextNode == null)
+            {
+                node = null;
+                break;
+            }
+
+            if (nextNode.choices != null && nextNode.choices.Count > 0)
+            {
+                node = nextNode;
+                break;
+            }
+            node = nextNode;
+        }
+
+        if (node == null || node == current)
+        {
+            EndDialogue();
+            return;
+        }
+
+        ApplyStateBeforeJump(lastMode, lastBg, node);
+        current = node;
+        Show(current);
     }
 
     void EndDialogue()
@@ -502,5 +547,19 @@ public class DialogueRunner : MonoBehaviour
             yield return null;
         }
         shakeRoot.anchoredPosition = shakeHome; 
+    }
+
+    void ApplyStateBeforeJump(string lastMode, string lastBg, DialogueNode target)
+    {
+        if (!string.IsNullOrEmpty(lastMode)) currentMode = lastMode;
+        if (!string.IsNullOrEmpty(lastBg) && string.IsNullOrEmpty(target.bg) && spriteDB != null)
+        {
+            Sprite s = spriteDB.Get(lastBg);
+            if (s != null)
+            {
+                if (currentMode == "narration" && cutsceneImage != null) cutsceneImage.sprite = s;
+                else if (backgroundImage != null) backgroundImage.sprite = s;
+            }
+        }
     }
 }
