@@ -10,7 +10,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text timeText;
 
-    private float totalTime = 180f;
+    private float totalTime = 60f;
     private float remaining;
     private bool running;
     private bool unlimited;
