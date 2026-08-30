@@ -48,6 +48,8 @@ MonoBehaviour:
   cubeTransform: {fileID: 268791769490915810}
   termitePrefab: {fileID: 4826438362605952908, guid: d49f5befb5c43477bad48ea8ef6b3fc0,
     type: 3}
+  blackAntPrefab: {fileID: 5264465881617317395, guid: 85adb3946c3d9439b9b6779ca2853962,
+    type: 3}
   currentStage: {fileID: 11400000, guid: f72139d7ef15c4e77b304a7f2dc31640, type: 2}
 --- !u!1001 &2023212404733887735
 PrefabInstance:

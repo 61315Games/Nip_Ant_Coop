@@ -4,6 +4,7 @@ public class TermiteSpawner : MonoBehaviour
 {
     [SerializeField] private Transform cubeTransform;
     [SerializeField] private GameObject termitePrefab;
+    [SerializeField] private GameObject blackAntPrefab;
     [SerializeField] private StageTermiteData currentStage;
     void Start()
     {
@@ -19,7 +20,8 @@ public class TermiteSpawner : MonoBehaviour
         int realCount = 0;
         foreach (var info in stage.termites)
         {
-            GameObject t = Instantiate(termitePrefab, cubeTransform);
+            var prefab = info.antType == TermiteSpawnInfo.AntType.BlackAnt ? blackAntPrefab : termitePrefab;
+            GameObject t = Instantiate(prefab, cubeTransform);
             t.transform.localPosition = info.localPosition;
             t.transform.localScale = Vector3.one * info.scale;
             

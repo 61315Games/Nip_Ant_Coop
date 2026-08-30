@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class TermiteSpawnInfo
 {
+    public enum AntType { Termite, BlackAnt }
+    public AntType antType = AntType.Termite;
     public Vector3 localPosition;
     public Vector3 surfaceNormal = Vector3.forward;
     public float scale = 1f;

@@ -14,22 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 0
   termites:
-  - kind: 0
+  - antType: 0
     localPosition: {x: 9.09, y: 2.2, z: 13.6}
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 2
     isReal: 1
-  - kind: 0
+  - antType: 0
     localPosition: {x: 8.82, y: 1.9, z: -9.19}
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 1
     isReal: 1
-  - kind: 0
+  - antType: 0
     localPosition: {x: -10.26, y: 0.9, z: 5.12}
     surfaceNormal: {x: 0, y: 1, z: 0}
     scale: 2
     isReal: 1
-  blackAntLines: []
-  talkerRatio: 0.25
-  minTalkers: 1
-  maxTalkers: 3
+  - antType: 1
+    localPosition: {x: 1.477788, y: 1.8550708, z: 6.3504434}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 0
+  - antType: 1
+    localPosition: {x: 11.83, y: 1.76, z: 6.16}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 0
+  - antType: 1
+    localPosition: {x: -9.71, y: 1.76, z: -10.78}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 0
+  - antType: 1
+    localPosition: {x: -5.59, y: 1.97, z: 6.41}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 0
+  - antType: 1
+    localPosition: {x: -11.72, y: 1.96, z: -5.44}
+    surfaceNormal: {x: 0, y: 1, z: 0}
+    scale: 2
+    isReal: 0
