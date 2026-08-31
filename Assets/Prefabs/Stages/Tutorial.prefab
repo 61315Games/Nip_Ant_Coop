@@ -48,7 +48,10 @@ MonoBehaviour:
   cubeTransform: {fileID: 4115913642810058139}
   termitePrefab: {fileID: 4826438362605952908, guid: d49f5befb5c43477bad48ea8ef6b3fc0,
     type: 3}
+  blackAntPrefab: {fileID: 0}
   currentStage: {fileID: 11400000, guid: 9bac058af396b4698a1489e8ebfd3477, type: 2}
+  antMonologueData: {fileID: 11400000, guid: e6f7d7a91cb2147a8bc6c91c81b7d0ad, type: 2}
+  speakerCount: 3
 --- !u!1001 &577505018205100132
 PrefabInstance:
   m_ObjectHideFlags: 0
