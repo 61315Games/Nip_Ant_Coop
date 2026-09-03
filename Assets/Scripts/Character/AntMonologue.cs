@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +6,12 @@ using Random = UnityEngine.Random;
 public class AntMonologue : MonoBehaviour
 {
     [SerializeField] private TMP_Text label;
+
+    [Header("Bubble")]
+    [SerializeField] private SpriteRenderer bubble;
+    [SerializeField] private Vector2 padding = new Vector2(0.3f, 0.2f);
+    [SerializeField] private float maxWidth = 20f;
+
     [Header("Timing")]
     [SerializeField] private float showTime = 3f;
     [SerializeField] private float hideTime = 3f;
@@ -17,28 +21,46 @@ public class AntMonologue : MonoBehaviour
     [SerializeField] private LayerMask occluderMask;
     [SerializeField] private float rayBackDistance = 100f;
     [SerializeField] private float skin = 0.2f;
-    [SerializeField] private float checkInterval = 0.1f; 
+    [SerializeField] private float checkInterval = 0.1f;
 
     private Coroutine loop;
     private bool wantVisible;
     private bool notOccluded = true;
     private float nextCheck;
     private Transform cam;
-
+    
     private void Awake()
     {
-        if(label == null) label = GetComponentInChildren<TMP_Text>(true);
-        if(label != null) label.gameObject.SetActive(false);
+        if (label == null) label = GetComponentInChildren<TMP_Text>(true);
+
+        if (label != null)
+        {
+            var rt = label.rectTransform;
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot     = new Vector2(0.5f, 0.5f);
+            label.alignment = TextAlignmentOptions.Center;
+            label.margin    = Vector4.zero;
+
+            label.gameObject.SetActive(true);   // ← 추가. 표시 여부는 이제 Bubble이 담당
+        }
+
+        SetVisible(false);   // Bubble(부모)만 끔
     }
-    
-    void Start()
+
+    private void Start()
     {
         cam = Camera.main != null ? Camera.main.transform : null;
     }
-    
-    void LateUpdate()
+
+    private void SetVisible(bool v)
     {
-        if (label == null) return;
+        if (bubble != null) bubble.gameObject.SetActive(v);
+        else if (label != null) label.gameObject.SetActive(v);
+    }
+
+    private void LateUpdate()
+    {
+        if (label == null || bubble == null) return;
 
         if (Time.time >= nextCheck)
         {
@@ -47,19 +69,21 @@ public class AntMonologue : MonoBehaviour
         }
 
         bool visible = wantVisible && notOccluded;
-        if (label.gameObject.activeSelf != visible)
-            label.gameObject.SetActive(visible);
+        if (bubble.gameObject.activeSelf != visible)
+            SetVisible(visible);
     }
 
     public void Begin(string line)
     {
-        if(label == null || string.IsNullOrEmpty(line)) return;
+        if (label == null || string.IsNullOrEmpty(line)) return;
 
         label.text = line;
-        if(loop != null) StopCoroutine(loop);
+        FitBubble();
+
+        if (loop != null) StopCoroutine(loop);
         loop = StartCoroutine(Loop());
     }
-
+    
     private IEnumerator Loop()
     {
         yield return new WaitForSeconds(Random.Range(0f, maxStartDelay));
@@ -72,7 +96,31 @@ public class AntMonologue : MonoBehaviour
             yield return new WaitForSeconds(hideTime);
         }
     }
-    
+
+    private void FitBubble()
+    {
+        if (bubble == null || label == null || bubble.sprite == null) return;
+
+        Sprite  sp  = bubble.sprite;
+        float   ppu = sp.pixelsPerUnit;
+        Vector4 bd  = sp.border;
+        float tail  = bd.y / ppu;
+        float minW  = (bd.x + bd.z) / ppu;
+        float minH  = (bd.y + bd.w) / ppu;
+
+        Vector2 pref = label.GetPreferredValues(label.text, maxWidth, 0f);
+        pref.x = Mathf.Min(pref.x, maxWidth);
+        label.rectTransform.sizeDelta = new Vector2(maxWidth, pref.y);
+
+        float k = label.transform.localScale.x;
+        float w = Mathf.Max(pref.x * k + padding.x,        minW);
+        float h = Mathf.Max(pref.y * k + padding.y + tail, minH);
+        bubble.size = new Vector2(w, h);
+
+        Vector3 lp = label.transform.localPosition;
+        label.transform.localPosition = new Vector3(w * 0.5f, (tail + h) * 0.5f, lp.z);
+    }
+
     private bool IsOccluded()
     {
         if (cam == null) return false;

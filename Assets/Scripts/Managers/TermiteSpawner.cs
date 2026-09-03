@@ -58,12 +58,18 @@ public class TermiteSpawner : MonoBehaviour
             (ants[i], ants[j]) = (ants[j], ants[i]);
         }
 
-        int count = Mathf.Min(speakerCount, ants.Count);
-        for (int i = 0; i < count; i++)
+        var pool = new List<string>(antMonologueData.lines);
+        for (int i = pool.Count - 1; i > 0; i--)
         {
-            string line = antMonologueData.lines[Random.Range(0, antMonologueData.lines.Count)];
-            ants[i].Begin(line);
+            int j = Random.Range(0, i + 1);
+            (pool[i], pool[j]) = (pool[j], pool[i]);
         }
+
+        int count = Mathf.Min(speakerCount, ants.Count);
+        count = Mathf.Min(count, pool.Count);
+
+        for (int i = 0; i < count; i++)
+            ants[i].Begin(pool[i]);
     }
     private void ClearExisting()
     {
