@@ -28,6 +28,8 @@ public class AntMonologue : MonoBehaviour
     private bool notOccluded = true;
     private float nextCheck;
     private Transform cam;
+    private Coroutine reactCo;
+    private string idleLine;
     
     private void Awake()
     {
@@ -77,11 +79,44 @@ public class AntMonologue : MonoBehaviour
     {
         if (label == null || string.IsNullOrEmpty(line)) return;
 
+        idleLine = line;
         label.text = line;
         FitBubble();
 
         if (loop != null) StopCoroutine(loop);
         loop = StartCoroutine(Loop());
+    }
+
+    public void React(string line, float duration)
+    {
+        if (label == null || string.IsNullOrEmpty(line)) return;
+
+        if (loop != null)
+        {
+            StopCoroutine(loop);
+            loop = null;
+        }
+        if(reactCo != null) StopCoroutine(reactCo);
+        reactCo = StartCoroutine(ReactRoutine(line, duration));
+    }
+
+    private IEnumerator ReactRoutine(string line, float duration)
+    {
+        label.text = line;
+        FitBubble();
+        wantVisible = true;
+        
+        yield return new WaitForSeconds(duration);
+        
+        wantVisible = false;
+        reactCo = null;
+
+        if (!string.IsNullOrEmpty(idleLine))
+        {
+            label.text = idleLine;
+            FitBubble();
+            loop = StartCoroutine(Loop());
+        }
     }
     
     private IEnumerator Loop()
