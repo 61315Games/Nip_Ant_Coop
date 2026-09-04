@@ -19,5 +19,5 @@ MonoBehaviour:
     playlist: {fileID: 11400000, guid: d19089a398ba84b15acde965aec993d0, type: 2}
   - name: BGM_Story_School
     playlist: {fileID: 11400000, guid: bbf11e9e039c6470fa5f1b0182b4ec7a, type: 2}
-  - name: BGM_Story_Home
+  - name: BGM_Story_Cutscene1
     playlist: {fileID: 11400000, guid: 3e632e33c277c4062bcb2cbe597eb657, type: 2}

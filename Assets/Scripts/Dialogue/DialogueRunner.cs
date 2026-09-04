@@ -57,6 +57,7 @@ public class DialogueRunner : MonoBehaviour
     private string currentMode = "dialogue";
     private Coroutine showCo;
     private bool transitioning;
+    private bool isIntro;
 
     private TMP_Text Target => currentMode == "narration" ? narrationText : dialogueText;
     bool  IsAuto(DialogueNode n) => n != null && (n.mode == "narration" || n.hold >= 0f);
@@ -115,6 +116,35 @@ public class DialogueRunner : MonoBehaviour
         }
 
         startIndex = Mathf.Clamp(startIndex, 0, data.nodes.Count - 1);
+        var first        = data.nodes[startIndex];
+        string startMode = string.IsNullOrEmpty(first.mode) ? "dialogue" : first.mode;
+        bool   startNar  = (startMode == "narration");
+
+        currentMode   = startMode;
+        transitioning = false;
+        if (narrationRoot != null) narrationRoot.SetActive(startNar);
+
+        if (hideInNarration != null)
+            foreach (var go in hideInNarration)
+                if (go != null) go.SetActive(!startNar);
+
+        string startBg = !string.IsNullOrEmpty(first.bg) ? first.bg : data.background;
+        if (!string.IsNullOrEmpty(startBg) && spriteDB != null)
+        {
+            Sprite s = spriteDB.Get(startBg);
+            if (s != null)
+            {
+                if (startNar && cutsceneImage != null) cutsceneImage.sprite = s;
+                else if (backgroundImage != null)      backgroundImage.sprite = s;
+            }
+        }
+
+        if (startNar && !string.IsNullOrEmpty(data.background)
+                     && spriteDB != null && backgroundImage != null)
+        {
+            Sprite bg = spriteDB.Get(data.background);
+            if (bg != null) backgroundImage.sprite = bg;
+        }
         StartCoroutine(IntroRoutine(startIndex));
     }
 
@@ -129,8 +159,9 @@ public class DialogueRunner : MonoBehaviour
         string m = string.IsNullOrEmpty(node.mode) ? "dialogue" : node.mode;
         bool modeChanged = (m != currentMode);
         bool bgChanged   = !string.IsNullOrEmpty(node.bg);
-        bool doFade      = node.fadeBreak && fader != null && (modeChanged || bgChanged);
-
+        bool doFade      = node.fadeBreak && fader != null && (modeChanged || bgChanged) && !isIntro;
+        isIntro = false;
+        
         if (doFade)
         {
             transitioning = true;
@@ -214,32 +245,38 @@ public class DialogueRunner : MonoBehaviour
 
     IEnumerator IntroRoutine(int startIndex)
     {
+        bool nar = (currentMode == "narration");
+        
         panel.SetActive(false);
         if (characterRoot != null) characterRoot.gameObject.SetActive(false);
         if (characterGroup != null) characterGroup.alpha = 0f;
 
         if (fader != null)
             yield return fader.FadeIn();
-
-        if (characterRoot != null) characterRoot.gameObject.SetActive(true);
-        panel.SetActive(true);
+        
+        if (!nar)
+        {
+            if (characterRoot != null) characterRoot.gameObject.SetActive(true);
+            panel.SetActive(true);
+        }
 
         for (int k = 0; k < startIndex; k++)
             ApplyActors(data.nodes[k]);
 
         current = data.nodes[startIndex];
+        isIntro = true;
         Show(current);
 
-        if (characterGroup != null)
+        if (!nar && characterGroup != null)
             yield return FadeCanvas(characterGroup, 0f, 1f, characterFadeDuration);
     }
 
     IEnumerator OutroRoutine()
     {
-        if (narrationRoot != null) narrationRoot.SetActive(false);
         if (fader != null)
             yield return fader.FadeOut();
         
+        if (narrationRoot != null) narrationRoot.SetActive(false);
         panel.SetActive(false);
         if(characterRoot != null)
             characterRoot.gameObject.SetActive(false);
@@ -247,7 +284,10 @@ public class DialogueRunner : MonoBehaviour
         if(data == null) yield break;
 
         if (!string.IsNullOrEmpty(data.nextScene))
-            SceneRouter.Load(data.nextScene, data.nextStage);
+        {
+            if (data.skipLoading) SceneRouter.LoadDirect(data.nextScene, data.nextStage);
+            else                  SceneRouter.Load(data.nextScene, data.nextStage);
+        }
         else if (!string.IsNullOrEmpty(data.nextStage))
             GameFlow.CurrentStage = data.nextStage;
     }

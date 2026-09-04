@@ -14,6 +14,7 @@ public class DialogueData
     public string summary;
     public List<DialogueNode> nodes = new List<DialogueNode>();
     public string bgm;
+    public bool skipLoading;
 }
 
 [System.Serializable]

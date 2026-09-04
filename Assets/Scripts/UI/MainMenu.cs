@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string startStage = "Prologue_1";
+    [SerializeField] private string startStage = "Prologue";
     [SerializeField] private TMP_Text progressText;
     [SerializeField] private string progressFormat = "진행중인 챕터:{0}";
 

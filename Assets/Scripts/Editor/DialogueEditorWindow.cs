@@ -284,6 +284,7 @@ public class DialogueEditorWindow : EditorWindow
         using (new EditorGUI.DisabledScope(newIdx == 0))
         {
             data.nextStage = EditorGUILayout.TextField("다음 스테이지 ID", data.nextStage, GUILayout.Width(w));
+            data.skipLoading = EditorGUILayout.Toggle("로딩 화면 생략", data.skipLoading, GUILayout.Width(w));
         }
 
         if (newIdx == 0)

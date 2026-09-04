@@ -22,4 +22,12 @@ public class SceneRouter : MonoBehaviour
 
         SceneManager.LoadScene(LoadingScene);
     }
+    public static void LoadDirect(string sceneName, string stageId = null)
+    {
+        if (!string.IsNullOrEmpty(stageId))
+            GameFlow.CurrentStage = stageId;
+
+        NextScene = sceneName;
+        SceneManager.LoadScene(sceneName);
+    }
 }
