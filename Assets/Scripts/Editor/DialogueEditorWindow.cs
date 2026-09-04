@@ -21,8 +21,17 @@ public class DialogueEditorWindow : EditorWindow
     const string NoScene = "(없음 - 여기서 멈춤)";
     static readonly string[] EndScenes = { NoScene, "SC_Ingame", "SC_Story", "SC_Main" };
 
+    // 가로 스크롤 없이 모든 내용이 들어가는 최소 창 크기
+    const float SideBarWidth   = 170f;   // 왼쪽 파일 목록 폭
+    const float MinRightWidth  = 380f;   // 오른쪽 편집 영역이 필요로 하는 최소 폭
+    const float LabelWidth     = 105f;   // 라벨 열 폭 (기본 150 → 축소)
+
     [MenuItem("Tools/Dialogue Editor")]
-    static void Open() => GetWindow<DialogueEditorWindow>("Dialogue Editor");
+    static void Open()
+    {
+        var w = GetWindow<DialogueEditorWindow>("Dialogue Editor");
+        w.minSize = new Vector2(SideBarWidth + MinRightWidth + 30f, 520f);
+    }
 
     void OnEnable() => RefreshFileList();
 
@@ -36,59 +45,65 @@ public class DialogueEditorWindow : EditorWindow
     //------------------- GUI -------------------
     void OnGUI()
     {
+        bool doRefresh = false, doNew = false, doSave = false, doDelete = false;
+        string loadTarget = null;
+
         EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.BeginVertical(GUILayout.Width(170));
-        if (GUILayout.Button("새로고침")) { RefreshFileList(); GUIUtility.ExitGUI(); }
-        if (GUILayout.Button("+ 새 대화")) { NewFile(); GUIUtility.ExitGUI(); }
+        EditorGUILayout.BeginVertical(GUILayout.Width(SideBarWidth));
+        if (GUILayout.Button("새로고침")) doRefresh = true;
+        if (GUILayout.Button("+ 새 대화")) doNew = true;
         EditorGUILayout.Space(4);
 
-        listScroll = EditorGUILayout.BeginScrollView(listScroll);
+        listScroll = EditorGUILayout.BeginScrollView(
+            listScroll, false, false,
+            GUIStyle.none, GUI.skin.verticalScrollbar, GUI.skin.scrollView);
         foreach (string f in files)
         {
             GUI.backgroundColor = (f == filePath) ? Color.cyan : Color.white;
             if (GUILayout.Button(Path.GetFileNameWithoutExtension(f)))
-            {
-                LoadFile(f);
-                GUIUtility.ExitGUI();
-            }
+                loadTarget = f;
         }
         GUI.backgroundColor = Color.white;
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
 
-        EditorGUILayout.BeginVertical();
-        DrawEditor();
+        float rightWidth = Mathf.Max(MinRightWidth, position.width - SideBarWidth - 10f);
+        EditorGUILayout.BeginVertical(GUILayout.Width(rightWidth));
+        DrawEditor(rightWidth, ref doSave, ref doDelete);
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndHorizontal();
+
+        // ── 레이아웃 그룹이 전부 닫힌 뒤에 실제 작업 수행 ──
+        if (doRefresh) RefreshFileList();
+        if (doNew)     NewFile();
+        if (loadTarget != null) LoadFile(loadTarget);
+        if (doSave)    Save();
+        if (doDelete)  Delete();
+
+        if (doRefresh || doNew || loadTarget != null || doSave || doDelete)
+            Repaint();
     }
 
-    void DrawEditor()
+    void DrawEditor(float rightWidth, ref bool doSave, ref bool doDelete)
     {
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("저장")) { Save(); GUIUtility.ExitGUI(); }
-        if (GUILayout.Button("삭제")) { Delete(); GUIUtility.ExitGUI(); }
+        // 세로 스크롤바와 여백을 뺀, 실제로 쓸 수 있는 콘텐츠 폭.
+        // 아래의 모든 컨트롤은 이 폭을 기준으로 명시적인 Width 를 받는다.
+        float contentW = Mathf.Max(240f, rightWidth - 28f);
+        float fieldW   = contentW - 6f;    // 최상위 컨트롤 폭
+        float innerW   = contentW - 18f;   // "box" 안쪽 컨트롤 폭
+
+        float prevLabelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth = LabelWidth;
+
+        // ── 상단 고정 툴바 (스크롤과 무관하게 항상 보임) ──
+        EditorGUILayout.BeginHorizontal(GUILayout.Width(fieldW));
+        if (GUILayout.Button("저장"))  doSave = true;
+        if (GUILayout.Button("삭제"))  doDelete = true;
         EditorGUILayout.EndHorizontal();
 
-        if (data == null) { EditorGUILayout.LabelField("왼쪽에서 대화를 선택하세요."); return; }
-
-        data.storyId    = EditorGUILayout.TextField("챕터 이름", data.storyId);
-        data.background = EditorGUILayout.TextField("시작 배경", data.background);
-        data.bgm        = EditorGUILayout.TextField("BGM (비우면 유지, none=무음)", data.bgm);   // ← 추가
-        
-        EditorGUILayout.Space(4);
-        EditorGUILayout.LabelField("상단 UI 표시", EditorStyles.boldLabel);
-        data.chapterLabel = EditorGUILayout.TextField("챕터 표시명", data.chapterLabel);
-        data.day          = EditorGUILayout.IntField("개미력 (일)", data.day);  
-        EditorGUILayout.LabelField("비워두면 이전 값이 그대로 유지됩니다.", EditorStyles.miniLabel);
-        EditorGUILayout.LabelField("스킵 요약문");
-        data.summary = EditorGUILayout.TextArea(data.summary, GUILayout.MinHeight(60));
-        DrawEndSection();
-
-        EditorGUILayout.HelpBox("맨 위 대사부터 순서대로 진행됩니다. 선택지가 있으면 목적지로 갈라집니다. 무대는 바뀌는 배우만 적으면 유지됩니다.", MessageType.None);
-        EditorGUILayout.Space(4);
-
+        // 레이아웃 도중에는 리스트를 건드리지 않고, 플래그만 모아뒀다가 마지막에 처리한다.
         int moveIndex = -1, moveDir = 0;
         int deleteNode = -1;
         int addChoiceNode = -1;
@@ -97,128 +112,192 @@ public class DialogueEditorWindow : EditorWindow
         int removeActorNode = -1, removeActorIdx = -1;
         bool addNode = false;
 
-        scroll = EditorGUILayout.BeginScrollView(scroll);
-        for (int i = 0; i < data.nodes.Count; i++)
+        // ── 오른쪽 편집 영역 전체를 감싸는 스크롤뷰 (이 창에 단 하나, 세로만) ──
+        scroll = EditorGUILayout.BeginScrollView(
+            scroll, false, false,
+            GUIStyle.none, GUI.skin.verticalScrollbar, GUI.skin.scrollView);
+        EditorGUILayout.BeginVertical(GUILayout.Width(contentW));
+
+        if (data == null)
         {
-            var n = data.nodes[i];
-            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.LabelField("왼쪽에서 대화를 선택하세요.", GUILayout.Width(fieldW));
+        }
+        else
+        {
+            // ── 파일 정보 ──
+            data.storyId    = EditorGUILayout.TextField("챕터 이름", data.storyId, GUILayout.Width(fieldW));
+            data.background = EditorGUILayout.TextField("시작 배경", data.background, GUILayout.Width(fieldW));
+            data.bgm        = EditorGUILayout.TextField("BGM (비우면 유지)", data.bgm, GUILayout.Width(fieldW));
 
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField($"대사 {i + 1}", EditorStyles.boldLabel);
-            if (GUILayout.Button("▲", GUILayout.Width(28))) { moveIndex = i; moveDir = -1; }
-            if (GUILayout.Button("▼", GUILayout.Width(28))) { moveIndex = i; moveDir = 1; }
-            if (GUILayout.Button("삭제", GUILayout.Width(44))) deleteNode = i;
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(6);
+            EditorGUILayout.LabelField("상단 UI 표시", EditorStyles.boldLabel, GUILayout.Width(fieldW));
+            data.chapterLabel = EditorGUILayout.TextField("챕터 표시명", data.chapterLabel, GUILayout.Width(fieldW));
+            data.day          = EditorGUILayout.IntField("개미력 (일)", data.day, GUILayout.Width(fieldW));
+            Wrapped("비워두면 이전 값이 그대로 유지됩니다.", EditorStyles.miniLabel, fieldW);
 
-            n.speaker  = EditorGUILayout.TextField("화자", n.speaker);
-            EditorGUILayout.LabelField("대사");
-            n.text     = EditorGUILayout.TextArea(n.text, GUILayout.MinHeight(40));
-            n.portrait = EditorGUILayout.TextField("초상화(선택)", n.portrait);
-            n.portraitBrightness = EditorGUILayout.Slider("초상화 밝기", n.portraitBrightness, 0f, 1f);
-            n.shake = EditorGUILayout.Toggle("화면 흔들기", n.shake);
-            
-            EditorGUILayout.Space(2);
-            EditorGUILayout.LabelField("컷씬 연출", EditorStyles.boldLabel);
+            EditorGUILayout.Space(6);
+            EditorGUILayout.LabelField("스킵 요약문", GUILayout.Width(fieldW));
+            data.summary = EditorGUILayout.TextArea(data.summary,
+                                                    GUILayout.Width(fieldW), GUILayout.MinHeight(60));
 
-            bool nar = (n.mode == "narration");
-            n.mode = EditorGUILayout.Toggle("컷씬 진행", nar) ? "narration" : "";
-            n.bg        = EditorGUILayout.TextField("배경 교체(선택)", n.bg);
-            n.bgm       = EditorGUILayout.TextField("BGM 교체(선택)", n.bgm);
-            n.fadeBreak = EditorGUILayout.Toggle("암전 전환", n.fadeBreak);
+            // ── 대사 목록 ──
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("대사 목록", EditorStyles.boldLabel, GUILayout.Width(fieldW));
+            Wrapped("맨 위 대사부터 순서대로 진행됩니다. 선택지가 있으면 목적지로 갈라집니다. 무대는 바뀌는 배우만 적으면 유지됩니다.",
+                    EditorStyles.helpBox, fieldW);
+            EditorGUILayout.Space(4);
 
-            bool auto = (n.hold >= 0f);
-
-            EditorGUILayout.Space(2);
-            if (n.choices.Count == 0)
+            for (int i = 0; i < data.nodes.Count; i++)
             {
-                n.endHere = EditorGUILayout.Toggle("여기서 대화 종료", n.endHere);
-                if (!n.endHere)
+                var n = data.nodes[i];
+                EditorGUILayout.BeginVertical("box", GUILayout.Width(fieldW));
+
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(innerW));
+                EditorGUILayout.LabelField($"대사 {i + 1}", EditorStyles.boldLabel);
+                if (GUILayout.Button("▲", GUILayout.Width(26))) { moveIndex = i; moveDir = -1; }
+                if (GUILayout.Button("▼", GUILayout.Width(26))) { moveIndex = i; moveDir = 1; }
+                if (GUILayout.Button("삭제", GUILayout.Width(42))) deleteNode = i;
+                EditorGUILayout.EndHorizontal();
+
+                n.speaker  = EditorGUILayout.TextField("화자", n.speaker, GUILayout.Width(innerW));
+                EditorGUILayout.LabelField("대사", GUILayout.Width(innerW));
+                n.text     = EditorGUILayout.TextArea(n.text,
+                                                      GUILayout.Width(innerW), GUILayout.MinHeight(40));
+                n.portrait = EditorGUILayout.TextField("초상화(선택)", n.portrait, GUILayout.Width(innerW));
+                n.portraitBrightness = EditorGUILayout.Slider("초상화 밝기", n.portraitBrightness, 0f, 1f,
+                                                              GUILayout.Width(innerW));
+                n.shake = EditorGUILayout.Toggle("화면 흔들기", n.shake, GUILayout.Width(innerW));
+
+                EditorGUILayout.Space(2);
+                EditorGUILayout.LabelField("컷씬 연출", EditorStyles.boldLabel, GUILayout.Width(innerW));
+
+                bool nar = (n.mode == "narration");
+                n.mode = EditorGUILayout.Toggle("컷씬 진행", nar, GUILayout.Width(innerW)) ? "narration" : "";
+                n.bg        = EditorGUILayout.TextField("배경 교체(선택)", n.bg, GUILayout.Width(innerW));
+                n.bgm       = EditorGUILayout.TextField("BGM 교체(선택)", n.bgm, GUILayout.Width(innerW));
+                n.fadeBreak = EditorGUILayout.Toggle("암전 전환", n.fadeBreak, GUILayout.Width(innerW));
+
+                EditorGUILayout.Space(2);
+                if (n.choices.Count == 0)
                 {
-                    string flow = (i + 1 < data.nodes.Count) ? "→ 다음 대사로 진행" : "→ 대화 종료(마지막)";
-                    EditorGUILayout.LabelField(flow, EditorStyles.miniLabel);
+                    n.endHere = EditorGUILayout.Toggle("여기서 대화 종료", n.endHere, GUILayout.Width(innerW));
+                    if (!n.endHere)
+                    {
+                        string flow = (i + 1 < data.nodes.Count) ? "→ 다음 대사로 진행" : "→ 대화 종료(마지막)";
+                        Wrapped(flow, EditorStyles.miniLabel, innerW);
+                    }
                 }
-            }
-            else
-            {
-                EditorGUILayout.LabelField("선택지", EditorStyles.boldLabel);
-                for (int j = 0; j < n.choices.Count; j++)
+                else
                 {
-                    EditorGUILayout.BeginHorizontal();
-                    n.choices[j].text = EditorGUILayout.TextField(n.choices[j].text);
-                    int sel = TargetToIndex(n.choices[j].next);
-                    int newSel = EditorGUILayout.Popup(sel, NodeOptions(), GUILayout.Width(220));
-                    n.choices[j].next = IndexToTarget(newSel);
-                    if (GUILayout.Button("x", GUILayout.Width(20))) { removeChoiceNode = i; removeChoiceIdx = j; }
+                    EditorGUILayout.LabelField("선택지", EditorStyles.boldLabel, GUILayout.Width(innerW));
+                    float popupW  = Mathf.Clamp(innerW * 0.38f, 80f, 240f);
+                    float choiceW = Mathf.Max(60f, innerW - popupW - 30f);
+                    for (int j = 0; j < n.choices.Count; j++)
+                    {
+                        EditorGUILayout.BeginHorizontal(GUILayout.Width(innerW));
+                        n.choices[j].text = EditorGUILayout.TextField(n.choices[j].text, GUILayout.Width(choiceW));
+                        int sel = TargetToIndex(n.choices[j].next);
+                        int newSel = EditorGUILayout.Popup(sel, NodeOptions(), GUILayout.Width(popupW));
+                        n.choices[j].next = IndexToTarget(newSel);
+                        if (GUILayout.Button("x", GUILayout.Width(20))) { removeChoiceNode = i; removeChoiceIdx = j; }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+                if (GUILayout.Button("선택지 추가", GUILayout.Width(innerW))) addChoiceNode = i;
+
+                EditorGUILayout.Space(2);
+                EditorGUILayout.LabelField("무대 (배우 / 그림 / 위치)", EditorStyles.boldLabel, GUILayout.Width(innerW));
+
+                float idW     = Mathf.Clamp(innerW * 0.18f, 46f, 90f);
+                float slotW   = Mathf.Clamp(innerW * 0.14f, 46f, 70f);
+                float spriteW = Mathf.Max(60f, innerW - idW - slotW - 30f);
+
+                for (int a = 0; a < n.actors.Count; a++)
+                {
+                    EditorGUILayout.BeginHorizontal(GUILayout.Width(innerW));
+                    n.actors[a].id     = EditorGUILayout.TextField(n.actors[a].id, GUILayout.Width(idW));
+                    n.actors[a].sprite = EditorGUILayout.TextField(n.actors[a].sprite, GUILayout.Width(spriteW));
+                    int si  = SlotIndex(n.actors[a].slot);
+                    int nsi = EditorGUILayout.Popup(si, Slots, GUILayout.Width(slotW));
+                    n.actors[a].slot = Slots[nsi];
+                    if (GUILayout.Button("x", GUILayout.Width(20))) { removeActorNode = i; removeActorIdx = a; }
+                    EditorGUILayout.EndHorizontal();
+
+                    EditorGUILayout.BeginHorizontal(GUILayout.Width(innerW));
+                    EditorGUIUtility.labelWidth = 34f;
+                    n.actors[a].brightness = EditorGUILayout.Slider("밝기", n.actors[a].brightness, 0f, 1f,
+                                                                    GUILayout.Width(Mathf.Max(70f, innerW - 140f)));
+                    EditorGUIUtility.labelWidth = LabelWidth;
+                    n.actors[a].fadeIn = GUILayout.Toggle(n.actors[a].fadeIn, "페이드인", GUILayout.Width(66));
+                    n.actors[a].flip   = GUILayout.Toggle(n.actors[a].flip,   "좌우반전", GUILayout.Width(66));
                     EditorGUILayout.EndHorizontal();
                 }
+                if (GUILayout.Button("배우 추가", GUILayout.Width(innerW))) addActorNode = i;
+
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(4);
             }
-            if (GUILayout.Button("선택지 추가")) addChoiceNode = i;
 
-            EditorGUILayout.Space(2);
-            EditorGUILayout.LabelField("무대 (배우 / 그림 / 위치)", EditorStyles.boldLabel);
-            for (int a = 0; a < n.actors.Count; a++)
-            {
-                EditorGUILayout.BeginHorizontal();
-                n.actors[a].id     = EditorGUILayout.TextField(n.actors[a].id, GUILayout.Width(90));
-                n.actors[a].sprite = EditorGUILayout.TextField(n.actors[a].sprite);
-                int si  = SlotIndex(n.actors[a].slot);
-                int nsi = EditorGUILayout.Popup(si, Slots, GUILayout.Width(70));
-                n.actors[a].slot = Slots[nsi];
-                if (GUILayout.Button("x", GUILayout.Width(20))) { removeActorNode = i; removeActorIdx = a; }
-                EditorGUILayout.EndHorizontal();
+            if (GUILayout.Button("＋ 대사 추가", GUILayout.Width(fieldW), GUILayout.Height(28))) addNode = true;
 
-                EditorGUILayout.BeginHorizontal();
-                n.actors[a].brightness = EditorGUILayout.Slider("밝기", n.actors[a].brightness, 0f, 1f);
-                n.actors[a].fadeIn = GUILayout.Toggle(n.actors[a].fadeIn, "페이드인", GUILayout.Width(80));
-                n.actors[a].flip   = GUILayout.Toggle(n.actors[a].flip,   "좌우반전", GUILayout.Width(80));
-                EditorGUILayout.EndHorizontal();
-            }
-            if (GUILayout.Button("배우 추가")) addActorNode = i;
-
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.Space(4);
+            // ── 대화가 끝난 뒤 ──
+            EditorGUILayout.Space(10);
+            DrawEndSection(fieldW);
         }
+
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndScrollView();
 
-        if (GUILayout.Button("＋ 대사 추가", GUILayout.Height(28))) addNode = true;
+        // ── 레이아웃이 모두 닫힌 뒤에 리스트 변경 처리 ──
+        if (data != null)
+        {
+            if (moveIndex >= 0) MoveNode(moveIndex, moveDir);
+            if (deleteNode >= 0) data.nodes.RemoveAt(deleteNode);
+            if (removeChoiceNode >= 0) data.nodes[removeChoiceNode].choices.RemoveAt(removeChoiceIdx);
+            if (addChoiceNode >= 0) data.nodes[addChoiceNode].choices.Add(new Choice());
+            if (removeActorNode >= 0) data.nodes[removeActorNode].actors.RemoveAt(removeActorIdx);
+            if (addActorNode >= 0) data.nodes[addActorNode].actors.Add(new ActorState { slot = "Center", brightness = 1f });
+            if (addNode) data.nodes.Add(new DialogueNode { id = NewId() });
+        }
 
-        if (moveIndex >= 0) MoveNode(moveIndex, moveDir);
-        if (deleteNode >= 0) data.nodes.RemoveAt(deleteNode);
-        if (removeChoiceNode >= 0) data.nodes[removeChoiceNode].choices.RemoveAt(removeChoiceIdx);
-        if (addChoiceNode >= 0) data.nodes[addChoiceNode].choices.Add(new Choice());
-        if (removeActorNode >= 0) data.nodes[removeActorNode].actors.RemoveAt(removeActorIdx);
-        if (addActorNode >= 0) data.nodes[addActorNode].actors.Add(new ActorState { slot = "Center", brightness = 1f });
-        if (addNode) data.nodes.Add(new DialogueNode { id = NewId() });
+        EditorGUIUtility.labelWidth = prevLabelWidth;
+    }
+
+    // 긴 문구를 주어진 폭 안에서 줄바꿈해 그린다. (폭을 밀어내지 않도록)
+    static void Wrapped(string text, GUIStyle style, float width)
+    {
+        var s = new GUIStyle(style) { wordWrap = true };
+        float h = s.CalcHeight(new GUIContent(text), width);
+        EditorGUILayout.LabelField(text, s, GUILayout.Width(width), GUILayout.Height(h));
     }
 
     // ---------------------------------------------------------------- 종료 후 목적지
-    void DrawEndSection()
+    void DrawEndSection(float w)
     {
         EditorGUILayout.Space(6);
-        EditorGUILayout.LabelField("대화가 끝난 뒤", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("대화가 끝난 뒤", EditorStyles.boldLabel, GUILayout.Width(w));
 
         int idx = SceneIndex(data.nextScene);
-        int newIdx = EditorGUILayout.Popup("다음 씬", idx, EndScenes);
+        int newIdx = EditorGUILayout.Popup("다음 씬", idx, EndScenes, GUILayout.Width(w));
         data.nextScene = (newIdx == 0) ? "" : EndScenes[newIdx];
 
         using (new EditorGUI.DisabledScope(newIdx == 0))
         {
-            data.nextStage = EditorGUILayout.TextField("다음 스테이지 ID", data.nextStage);
+            data.nextStage = EditorGUILayout.TextField("다음 스테이지 ID", data.nextStage, GUILayout.Width(w));
         }
 
         if (newIdx == 0)
         {
-            EditorGUILayout.LabelField("→ 대화 종료 후 아무데도 가지 않습니다.", EditorStyles.miniLabel);
+            Wrapped("→ 대화 종료 후 아무데도 가지 않습니다.", EditorStyles.miniLabel, w);
         }
         else if (string.IsNullOrEmpty(data.nextStage))
         {
-            EditorGUILayout.HelpBox(
-                "다음 스테이지 ID가 비어있습니다. 씬은 이동하지만 스테이지는 현재 값이 유지되어 같은 구간이 반복될 수 있습니다.",
-                MessageType.Warning);
+            Wrapped("다음 스테이지 ID가 비어있습니다. 씬은 이동하지만 스테이지는 현재 값이 유지되어 같은 구간이 반복될 수 있습니다.",
+                    EditorStyles.helpBox, w);
         }
         else
         {
-            EditorGUILayout.LabelField($"→ {data.nextScene} 씬으로 이동 (스테이지: {data.nextStage})", EditorStyles.miniLabel);
+            Wrapped($"→ {data.nextScene} 씬으로 이동 (스테이지: {data.nextStage})", EditorStyles.miniLabel, w);
         }
 
         EditorGUILayout.Space(4);
