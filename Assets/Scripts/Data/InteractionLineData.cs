@@ -13,6 +13,9 @@ public class InteractionLineData : ScriptableObject
 
     [Header("잘못 신고한 검은 개미 대사")]
     [TextArea] public List<string> wrongBubbleLines = new List<string>();
+    
+    [Header("신고당한 흰 개미 대사")]
+    [TextArea] public List<string> correctBubbleLines = new List<string>();
 
     [Header("표정")]
     public Sprite correctFace;

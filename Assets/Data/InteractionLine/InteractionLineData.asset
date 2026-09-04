@@ -30,5 +30,9 @@ MonoBehaviour:
   - "...\uBB58 \uBD10?"
   - "\uB098 \uAC80\uC740\uAC1C\uBBF8\uAC70\uB4E0!"
   - "\uBB50\uD558\uB294\uAC70\uC57C!!"
+  correctBubbleLines:
+  - "\uC73C\uC545!!"
+  - "\uC65C \uC6B0\uB9AC\uD55C\uD14C\uB9CC \uADF8\uB798!"
+  - "\uC6B0\uB9AC \uD770\uAC1C\uBBF8\uB4E4\uC740...!"
   correctFace: {fileID: 21300000, guid: 3d07dd4fbd8dc4e5788947d10f28a292, type: 3}
   wrongFace: {fileID: 21300000, guid: 5c54c634e993b4d8ab91ea395a85c9ba, type: 3}

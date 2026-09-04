@@ -167,4 +167,11 @@ public class AntMonologue : MonoBehaviour
         return Physics.Raycast(origin, dir, dist, occluderMask,
             QueryTriggerInteraction.Ignore);
     }
+    
+    public void FreezeForFade()
+    {
+        if (loop != null)    { StopCoroutine(loop);    loop = null; }
+        if (reactCo != null) { StopCoroutine(reactCo); reactCo = null; }
+        enabled = false;
+    }
 }

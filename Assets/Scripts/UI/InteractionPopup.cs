@@ -25,6 +25,7 @@ public class InteractionPopup : MonoBehaviour
     private ShuffleBag<string> correctBag;
     private ShuffleBag<string> wrongBag;
     private ShuffleBag<string> wrongBubbleBag;
+    private ShuffleBag<string> correctBubbleBag;
     private Coroutine hideCo;
 
     void Awake()
@@ -33,6 +34,7 @@ public class InteractionPopup : MonoBehaviour
         if (data != null)
         {
             correctBag = new ShuffleBag<string>(data.correctLines);
+            correctBubbleBag = new ShuffleBag<string>(data.correctBubbleLines);
             wrongBag = new ShuffleBag<string>(data.wrongLines);
             wrongBubbleBag = new ShuffleBag<string>(data.wrongBubbleLines);
         }
@@ -45,8 +47,16 @@ public class InteractionPopup : MonoBehaviour
         if (instance == this) instance = null;
     }
 
-    public void ShowTermiteFound()
-        => Show(correctBag != null ? correctBag.Next() : null, data != null ? data.correctFace : null);
+    public void ShowTermiteFound(AntMonologue bubble = null)
+    {
+        if (IsTutorial) return;
+
+        Show(correctBag != null ? correctBag.Next() : null,
+            data != null ? data.correctFace : null);
+
+        if (bubble != null && correctBubbleBag != null)
+            bubble.React(correctBubbleBag.Next(), 99f);
+    }
 
     public void ShowWrongTarget(AntMonologue bubble = null)
     {
