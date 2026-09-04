@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: DialogueSprites
   m_EditorClassIdentifier: 
   entries:
+  - name: bg_classroom_ch1_pixelate
+    sprite: {fileID: 21300000, guid: 970c44a5be0714a02b8a9232e0e0552e, type: 3}
   - name: bg_classroom_prologue
     sprite: {fileID: 21300000, guid: 2e840cc535e0b483585b165a398b4c81, type: 3}
   - name: bg_classroom_ch1
@@ -71,3 +73,19 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 34a29af8430dc4efdb1d8db4440fc27b, type: 3}
   - name: New-student-wink-32px
     sprite: {fileID: 21300000, guid: 8b9d581c4ff114941904568192c47c67, type: 3}
+  - name: first_CutScene_900
+    sprite: {fileID: 21300000, guid: 8e348113c61744c7a9804b286a3e29bf, type: 3}
+  - name: first_CutScene_901
+    sprite: {fileID: 21300000, guid: e6c31a35b8b3544029b4410862b257ed, type: 3}
+  - name: first_CutScene_902
+    sprite: {fileID: 21300000, guid: b879115abc74f4450b8119b145b37034, type: 3}
+  - name: first_CutScene_903
+    sprite: {fileID: 21300000, guid: 73a14fe945706492687ecad46282d671, type: 3}
+  - name: first_CutScene_904
+    sprite: {fileID: 21300000, guid: 4c0f9fa1a9baa4ce8a8031d0be9136db, type: 3}
+  - name: first_CutScene_905
+    sprite: {fileID: 21300000, guid: ba8983d5fda2744fea626198e151511a, type: 3}
+  - name: first_CutScene_906_907
+    sprite: {fileID: 21300000, guid: f2703f420f24c435a894e894e118790e, type: 3}
+  - name: first_CutScene_908
+    sprite: {fileID: 21300000, guid: 6281044bc2221478085eb7fd2bd598c6, type: 3}

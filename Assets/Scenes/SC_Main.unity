@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abbfe43c73c14b2eaa18c7546a7506f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startStage: Prologue_1
+  startStage: CH1_1
   progressText: {fileID: 1398781379}
   progressFormat: "\uC9C4\uD589\uC911\uC778 \uCC55\uD130:{0}"
 --- !u!4 &1592873640
