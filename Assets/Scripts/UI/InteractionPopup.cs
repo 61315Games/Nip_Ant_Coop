@@ -49,24 +49,24 @@ public class InteractionPopup : MonoBehaviour
 
     public void ShowTermiteFound(AntMonologue bubble = null)
     {
+        if (bubble != null && correctBubbleBag != null)
+            bubble.React(correctBubbleBag.Next(), 99f);
+        
         if (IsTutorial) return;
 
         Show(correctBag != null ? correctBag.Next() : null,
             data != null ? data.correctFace : null);
-
-        if (bubble != null && correctBubbleBag != null)
-            bubble.React(correctBubbleBag.Next(), 99f);
     }
 
     public void ShowWrongTarget(AntMonologue bubble = null)
     {
+        if (bubble != null && wrongBubbleBag != null)
+            bubble.React(wrongBubbleBag.Next(), bubbleDuration);
+        
         if (IsTutorial) return;
 
         Show(wrongBag != null ? wrongBag.Next() : null,
             data != null ? data.wrongFace : null);
-
-        if (bubble != null && wrongBubbleBag != null)
-            bubble.React(wrongBubbleBag.Next(), bubbleDuration);
     }
     
     public void Show(string line, Sprite face = null)

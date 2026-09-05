@@ -38,6 +38,11 @@ public class StageFlow : MonoBehaviour
         ended = true;
 
         var r = System.Array.Find(routes, x => x.stageId == GameFlow.CurrentStage);
+        if (r == null)
+        {
+            ended = false;
+            return;
+        }
         
         string next = cleared ? r.clearStoryId : r.failStoryId;
         if (string.IsNullOrEmpty(next)) return;

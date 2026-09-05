@@ -34,6 +34,7 @@ public class AntCounter : MonoBehaviour
 
     void OnAllFound()
     {
+        if (GameFlow.CurrentStage == "Tutorial") return;
         if (StageFlow.instance != null) StageFlow.instance.Clear();
     }
 }

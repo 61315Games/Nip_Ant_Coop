@@ -7,8 +7,10 @@ using TMPro;
 public class TutorialController : MonoBehaviour
 {
     public static TutorialController instance;
+    
+    [SerializeField] private string nextSceneName = SceneRouter.IngameScene;
+    [SerializeField] private string nextStageId   = "Stage1_1";
     [SerializeField] private Fader fader;
-    [SerializeField] private string nextStoryId = "Prologue_2";
     
     public enum Trigger { Continue, ReportAnt, Rotate, Magnify }
 
@@ -145,6 +147,6 @@ public class TutorialController : MonoBehaviour
         if(fader != null)
             yield return fader.FadeOut();
 
-        SceneRouter.Load(SceneRouter.StoryScene, nextStoryId);
+        SceneRouter.Load(nextSceneName, nextStageId);
     }
 }
