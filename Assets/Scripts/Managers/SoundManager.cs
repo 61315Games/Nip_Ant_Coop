@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
@@ -28,8 +30,16 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SfxLibrary sfxLibrary;
     [SerializeField] private int sfxSourceCount = 8;
 
+    [Header("Typing SFX")] 
+    [SerializeField] private AudioClip typingClip;
+    [SerializeField, Range(0f, 1f)] private float typingVolume = 0.3f;
+    [SerializeField] private float typingPitchJitter = 0.08f;
+    [SerializeField] private float typingMinInterval = 0.055f;
+    
     private AudioSource bgmSource;
     private AudioSource[] sfxSources;
+    private AudioSource typingSource;
+    private float lastTypingTime = -999f;
 
     private BgmPlaylist currentPlaylist;
     private ShuffleBag<AudioClip> bag;
@@ -64,6 +74,11 @@ public class SoundManager : MonoBehaviour
         bgmSource.outputAudioMixerGroup = bgmGroup;
 
         sfxSources = new AudioSource[Mathf.Max(1, sfxSourceCount)];
+        typingSource = gameObject.AddComponent<AudioSource>();
+        typingSource.playOnAwake = false;
+        typingSource.spatialBlend = 0f;
+        typingSource.outputAudioMixerGroup = sfxGroup;
+        
         for (int i = 0; i < sfxSources.Length; i++)
         {
             var s = gameObject.AddComponent<AudioSource>();
@@ -206,6 +221,21 @@ public class SoundManager : MonoBehaviour
             float gap = currentPlaylist.gapBetweenTracks;
             if (gap > 0f) yield return new WaitForSecondsRealtime(gap);
         }
+    }
+
+    public void PlayTyping()
+    {
+        if (typingClip == null || typingSource == null) return;
+        if (Time.unscaledTime - lastTypingTime < typingMinInterval) return;
+        lastTypingTime = Time.unscaledTime;
+
+        typingSource.pitch = 1f + Random.Range(-typingPitchJitter, typingPitchJitter);
+        typingSource.PlayOneShot(typingClip, typingVolume);
+    }
+
+    public void StopTyping()
+    {
+        if (typingSource != null) typingSource.Stop();
     }
     
     private IEnumerator FadeTo(float target, float dur)

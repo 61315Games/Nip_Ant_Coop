@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc09bb392a384dcb9a79a3f80061fd8, type: 3}
+  m_Name: SFX_Library
+  m_EditorClassIdentifier: 
+  entries:
+  - id: camera_shake
+    clips:
+    - {fileID: 8300000, guid: 3b4936e854d42416599b093d0319f385, type: 3}
+    volume: 0.3
+    pitchRange: {x: 1, y: 1}
+  - id: text_typing
+    clips:
+    - {fileID: 8300000, guid: 05fdd3e9a686c441583fe42c0dc63ba0, type: 3}
+    volume: 0.3
+    pitchRange: {x: 1, y: 1}
+  - id: chalk
+    clips:
+    - {fileID: 8300000, guid: eeb3f72d0976841188dfe8566dcad30e, type: 3}
+    volume: 1
+    pitchRange: {x: 1, y: 1}

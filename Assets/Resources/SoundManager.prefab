@@ -53,5 +53,9 @@ MonoBehaviour:
   fadeDuration: 1
   keepBgmScenes:
   - SC_Loading
-  sfxLibrary: {fileID: 0}
+  sfxLibrary: {fileID: 11400000, guid: 785a9df95afd74290a3152821acd8b23, type: 2}
   sfxSourceCount: 8
+  typingClip: {fileID: 8300000, guid: 05fdd3e9a686c441583fe42c0dc63ba0, type: 3}
+  typingVolume: 0.3
+  typingPitchJitter: 0.08
+  typingMinInterval: 0.055

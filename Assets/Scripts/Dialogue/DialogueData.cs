@@ -31,6 +31,7 @@ public class DialogueNode
     public List<ActorState> actors = new List<ActorState>();
     public bool shake;
     public string bgm;
+    public string sfx;
     
     // CutScene
     public string mode;

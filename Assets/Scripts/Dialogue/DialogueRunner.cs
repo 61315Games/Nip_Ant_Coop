@@ -53,6 +53,11 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private float breakFadeDuration = 0.45f;
     [SerializeField] private float narrationHold = 2f; 
     [SerializeField] private GameObject[] hideInNarration;
+    
+    [Header("Typing Sound")]
+    [SerializeField] private int typingSfxEvery = 2;   // 2글자에 한 번
+
+    static bool IsPunct(char c) => c is '.' or ',' or '!' or '?' or '…' or '·' or '"' or '\'' or '(' or ')' or '\n';
 
     private string currentMode = "dialogue";
     private Coroutine showCo;
@@ -71,6 +76,7 @@ public class DialogueRunner : MonoBehaviour
     private DialogueNode current;
     private Coroutine typing;
     private bool isTyping;
+    private string lastSfxNodeId;
 
     private bool ending;
     public string Summary => data != null ? data.summary : null;
@@ -100,6 +106,7 @@ public class DialogueRunner : MonoBehaviour
         SkipController.instance?.Refresh();
         ApplyBgm(data.bgm);
         ClearStage();
+        lastSfxNodeId = null;
 
         currentMode = "dialogue";
         transitioning = false;
@@ -213,6 +220,13 @@ public class DialogueRunner : MonoBehaviour
         }
 
         if (node.shake) Shake();
+        
+        if (!string.IsNullOrEmpty(node.sfx) && node.id != lastSfxNodeId)
+        {
+            lastSfxNodeId = node.id;
+            SoundManager.EnsureExists();
+            SoundManager.instance?.PlaySfx(node.sfx);
+        }
 
         if (currentMode == "narration" && narrationGroup != null)
         {
@@ -306,6 +320,7 @@ public class DialogueRunner : MonoBehaviour
     IEnumerator TypeText(string full)
     {
         isTyping = true;
+        bool typingSfxOn = (currentMode != "narration");
 
         var t = Target;
         t.maxVisibleCharacters = 0;
@@ -315,8 +330,18 @@ public class DialogueRunner : MonoBehaviour
         for (int i = 0; i <= total; i++)
         {
             t.maxVisibleCharacters = i;
+
+            if (typingSfxOn && i > 0 && i % typingSfxEvery == 0)
+            {
+                char c = t.textInfo.characterInfo[i - 1].character;
+                if (!char.IsWhiteSpace(c) && !IsPunct(c))
+                    SoundManager.instance?.PlayTyping();
+            }
+
             yield return new WaitForSeconds(typeSpeed);
         }
+        isTyping = false;
+        SoundManager.instance?.StopTyping(); 
         isTyping = false;
 
         if (current.choices != null && current.choices.Count > 0) { ShowChoices(); yield break; }
@@ -342,6 +367,7 @@ public class DialogueRunner : MonoBehaviour
             var t = Target;
             t.maxVisibleCharacters = t.textInfo.characterCount;
             isTyping = false;
+            SoundManager.instance?.StopTyping();
             if (current.choices != null && current.choices.Count > 0) ShowChoices();
             return;
         }
@@ -379,6 +405,7 @@ public class DialogueRunner : MonoBehaviour
             typing = null;
         }
         isTyping = false;
+        SoundManager.instance?.StopTyping();
 
         if (choosing) return;
 
