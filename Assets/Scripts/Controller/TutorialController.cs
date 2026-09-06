@@ -11,6 +11,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private string nextSceneName = SceneRouter.IngameScene;
     [SerializeField] private string nextStageId   = "Stage1_1";
     [SerializeField] private Fader fader;
+    [SerializeField] private bool skipLoading = true;
     
     public enum Trigger { Continue, ReportAnt, Rotate, Magnify }
 
@@ -144,9 +145,10 @@ public class TutorialController : MonoBehaviour
 
     IEnumerator EndRoutine()
     {
-        if(fader != null)
+        if (fader != null)
             yield return fader.FadeOut();
 
-        SceneRouter.Load(nextSceneName, nextStageId);
+        if (skipLoading) SceneRouter.LoadDirect(nextSceneName, nextStageId);
+        else             SceneRouter.Load(nextSceneName, nextStageId);
     }
 }

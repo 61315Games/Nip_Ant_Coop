@@ -37,6 +37,7 @@ public class DialogueNode
     public string mode;
     public string bg;
     public bool fadeBreak;
+    public bool wipe;
     public float hold = -1f;
 }
 

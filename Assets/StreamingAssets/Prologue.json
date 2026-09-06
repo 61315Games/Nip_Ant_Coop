@@ -20,9 +20,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_900",
       "fadeBreak": true,
+      "wipe": false,
       "hold": -1.0
     },
     {
@@ -37,9 +39,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_901",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -54,9 +58,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_902",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -71,9 +77,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_903",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -88,9 +96,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_904",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -105,9 +115,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_905",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -122,9 +134,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_906_907",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -139,9 +153,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     },
     {
@@ -156,9 +172,11 @@
       "actors": [],
       "shake": false,
       "bgm": "",
+      "sfx": "",
       "mode": "narration",
       "bg": "first_CutScene_908",
-      "fadeBreak": true,
+      "fadeBreak": false,
+      "wipe": true,
       "hold": -1.0
     }
   ],

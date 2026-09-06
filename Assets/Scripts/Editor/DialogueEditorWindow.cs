@@ -177,6 +177,7 @@ public class DialogueEditorWindow : EditorWindow
                 n.bgm       = EditorGUILayout.TextField("BGM 교체(선택)", n.bgm, GUILayout.Width(innerW));
                 n.sfx       = EditorGUILayout.TextField("효과음(선택)", n.sfx, GUILayout.Width(innerW));
                 n.fadeBreak = EditorGUILayout.Toggle("암전 전환", n.fadeBreak, GUILayout.Width(innerW));
+                n.wipe      = EditorGUILayout.Toggle("좌→우 와이프", n.wipe, GUILayout.Width(innerW));
 
                 EditorGUILayout.Space(2);
                 if (n.choices.Count == 0)

@@ -49,6 +49,8 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private TMP_Text narrationText;
     [SerializeField] private CanvasGroup narrationGroup;
     [SerializeField] private Image cutsceneImage;
+    [SerializeField] private Image cutsceneImageWipe;
+    [SerializeField] private float wipeDuration = 0.6f;
     [SerializeField] private float narrationFadeDuration = 0.35f;
     [SerializeField] private float breakFadeDuration = 0.45f;
     [SerializeField] private float narrationHold = 2f; 
@@ -166,7 +168,11 @@ public class DialogueRunner : MonoBehaviour
         string m = string.IsNullOrEmpty(node.mode) ? "dialogue" : node.mode;
         bool modeChanged = (m != currentMode);
         bool bgChanged   = !string.IsNullOrEmpty(node.bg);
-        bool doFade      = node.fadeBreak && fader != null && (modeChanged || bgChanged) && !isIntro;
+        bool doWipe = node.wipe && bgChanged && cutsceneImageWipe != null
+                      && (string.IsNullOrEmpty(node.mode) ? currentMode : node.mode) == "narration";
+
+        bool doFade = node.fadeBreak && fader != null && (modeChanged || bgChanged)
+                      && !isIntro && !doWipe;      // ← && !doWipe 추가
         isIntro = false;
         
         if (doFade)
@@ -195,7 +201,15 @@ public class DialogueRunner : MonoBehaviour
             if (s != null)
             {
                 if (currentMode == "narration" && cutsceneImage != null)
-                    cutsceneImage.sprite = s;
+                {
+                    if (doWipe)
+                    {
+                        transitioning = true;
+                        yield return WipeRoutine(s);
+                        transitioning = false;
+                    }
+                    else cutsceneImage.sprite = s;
+                }
                 else if (backgroundImage != null)
                     backgroundImage.sprite = s;
             }
@@ -622,6 +636,26 @@ public class DialogueRunner : MonoBehaviour
             yield return null;
         }
         shakeRoot.anchoredPosition = shakeHome; 
+    }
+    
+    IEnumerator WipeRoutine(Sprite next)
+    {
+        cutsceneImageWipe.sprite = next;
+        cutsceneImageWipe.fillAmount = 0f;
+        cutsceneImageWipe.gameObject.SetActive(true);
+
+        float t = 0f;
+        while (t < wipeDuration)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / wipeDuration);
+            k = 1f - (1f - k) * (1f - k);
+            cutsceneImageWipe.fillAmount = k;
+            yield return null;
+        }
+
+        cutsceneImage.sprite = next; 
+        cutsceneImageWipe.fillAmount = 0f;
     }
 
     void ApplyStateBeforeJump(string lastMode, string lastBg, DialogueNode target)
