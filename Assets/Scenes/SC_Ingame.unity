@@ -997,10 +997,13 @@ MonoBehaviour:
   narrationText: {fileID: 0}
   narrationGroup: {fileID: 0}
   cutsceneImage: {fileID: 0}
+  cutsceneImageWipe: {fileID: 0}
+  wipeDuration: 0.6
   narrationFadeDuration: 0.35
   breakFadeDuration: 0.45
   narrationHold: 2
   hideInNarration: []
+  typingSfxEvery: 2
 --- !u!114 &335378074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,8 +1023,8 @@ MonoBehaviour:
   - chapterId: Stage1_1
     envPrefab: {fileID: 2444377545445482492, guid: fbb9200d045d0452b823a828f3184b7b,
       type: 3}
-  - chapterId: CH1_2
-    envPrefab: {fileID: 2444377545445482492, guid: fbb9200d045d0452b823a828f3184b7b,
+  - chapterId: Stage1_2
+    envPrefab: {fileID: 2444377545445482492, guid: 328c6d996c7be47919ddcf664757552c,
       type: 3}
 --- !u!114 &335378075
 MonoBehaviour:
@@ -1038,6 +1041,7 @@ MonoBehaviour:
   nextSceneName: SC_Ingame
   nextStageId: Stage1_1
   fader: {fileID: 335378076}
+  skipLoading: 1
   tutorialPanel: {fileID: 1434988902}
   tutorialText: {fileID: 311207046}
   stepImage: {fileID: 1081609595}
@@ -1133,6 +1137,9 @@ MonoBehaviour:
   fader: {fileID: 335378076}
   routes:
   - stageId: Stage1_1
+    clearStoryId: CH1_2
+    failStoryId: 
+  - stageId: Stage1_2
     clearStoryId: CH1_2
     failStoryId: 
 --- !u!1 &379344069
@@ -6244,17 +6251,17 @@ PrefabInstance:
     - target: {fileID: 190079930326326739, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.82
+      value: 8.57
       objectReference: {fileID: 0}
     - target: {fileID: 190079930326326739, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 190079930326326739, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.19
+      value: -6.41
       objectReference: {fileID: 0}
     - target: {fileID: 190079930326326739, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
@@ -6341,6 +6348,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2377089523873423951, guid: fbb9200d045d0452b823a828f3184b7b,
+        type: 3}
+      propertyPath: currentStage
+      value: 
+      objectReference: {fileID: 11400000, guid: df6178d1e982b450da84f67f64056969,
+        type: 2}
     - target: {fileID: 2444377545445482492, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_Name
@@ -6354,17 +6367,32 @@ PrefabInstance:
     - target: {fileID: 3637410014919150028, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.26
+      value: -5.04
       objectReference: {fileID: 0}
     - target: {fileID: 3637410014919150028, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 1.98
       objectReference: {fileID: 0}
     - target: {fileID: 3637410014919150028, guid: fbb9200d045d0452b823a828f3184b7b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.12
+      value: 2.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997714774946675494, guid: fbb9200d045d0452b823a828f3184b7b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997714774946675494, guid: fbb9200d045d0452b823a828f3184b7b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997714774946675494, guid: fbb9200d045d0452b823a828f3184b7b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
