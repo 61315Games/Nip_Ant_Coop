@@ -10,7 +10,7 @@ public class AntMonologue : MonoBehaviour
     [Header("Bubble")]
     [SerializeField] private SpriteRenderer bubble;
     [SerializeField] private Vector2 padding = new Vector2(0.3f, 0.2f);
-    [SerializeField] private float maxWidth = 20f;
+    [SerializeField] private float bubbleWorldScale = 1f;
 
     [Header("Timing")]
     [SerializeField] private float showTime = 3f;
@@ -33,6 +33,8 @@ public class AntMonologue : MonoBehaviour
     
     private void Awake()
     {
+        label.textWrappingMode = TextWrappingModes.NoWrap;
+        label.overflowMode = TextOverflowModes.Overflow;
         if (label == null) label = GetComponentInChildren<TMP_Text>(true);
 
         if (label != null)
@@ -43,10 +45,11 @@ public class AntMonologue : MonoBehaviour
             label.alignment = TextAlignmentOptions.Center;
             label.margin    = Vector4.zero;
 
-            label.gameObject.SetActive(true);   // ← 추가. 표시 여부는 이제 Bubble이 담당
+            label.gameObject.SetActive(true);
         }
 
-        SetVisible(false);   // Bubble(부모)만 끔
+        SetVisible(false);
+        ApplyBubbleScale();
     }
 
     private void Start()
@@ -62,6 +65,7 @@ public class AntMonologue : MonoBehaviour
 
     private void LateUpdate()
     {
+        ApplyBubbleScale();
         if (label == null || bubble == null) return;
 
         if (Time.time >= nextCheck)
@@ -134,6 +138,7 @@ public class AntMonologue : MonoBehaviour
 
     private void FitBubble()
     {
+        ApplyBubbleScale();
         if (bubble == null || label == null || bubble.sprite == null) return;
 
         Sprite  sp  = bubble.sprite;
@@ -143,9 +148,8 @@ public class AntMonologue : MonoBehaviour
         float minW  = (bd.x + bd.z) / ppu;
         float minH  = (bd.y + bd.w) / ppu;
 
-        Vector2 pref = label.GetPreferredValues(label.text, maxWidth, 0f);
-        pref.x = Mathf.Min(pref.x, maxWidth);
-        label.rectTransform.sizeDelta = new Vector2(maxWidth, pref.y);
+        Vector2 pref = label.GetPreferredValues(label.text, 0f, 0f);
+        label.rectTransform.sizeDelta = pref;
 
         float k = label.transform.localScale.x;
         float w = Mathf.Max(pref.x * k + padding.x,        minW);
@@ -154,6 +158,16 @@ public class AntMonologue : MonoBehaviour
 
         Vector3 lp = label.transform.localPosition;
         label.transform.localPosition = new Vector3(w * 0.5f, (tail + h) * 0.5f, lp.z);
+    }
+    
+    private void ApplyBubbleScale()
+    {
+        if (bubble == null) return;
+        Transform p = bubble.transform.parent;
+        Vector3 ps = (p != null) ? p.lossyScale : Vector3.one;
+        float sx = Mathf.Approximately(ps.x, 0f) ? 1f : Mathf.Abs(ps.x);
+        float sy = Mathf.Approximately(ps.y, 0f) ? 1f : Mathf.Abs(ps.y);
+        bubble.transform.localScale = new Vector3(bubbleWorldScale / sx, bubbleWorldScale / sy, 1f);
     }
 
     private bool IsOccluded()

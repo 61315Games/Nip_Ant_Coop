@@ -57,7 +57,7 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private GameObject[] hideInNarration;
     
     [Header("Typing Sound")]
-    [SerializeField] private int typingSfxEvery = 2;   // 2글자에 한 번
+    [SerializeField] private int typingSfxEvery = 2;
 
     static bool IsPunct(char c) => c is '.' or ',' or '!' or '?' or '…' or '·' or '"' or '\'' or '(' or ')' or '\n';
 
@@ -89,6 +89,13 @@ public class DialogueRunner : MonoBehaviour
     private Dictionary<string, Coroutine> movers = new Dictionary<string, Coroutine>();
 
     public bool IsActive => current != null;
+    
+    [System.Serializable]
+    public struct LogLine { public string speaker, text; }
+
+    private readonly List<LogLine> log = new List<LogLine>();
+    private string lastLoggedNodeId;
+    public IReadOnlyList<LogLine> Log => log;
 
     void Awake()
     {
@@ -109,6 +116,8 @@ public class DialogueRunner : MonoBehaviour
         ApplyBgm(data.bgm);
         ClearStage();
         lastSfxNodeId = null;
+        log.Clear();
+        lastLoggedNodeId = null;
 
         currentMode = "dialogue";
         transitioning = false;
@@ -247,7 +256,15 @@ public class DialogueRunner : MonoBehaviour
             narrationGroup.alpha = 0f;
             StartCoroutine(FadeCanvas(narrationGroup, 0f, 1f, narrationFadeDuration));
         }
-
+        
+        if (node.id != lastLoggedNodeId && !string.IsNullOrEmpty(node.text))
+        {
+            lastLoggedNodeId = node.id;
+            log.Add(new LogLine {
+                speaker = (currentMode == "narration") ? "" : node.speaker,
+                text    = node.text
+            });
+        }
         if (typing != null) StopCoroutine(typing);
         typing = StartCoroutine(TypeText(node.text));
     }

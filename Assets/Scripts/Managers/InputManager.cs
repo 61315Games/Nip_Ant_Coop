@@ -30,6 +30,9 @@ public class InputManager : MonoBehaviour
         var skip = SkipController.instance;
         if (skip != null && skip.IsOpen) return;
         
+        var backlog = BacklogController.instance;
+        if (backlog != null && backlog.IsOpen) return;
+        
         if (_dialogue != null && _dialogue.IsActive)
         {
             if (_dialogue.choosing)
